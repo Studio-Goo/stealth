@@ -1,0 +1,2 @@
+# stealth
+slime stealth game
