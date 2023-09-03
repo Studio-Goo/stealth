@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
@@ -11,6 +12,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private Camera mainCamera;
     private float nextSpawnTime = 0.0f;
+    private List<GameObject> obstacles = new List<GameObject>();
 
     private void Start()
     {
@@ -28,6 +30,9 @@ public class ObstacleSpawner : MonoBehaviour
             // Instantiate the obstacle
             GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
 
+            // Adding the obstacle to global array for easy access
+            obstacles.Add(obstacle);
+
             // Schedule the next spawn
             nextSpawnTime = Time.time + spawnInterval;
         }
@@ -38,15 +43,16 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void RemoveOffScreenObstacles()
     {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle"); // Assuming obstacles have a "Obstacle" tag
+        //GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle"); // Assuming obstacles have a "Obstacle" tag
 
-        foreach (var obstacle in obstacles)
+        foreach (var obstacle in obstacles.ToList())
         {
             Vector3 screenPoint = mainCamera.WorldToViewportPoint(obstacle.transform.position);
-
+            
             // If the obstacle is off-screen to the left, remove it
-            if (screenPoint.x < 0f)
+            if (screenPoint.x < -.1f)
             {
+                obstacles.Remove(obstacle);
                 Destroy(obstacle);
             }
         }
