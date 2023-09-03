@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MapGeneration : MonoBehaviour
 {
 
     public GameObject ceiling;
     public GameObject floor;
     public GameObject prevCeiling;
     public GameObject prevFloor;
+
+    public GameObject cameraBounds;
 
     public GameObject player;
 
@@ -25,10 +27,14 @@ public class NewBehaviourScript : MonoBehaviour
         {
             var tempCeiling = prevCeiling;
             var tempFloor = prevFloor;
+
             prevCeiling = ceiling;
             prevFloor = floor;
+
             tempCeiling.transform.position += new Vector3(160, 0, 0);
             tempFloor.transform.position += new Vector3(160, 0, 0);
+            cameraBounds.transform.position += new Vector3(80,0,0);
+
             ceiling = tempCeiling;
             floor = tempFloor;
         }
