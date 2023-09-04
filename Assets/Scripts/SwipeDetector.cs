@@ -18,28 +18,88 @@ public class SwipeDetector : MonoBehaviour
         {
             endTouchPosition = Input.GetTouch(0).position;
 
-            var yDiff = startTouchPosition.y - endTouchPosition.y;
-            var xDiff = startTouchPosition.x - endTouchPosition.x;
+            // Calculating the slope between the start and endpoint
+            var dy = startTouchPosition.y - endTouchPosition.y;
+            var dx = startTouchPosition.x - endTouchPosition.x;
+            var direction = dy / dx;
 
-            if (endTouchPosition.x > startTouchPosition.x && yDiff > -50 && yDiff < 50)
+            // Horizontal
+            if (direction >= -0.3f && direction <= 0.3f)
             {
-                Debug.Log(">>>");
+
+                if(endTouchPosition.x > startTouchPosition.x)
+                {
+                    Debug.Log(">>>");
+                } else
+                {
+                    Debug.Log("<<<");
+                }
             }
 
-            if (endTouchPosition.x < startTouchPosition.x && yDiff > -50 && yDiff < 50)
+            // Diagonal Positive (bottom left to top right)
+            if(direction > 0.3f && direction <= 5)
             {
-                Debug.Log("<<<");
+                if (startTouchPosition.y > endTouchPosition.y)
+                {
+                    Debug.Log("<<< Down");
+                }
+                else
+                {
+                    Debug.Log(">>> Up");
+                }
             }
 
-            if(startTouchPosition.y < endTouchPosition.y && xDiff > -50 && xDiff < 50)
+            // Diagonal Negative (top left to bottom right)
+            if (direction < -0.3f && direction >= -5)
             {
-                Debug.Log("UP");
+                if (startTouchPosition.y > endTouchPosition.y)
+                {
+                    Debug.Log(">>> Down");
+                }
+                else
+                {
+                    Debug.Log("<<< Up");
+                }
             }
 
-            if (startTouchPosition.y > endTouchPosition.y && xDiff > -50 && xDiff < 50)
+            // Vertical
+            if (direction > 5 && direction < 10000 || direction < -5 ||  double.IsInfinity(direction))
             {
-                Debug.Log("DOWN");
+
+                if (startTouchPosition.y > endTouchPosition.y)
+                {
+                    Debug.Log("Down");
+                }
+                else
+                {
+                    Debug.Log("Up");
+                }
             }
+
+            //if (endtouchposition.x == starttouchposition.x)
+            //{
+            //    debug.log("jump");
+            //}
+
+            //if (endtouchposition.x > starttouchposition.x && ydiff > -50 && ydiff < 50)
+            //{
+            //    debug.log(">>>");
+            //}
+
+            //if (endtouchposition.x < starttouchposition.x && ydiff > -50 && ydiff < 50)
+            //{
+            //    debug.log("<<<");
+            //}
+
+            //if (starttouchposition.y < endtouchposition.y && xdiff > -50 && xdiff < 50)
+            //{
+            //    debug.log("up");
+            //}
+
+            //if (starttouchposition.y > endtouchposition.y && xdiff > -50 && xdiff < 50)
+            //{
+            //    debug.log("down");
+            //}
         }
     }
 }
