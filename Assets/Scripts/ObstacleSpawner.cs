@@ -29,6 +29,7 @@ public class ObstacleSpawner : MonoBehaviour
 
             // Instantiate the obstacle
             GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+            obstacle.GetComponent<Obstacle>().shape = Shape.Horizontal;
 
             // Adding the obstacle to global array for easy access
             obstacles.Add(obstacle);

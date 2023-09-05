@@ -24,11 +24,11 @@ public class Slime : MonoBehaviour
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
         else {
-            EventScript eventScript = GetComponent<EventScript>();
-            
-            eventScript.testCase();
+            //EventScript eventScript = GetComponent<EventScript>();
 
-        }
+            //eventScript.testCase();
+
+            }
     }
 
     bool CanMove()
