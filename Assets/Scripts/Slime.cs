@@ -6,6 +6,7 @@ public class Slime : MonoBehaviour
 {
     public float speed = 5.0f; // Adjust the speed in the Inspector.
     public float stopDistance = 5.0f; // Set the distance at which the slime should stop.
+    public Shape lastGesture;
 
     private GameObject[] obstacles;
 
