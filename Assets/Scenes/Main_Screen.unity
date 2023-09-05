@@ -660,6 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5bbe4bc725908e488a967a6ab48765e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slime: {fileID: 2143131205}
 --- !u!4 &1274515079
 Transform:
   m_ObjectHideFlags: 0
@@ -863,7 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16dbd221df4752e439ab7ba139470a8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclePrefab: {fileID: 202565075240852011, guid: 99e87e895dc174f4681099d0afad0516, type: 3}
+  obstaclePrefab: {fileID: 868221699987570516, guid: accdca32874883e4eae08aab5110d8a4, type: 3}
   spawnInterval: 2
   spawnHeight: 0.24
   removeOffset: 2
@@ -1001,10 +1002,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2143131204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ad2be752d09b564ba56ad6b5dbbe443, type: 3}
+  m_Script: {fileID: 11500000, guid: ec5162b39183ed74b8c869bf7571873e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  stopDistance: 5
+  lastGesture: 0
 --- !u!212 &2143131206
 SpriteRenderer:
   m_ObjectHideFlags: 0
