@@ -25,11 +25,40 @@ public class Slime : MonoBehaviour
             transform.Translate(Vector3.right * speed * Time.deltaTime);
         }
         else {
-            //EventScript eventScript = GetComponent<EventScript>();
 
-            //eventScript.testCase();
+            // checking the gesture
+            if(CheckGesture())
+            {
+                lastGesture = Shape.Null;
 
+                // resuming player speed
+                Debug.Log("resume speed");
             }
+
+            
+        }
+    }
+
+    bool CheckGesture()
+    {
+        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach (GameObject obstacle in obstacles)
+        {
+            float distance = Vector3.Distance(transform.position, obstacle.transform.position);
+
+            // If the slime is within the stopDistance of any obstacle, return false (stop moving).
+            if (distance < stopDistance)
+            {
+                if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
+                {
+                    obstacle.GetComponent<Obstacle>().completed = true;
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     bool CanMove()
@@ -37,8 +66,16 @@ public class Slime : MonoBehaviour
         //check if there are any obstacles in the scene
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 
+        
+
         foreach (GameObject obstacle in obstacles)
         {
+
+            if (obstacle.GetComponent<Obstacle>().completed)
+            {
+                return true;
+            }
+
             float distance = Vector3.Distance(transform.position, obstacle.transform.position);
 
             // If the slime is within the stopDistance of any obstacle, return false (stop moving).
