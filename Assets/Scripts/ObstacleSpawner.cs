@@ -7,12 +7,15 @@ public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     public float spawnInterval = 2.0f;
-    public float spawnHeight = 2.0f; // Height at which obstacles spawn
+    public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
 
     private Camera mainCamera;
     private float nextSpawnTime = 0.0f;
     private List<GameObject> obstacles = new List<GameObject>();
+
+    private List<Shape> shapes = new List<Shape> { Shape.Horizontal, Shape.Vertical };
+    private int index = 0;
 
     private void Start()
     {
@@ -24,15 +27,9 @@ public class ObstacleSpawner : MonoBehaviour
         // Check if it's time to spawn a new obstacle
         if (Time.time >= nextSpawnTime)
         {
-            // Calculate the spawn position based on the camera's right edge and the desired height
-            Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 10.0f));
 
             // Instantiate the obstacle
-            GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
-            obstacle.GetComponent<Obstacle>().shape = Shape.Horizontal;
-
-            // Adding the obstacle to global array for easy access
-            obstacles.Add(obstacle);
+            SpawnObstacle();
 
             // Schedule the next spawn
             nextSpawnTime = Time.time + spawnInterval;
@@ -58,4 +55,32 @@ public class ObstacleSpawner : MonoBehaviour
             }
         }
     }
+
+    private void SpawnObstacle()
+    {
+
+        // Calculate the spawn position based on the camera's right edge and the desired height
+        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 10.0f));
+
+        Shape objectShape = shapes[index];
+
+        // Spawning the obstacle and assigning shape
+        GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+        obstacle.GetComponent<Obstacle>().shape = objectShape;
+
+        // Adding new obstacle to list
+        obstacles.Add(obstacle);
+
+        // Use next shape for next object spawning
+        index++;
+
+        // Checking if current shuffled shape list has been used completely
+        if (index >= shapes.Count)
+        {
+            // Shuffle list and begin using again
+            shapes.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
+            index = 0;
+        }
+    }
+
 }
