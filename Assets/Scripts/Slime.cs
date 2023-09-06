@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Slime : MonoBehaviour 
 {
@@ -33,6 +34,10 @@ public class Slime : MonoBehaviour
 
                 // resuming player speed
                 Debug.Log("resume speed");
+            } else
+            {
+                // Show gameover screen
+                SceneManager.LoadScene("GameOver");
             }
 
             
