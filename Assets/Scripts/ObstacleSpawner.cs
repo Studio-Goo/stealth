@@ -79,6 +79,7 @@ public class ObstacleSpawner : MonoBehaviour
         {
             // Shuffle list and begin using again
             shapes.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
+            Debug.Log(shapes[0]);
             index = 0;
         }
     }
