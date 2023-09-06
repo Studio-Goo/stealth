@@ -11,9 +11,11 @@ public class Slime : MonoBehaviour
 
     private GameObject[] obstacles;
 
+    public ObstacleSpawner obstacleSpawner;
+
     void Start()
     {
-
+        obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,8 @@ public class Slime : MonoBehaviour
         }
         else {
 
+            obstacleSpawner.enabled = false;
+
             // checking the gesture
             if(CheckGesture())
             {
@@ -34,11 +38,15 @@ public class Slime : MonoBehaviour
 
                 // resuming player speed
                 Debug.Log("resume speed");
-            } else
+
+                //resuming obstacle spawning
+                obstacleSpawner.enabled = true;
+
+            } /* else
             {
                 // Show gameover screen
                 SceneManager.LoadScene("GameOver");
-            }
+            } */
 
             
         }

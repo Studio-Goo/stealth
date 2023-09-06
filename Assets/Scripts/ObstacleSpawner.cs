@@ -39,7 +39,7 @@ public class ObstacleSpawner : MonoBehaviour
         RemoveOffScreenObstacles();
     }
 
-    private void RemoveOffScreenObstacles()
+    public void RemoveOffScreenObstacles()
     {
         //GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle"); // Assuming obstacles have a "Obstacle" tag
 
