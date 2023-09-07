@@ -33,11 +33,11 @@ public class SwipeDetector : MonoBehaviour
                 if(endTouchPosition.x > startTouchPosition.x)
                 {
                     Debug.Log(">>>");
-                    slime.lastGesture = Shape.Horizontal;
+                    slime.UpdateGesture(Shape.Horizontal);
                 } else
                 {
                     Debug.Log("<<<");
-                    slime.lastGesture = Shape.Horizontal;
+                    slime.UpdateGesture(Shape.Horizontal);
                 }
             }
 
@@ -74,19 +74,19 @@ public class SwipeDetector : MonoBehaviour
                 if (startTouchPosition.y > endTouchPosition.y)
                 {
                     Debug.Log("Down");
-                    slime.lastGesture = Shape.Vertical;
+                    slime.UpdateGesture(Shape.Vertical);
 
                 }
                 else
                 {
                     Debug.Log("Up");
-                    slime.lastGesture = Shape.Vertical;
+                    slime.UpdateGesture(Shape.Vertical);
                 }
             }
 
             else {
                 Debug.Log("Tap");
-                slime.lastGesture = Shape.Suspended;
+                slime.UpdateGesture(Shape.Suspended);
             }
         }
     }

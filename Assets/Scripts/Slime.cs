@@ -6,16 +6,18 @@ using UnityEngine.SceneManagement;
 public class Slime : MonoBehaviour 
 {
     public float speed = 5.0f; // Adjust the speed in the Inspector.
-    public float stopDistance = 5.0f; // Set the distance at which the slime should stop.
+    public const float stopDistance = 5.0f; // Set the distance at which the slime should stop.
     public Shape lastGesture;
 
     private GameObject[] obstacles;
+    private Rigidbody rigidBody;
 
     public ObstacleSpawner obstacleSpawner;
 
     void Start()
     {
         obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class Slime : MonoBehaviour
 
         foreach (GameObject obstacle in obstacles)
         {
-            float distance = Vector3.Distance(transform.position, obstacle.transform.position);
+            float distance = Mathf.Abs(transform.position.x - obstacle.transform.position.x);
 
             // If the slime is within the stopDistance of any obstacle, return false (stop moving).
             if (distance < stopDistance)
@@ -89,7 +91,7 @@ public class Slime : MonoBehaviour
                 return true;
             }
 
-            float distance = Vector3.Distance(transform.position, obstacle.transform.position);
+            float distance = Mathf.Abs(transform.position.x - obstacle.transform.position.x);
 
             // If the slime is within the stopDistance of any obstacle, return false (stop moving).
             if (distance < stopDistance)
@@ -99,5 +101,13 @@ public class Slime : MonoBehaviour
         }
 
         return true; 
+    }
+
+    public void UpdateGesture(Shape newGesture)
+    {
+        lastGesture = newGesture;
+        if (newGesture == Shape.Suspended) {
+            rigidBody.AddForce(Vector3.up * 500);
+        }
     }
 }
