@@ -95,7 +95,7 @@ public class Slime : MonoBehaviour
         return false;
     }
 
-    bool CanMove()
+    public bool CanMove()
     {
         //check if there are any obstacles in the scene
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
