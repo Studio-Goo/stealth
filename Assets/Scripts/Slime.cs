@@ -9,6 +9,11 @@ public class Slime : MonoBehaviour
     public float stopDistance = 5.0f; // Set the distance at which the slime should stop.
     public Shape lastGesture;
 
+    //Sprites
+    public Sprite normal;
+    public Sprite horizontal;
+    public Sprite vertical;
+
     private GameObject[] obstacles;
 
     public ObstacleSpawner obstacleSpawner;
@@ -49,6 +54,22 @@ public class Slime : MonoBehaviour
             } */
 
             
+
+            
+        }
+
+        // Changing slime sprite
+        if (lastGesture == Shape.Null)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = normal;
+        }
+        else if (lastGesture == Shape.Horizontal)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = horizontal;
+        }
+        else if (lastGesture == Shape.Vertical)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = vertical;
         }
     }
 

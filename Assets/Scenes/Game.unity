@@ -1403,6 +1403,10 @@ MonoBehaviour:
   speed: 10
   stopDistance: 5
   lastGesture: 0
+  normal: {fileID: 21300000, guid: 445e75c57ee34604493c9506ee38dfbc, type: 3}
+  horizontal: {fileID: 21300000, guid: b0df9a3ed456b814f9403d95c4ef1668, type: 3}
+  vertical: {fileID: 21300000, guid: f8e3f1d9574100346926b2a37ff43ff3, type: 3}
+  obstacleSpawner: {fileID: 0}
 --- !u!212 &2143131206
 SpriteRenderer:
   m_ObjectHideFlags: 0
