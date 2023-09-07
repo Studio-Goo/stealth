@@ -4,7 +4,7 @@ using System;
 using UnityEngine;
 
 // Shape Null is the default value and used for resetting
-public enum Shape { Null, Vertical, Horizontal };
+public enum Shape { Null, Vertical, Horizontal, Suspended };
 
 public class Obstacle : MonoBehaviour
 {
@@ -13,6 +13,7 @@ public class Obstacle : MonoBehaviour
 
     public Sprite verticalObstacle;
     public Sprite horizontalObstacle;
+    public Sprite suspendedObstacle;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,8 @@ public class Obstacle : MonoBehaviour
         } else if (shape == Shape.Horizontal)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = horizontalObstacle;
+        } else if (shape == Shape.Suspended) {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = suspendedObstacle;
         }
     }
 

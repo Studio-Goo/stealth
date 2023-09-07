@@ -101,3 +101,4 @@ MonoBehaviour:
   completed: 0
   verticalObstacle: {fileID: 21300000, guid: e615a32b11535db488e62c2c8b06ecbd, type: 3}
   horizontalObstacle: {fileID: 21300000, guid: 7041dd1e1a84dfc43a1f48f23a0fd923, type: 3}
+  suspendedObstacle: {fileID: 21300000, guid: c55c2d443632c553e9fca320285c44f6, type: 3}

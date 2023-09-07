@@ -14,7 +14,7 @@ public class ObstacleSpawner : MonoBehaviour
     private float nextSpawnTime = 0.0f;
     private List<GameObject> obstacles = new List<GameObject>();
 
-    private List<Shape> shapes = new List<Shape> { Shape.Horizontal, Shape.Vertical };
+    private List<Shape> shapes = new List<Shape> { Shape.Horizontal, Shape.Vertical, Shape.Suspended };
     private int index = 0;
 
     private void Start()
