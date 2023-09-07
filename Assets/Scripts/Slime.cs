@@ -6,16 +6,21 @@ using UnityEngine.SceneManagement;
 public class Slime : MonoBehaviour 
 {
     public float speed = 5.0f; // Adjust the speed in the Inspector.
-    public float stopDistance = 5.0f; // Set the distance at which the slime should stop.
+    public float stopDistance = 3.0f; // Set the distance at which the slime should stop.
+    public float gestureDistance = 10.0f; // Distance in which a gesture can be made.
+    public float waitSeconds = 1.0f; // Seconds to wait before resetting gesture.
     public Shape lastGesture;
+    public Shape savedGesture;
 
-    //Sprites
+    // Sprites
     public Sprite normal;
     public Sprite horizontal;
     public Sprite vertical;
+    
+    public GameObject exclamationMarkPrefab; 
+    private GameObject exclamationMark; 
 
     private GameObject[] obstacles;
-
     public ObstacleSpawner obstacleSpawner;
 
     void Start()
@@ -23,42 +28,66 @@ public class Slime : MonoBehaviour
         obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //automatic slime movement
+        transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-        if (CanMove())
+        HandleGestureReset();
+        HandleExclamationMark();
+
+        if (ObstacleReached())
         {
-            // Move the slime if it's allowed to move.
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
-        else {
-
-            obstacleSpawner.enabled = false;
-
-            // checking the gesture
-            if(CheckGesture())
-            {
-                lastGesture = Shape.Null;
-
-                // resuming player speed
-                Debug.Log("resume speed");
-
-                //resuming obstacle spawning
-                obstacleSpawner.enabled = true;
-
-            } /* else
-            {
-                // Show gameover screen
-                SceneManager.LoadScene("GameOver");
-            } */
-
-            
-
-            
+            HandleObstacleReached();
         }
 
-        // Changing slime sprite
+        UpdateSlimeSprite();
+    }
+
+    // Handle resetting the gesture if needed
+    void HandleGestureReset()
+    {
+        if (lastGesture != Shape.Null && !ObstacleReached())
+        {
+            StartCoroutine(WaitAndResetGesture(waitSeconds));
+        }
+    }
+
+    // Handle spawning and destroying the exclamation mark
+    void HandleExclamationMark()
+    {
+        if (GestureDistance() && exclamationMark == null)
+        {
+            exclamationMark = Instantiate(exclamationMarkPrefab, transform.position, Quaternion.identity);
+        }
+        else if (!GestureDistance() && exclamationMark != null)
+        {
+            Destroy(exclamationMark);
+            exclamationMark = null;
+        }
+    }
+
+    // Handle actions when an obstacle is reached
+    void HandleObstacleReached()
+    {
+        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        if (CheckGesture())
+        {
+            print("Correct Gesture");
+        }
+        else
+        {
+            print("Wrong Gesture");
+            SceneManager.LoadScene("GameOver");
+        }
+
+        StartCoroutine(WaitAndResetGesture(waitSeconds));
+    }
+
+    // Update the slime sprite based on the last gesture
+    void UpdateSlimeSprite()
+    {
         if (lastGesture == Shape.Null)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = normal;
@@ -73,6 +102,7 @@ public class Slime : MonoBehaviour
         }
     }
 
+    // Check if the gesture is correct
     bool CheckGesture()
     {
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
@@ -81,7 +111,6 @@ public class Slime : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, obstacle.transform.position);
 
-            // If the slime is within the stopDistance of any obstacle, return false (stop moving).
             if (distance < stopDistance)
             {
                 if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
@@ -95,30 +124,46 @@ public class Slime : MonoBehaviour
         return false;
     }
 
-    public bool CanMove()
+    // Check if the obstacle is reached
+    bool ObstacleReached()
     {
-        //check if there are any obstacles in the scene
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-
-        
 
         foreach (GameObject obstacle in obstacles)
         {
+            float distance = Vector3.Distance(transform.position, obstacle.transform.position);
 
-            if (obstacle.GetComponent<Obstacle>().completed)
+            if (distance < stopDistance)
             {
                 return true;
             }
+        }
 
+        return false;
+    }
+
+    // Check if the gesture distance is reached
+    bool GestureDistance()
+    {
+        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach (GameObject obstacle in obstacles)
+        {
             float distance = Vector3.Distance(transform.position, obstacle.transform.position);
 
-            // If the slime is within the stopDistance of any obstacle, return false (stop moving).
-            if (distance < stopDistance)
+            if (distance < gestureDistance)
             {
-                return false;
+                return true;
             }
         }
 
-        return true; 
+        return false;
+    }
+
+    // Wait for a few seconds and reset the gesture
+    IEnumerator WaitAndResetGesture(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        lastGesture = Shape.Null;
     }
 }
