@@ -98,7 +98,7 @@ public class Slime : MonoBehaviour
             else
             {
                 print("Wrong Gesture");
-                //SceneManager.LoadScene("GameOver");
+                SceneManager.LoadScene("GameOver");
             }
         }
     }
