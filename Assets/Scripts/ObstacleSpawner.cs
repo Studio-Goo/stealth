@@ -109,7 +109,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void SpawnEmployee()
     {
         // Calculate the spawn position based on the camera's right edge and the desired height
-        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 4.8f));
+        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, 0.72f, 4.8f));
         GameObject employee = Instantiate(employeePrefab, spawnPosition, Quaternion.identity);
 
         employees.Add(employee);
