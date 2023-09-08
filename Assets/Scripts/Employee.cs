@@ -25,7 +25,6 @@ public class Employee : MonoBehaviour
     void Update()
     {
         float distance = player.GetComponent<Slime>().ObstacleDistance(player.GetComponent<Slime>().GetNearestObstacle());
-        Debug.Log(distance);
 
         if (distance > 0 && distance < fullLookingDistance)
         {

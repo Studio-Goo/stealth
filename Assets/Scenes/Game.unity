@@ -1439,10 +1439,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ceiling: {fileID: 892767025}
-  background: {fileID: 265144574}
+  background: {fileID: 0}
   floor: {fileID: 1026447711}
   prevCeiling: {fileID: 1280807162}
-  prevBackground: {fileID: 1469208398}
+  prevBackground: {fileID: 0}
   prevFloor: {fileID: 2146235739}
   cameraBounds: {fileID: 1127076940}
   player: {fileID: 2143131204}

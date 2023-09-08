@@ -26,16 +26,20 @@ public class Slime : MonoBehaviour
     private GameObject[] obstacles;
     public ObstacleSpawner obstacleSpawner;
 
+    //private Rigidbody rigidbody;
+
     void Start()
     {
         obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
-        rigidBody = GetComponent<Rigidbody>();
+        //rigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         //automatic slime movement
         transform.Translate(Vector3.right * speed * Time.deltaTime);
+        //this.GetComponent<Rigidbody2D>().AddForce(transform.right * 1, ForceMode2D.Impulse);
+        //rb.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
 
 
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
@@ -186,7 +190,7 @@ public class Slime : MonoBehaviour
     {
         lastGesture = newGesture;
         if (newGesture == Shape.Suspended) {
-            rigidBody.AddForce(Vector3.up * 500);
+            this.GetComponent<Rigidbody2D>().AddForce(transform.up * 1, ForceMode2D.Impulse);
         }
     }
 }
