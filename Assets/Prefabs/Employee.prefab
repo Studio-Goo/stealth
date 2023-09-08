@@ -97,4 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43039efa7fc3774d8834577c54ab0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  notLooking: {fileID: 21300000, guid: 02b62977782e72e43b2a3ddff5847120, type: 3}
+  notLookingDistance: 20
+  halfLooking: {fileID: 21300000, guid: e8e83a151cebca84c9f1893201e882b2, type: 3}
+  halfLookingDistance: 10
+  fullLooking: {fileID: 21300000, guid: e2a825d6dfa20454983cbfc80335294f, type: 3}
+  fullLookingDistance: 1

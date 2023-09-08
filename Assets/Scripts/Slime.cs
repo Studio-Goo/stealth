@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Slime : MonoBehaviour 
+public class Slime : MonoBehaviour
 {
     public float speed = 5.0f; // Adjust the speed in the Inspector.
-    public float stopDistance = 3.0f; // Set the distance at which the slime should stop.
-    public float gestureDistance = 10.0f; // Distance in which a gesture can be made.
-    public float waitSeconds = 1.0f; // Seconds to wait before resetting gesture.
+
+    public float gestureCheckDistance = 1.0f;
+    public float gestureAllowedDistance = 25.0f;
+    public float gestureExclamationDistance = 10.0f;
+    public float gestureResetSeconds = 1.0f;
+
+
     public Shape lastGesture;
     public Shape savedGesture;
 
@@ -16,9 +20,9 @@ public class Slime : MonoBehaviour
     public Sprite normal;
     public Sprite horizontal;
     public Sprite vertical;
-    
-    public GameObject exclamationMarkPrefab; 
-    private GameObject exclamationMark; 
+
+    public GameObject exclamationMarkPrefab;
+    private GameObject exclamationMark;
 
     private GameObject[] obstacles;
     public ObstacleSpawner obstacleSpawner;
@@ -33,34 +37,40 @@ public class Slime : MonoBehaviour
         //automatic slime movement
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-        HandleGestureReset();
-        HandleExclamationMark();
 
-        if (ObstacleReached())
+        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+
+        foreach (GameObject obstacle in obstacles)
         {
-            HandleObstacleReached();
+            HandleGestureReset(obstacle);
+            HandleExclamationMark(obstacle);
+
+            if (ObstacleReached(obstacle))
+            {
+                HandleObstacleReached(obstacle);
+            }
         }
 
         UpdateSlimeSprite();
     }
 
     // Handle resetting the gesture if needed
-    void HandleGestureReset()
+    void HandleGestureReset(GameObject obstacle)
     {
-        if (lastGesture != Shape.Null && !ObstacleReached())
+        if (lastGesture != Shape.Null && !ObstacleReached(obstacle))
         {
-            StartCoroutine(WaitAndResetGesture(waitSeconds));
+            StartCoroutine(WaitAndResetGesture(gestureResetSeconds));
         }
     }
 
     // Handle spawning and destroying the exclamation mark
-    void HandleExclamationMark()
+    void HandleExclamationMark(GameObject obstacle)
     {
-        if (GestureDistance() && exclamationMark == null)
+        if (ObstacleDistance(obstacle) == gestureExclamationDistance && exclamationMark == null)
         {
             exclamationMark = Instantiate(exclamationMarkPrefab, transform.position, Quaternion.identity);
         }
-        else if (!GestureDistance() && exclamationMark != null)
+        else if (!GestureDistance(obstacle) && exclamationMark != null)
         {
             Destroy(exclamationMark);
             exclamationMark = null;
@@ -68,21 +78,21 @@ public class Slime : MonoBehaviour
     }
 
     // Handle actions when an obstacle is reached
-    void HandleObstacleReached()
+    void HandleObstacleReached(GameObject obstacle)
     {
-        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-
-        if (CheckGesture())
+        if (!obstacle.GetComponent<Obstacle>().completed)
         {
-            print("Correct Gesture");
+            if (CheckGesture(obstacle))
+            {
+                print("Correct Gesture");
+                obstacle.GetComponent<Obstacle>().completed = true;
+            }
+            else
+            {
+                print("Wrong Gesture");
+                SceneManager.LoadScene("GameOver");
+            }
         }
-        else
-        {
-            print("Wrong Gesture");
-            SceneManager.LoadScene("GameOver");
-        }
-
-        StartCoroutine(WaitAndResetGesture(waitSeconds));
     }
 
     // Update the slime sprite based on the last gesture
@@ -103,21 +113,16 @@ public class Slime : MonoBehaviour
     }
 
     // Check if the gesture is correct
-    bool CheckGesture()
+    bool CheckGesture(GameObject obstacle)
     {
-        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        float distance = ObstacleDistance(obstacle);
 
-        foreach (GameObject obstacle in obstacles)
+        if (distance > 0 && distance < gestureCheckDistance)
         {
-            float distance = Vector3.Distance(transform.position, obstacle.transform.position);
-
-            if (distance < stopDistance)
+            if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
             {
-                if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
-                {
-                    obstacle.GetComponent<Obstacle>().completed = true;
-                    return true;
-                }
+                obstacle.GetComponent<Obstacle>().completed = true;
+                return true;
             }
         }
 
@@ -125,39 +130,44 @@ public class Slime : MonoBehaviour
     }
 
     // Check if the obstacle is reached
-    bool ObstacleReached()
+    bool ObstacleReached(GameObject obstacle)
     {
-        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-
-        foreach (GameObject obstacle in obstacles)
+        if (ObstacleDistance(obstacle) < gestureCheckDistance)
         {
-            float distance = Vector3.Distance(transform.position, obstacle.transform.position);
-
-            if (distance < stopDistance)
-            {
-                return true;
-            }
+            return true;
         }
 
         return false;
     }
 
-    // Check if the gesture distance is reached
-    bool GestureDistance()
+    public GameObject GetNearestObstacle()
     {
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 
         foreach (GameObject obstacle in obstacles)
         {
-            float distance = Vector3.Distance(transform.position, obstacle.transform.position);
-
-            if (distance < gestureDistance)
-            {
-                return true;
-            }
+            return obstacle;
         }
 
-        return false;
+        return null;
+    }
+
+    public float ObstacleDistance(GameObject obstacle)
+    {
+        return obstacle.transform.position.x - transform.position.x;
+    }
+
+    // Check if the gesture distance is reached
+    bool GestureDistance(GameObject obstacle)
+    {
+        float distance = ObstacleDistance(obstacle);
+
+        if (distance < gestureAllowedDistance)
+        {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Wait for a few seconds and reset the gesture

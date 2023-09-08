@@ -7,7 +7,7 @@ public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     public GameObject employeePrefab;
-    public float spawnInterval = 5f;
+    public float spawnInterval = 10f;
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
 
@@ -109,7 +109,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void SpawnEmployee()
     {
         // Calculate the spawn position based on the camera's right edge and the desired height
-        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.6f, 0.5f, 4.8f));
+        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, 0.5f, 4.8f));
         GameObject employee = Instantiate(employeePrefab, spawnPosition, Quaternion.identity);
 
         employees.Add(employee);

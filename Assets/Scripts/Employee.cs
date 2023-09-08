@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Employee : MonoBehaviour
 {
-    public float speed = 5.0f;
+
+    //public float speed = 5.0f;
+    public Sprite notLooking;
+    public float notLookingDistance = 20.0f;
+    public Sprite halfLooking;
+    public float halfLookingDistance = 10.0f;
+    public Sprite fullLooking;
+    public float fullLookingDistance = 1.0f;
+
     private GameObject player;
 
     // Start is called before the first frame update
@@ -16,14 +24,30 @@ public class Employee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.left * speed * Time.deltaTime);
+        float distance = player.GetComponent<Slime>().ObstacleDistance(player.GetComponent<Slime>().GetNearestObstacle());
+        Debug.Log(distance);
 
-        if(player.GetComponent<Slime>().CanMove())
+        if (distance > 0 && distance < fullLookingDistance)
         {
-            speed = 5.0f;
-        } else
-        {
-            speed = 0;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = fullLooking;
         }
+        else if (distance > fullLookingDistance && distance < halfLookingDistance)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = halfLooking;
+        }
+        else if (distance > halfLookingDistance)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = notLooking;
+        }
+
+        //transform.Translate(Vector3.left * speed * Time.deltaTime);
+
+        //if(player.GetComponent<Slime>().CanMove())
+        //{
+        //    speed = 5.0f;
+        //} else
+        //{
+        //   speed = 0;
+        //}
     }
 }

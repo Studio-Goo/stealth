@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 868221699987570516, guid: accdca32874883e4eae08aab5110d8a4, type: 3}
   employeePrefab: {fileID: 53251403102717371, guid: 9feca7ebadbca9541babcb8d5fece97c, type: 3}
-  spawnInterval: 2
+  spawnInterval: 5
   spawnHeight: 0.24
   removeOffset: 2
 --- !u!4 &1784259274
@@ -1638,12 +1638,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5162b39183ed74b8c869bf7571873e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  stopDistance: 5
+  speed: 8
+  gestureCheckDistance: 1
+  gestureAllowedDistance: 25
+  gestureExclamationDistance: 10
+  gestureResetSeconds: 1
   lastGesture: 0
+  savedGesture: 0
   normal: {fileID: 21300000, guid: 445e75c57ee34604493c9506ee38dfbc, type: 3}
   horizontal: {fileID: 21300000, guid: b0df9a3ed456b814f9403d95c4ef1668, type: 3}
   vertical: {fileID: 21300000, guid: f8e3f1d9574100346926b2a37ff43ff3, type: 3}
+  exclamationMarkPrefab: {fileID: 587773372122213484, guid: 739eadf35f2f5e646afc00851cea492e, type: 3}
   obstacleSpawner: {fileID: 0}
 --- !u!212 &2143131206
 SpriteRenderer:
