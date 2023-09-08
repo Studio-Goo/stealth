@@ -1635,8 +1635,8 @@ MonoBehaviour:
   speed: 8
   gestureCheckDistance: 1
   gestureAllowedDistance: 25
-  gestureExclamationDistance: 10
-  gestureResetSeconds: 1
+  exclamationMarkDistance: 10
+  gestureResetSeconds: 1.8
   lastGesture: 0
   savedGesture: 0
   normal: {fileID: 21300000, guid: 9afdd4c7dcaee38bab090d747f0a2d52, type: 3}
