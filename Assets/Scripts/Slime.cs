@@ -40,14 +40,17 @@ public class Slime : MonoBehaviour
 
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
 
-        foreach (GameObject obstacle in obstacles)
+        if (obstacles != null)
         {
-            HandleGestureReset(obstacle);
-            HandleExclamationMark(obstacle);
-
-            if (ObstacleReached(obstacle))
+            foreach (GameObject obstacle in obstacles)
             {
-                HandleObstacleReached(obstacle);
+                HandleGestureReset(obstacle);
+                HandleExclamationMark(obstacle);
+
+                if (ObstacleReached(obstacle))
+                {
+                    HandleObstacleReached(obstacle);
+                }
             }
         }
 
@@ -165,7 +168,9 @@ public class Slime : MonoBehaviour
         if (distance < gestureAllowedDistance)
         {
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
