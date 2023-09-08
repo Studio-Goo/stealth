@@ -6,6 +6,8 @@ public class SwipeDetector : MonoBehaviour
 {
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
+    // If distance between start & end is higher, count as a swipe.
+    private const float SWIPE_TRESHOLD = 1.0f;
     public Slime slime;
 
     private void Update()
@@ -25,22 +27,22 @@ public class SwipeDetector : MonoBehaviour
             var direction = dy / dx;
 
             // Horizontal
-            if (direction >= -0.3f && direction <= 0.3f)
+            if (direction >= -SWIPE_TRESHOLD && direction <= SWIPE_TRESHOLD)
             {
 
                 if(endTouchPosition.x > startTouchPosition.x)
                 {
                     Debug.Log(">>>");
-                    slime.lastGesture = Shape.Horizontal;
+                    slime.UpdateGesture(Shape.Horizontal);
                 } else
                 {
                     Debug.Log("<<<");
-                    slime.lastGesture = Shape.Horizontal;
+                    slime.UpdateGesture(Shape.Horizontal);
                 }
             }
 
             // Diagonal Positive (bottom left to top right)
-            if(direction > 0.3f && direction <= 5)
+            else if(direction > SWIPE_TRESHOLD && direction <= 5)
             {
                 if (startTouchPosition.y > endTouchPosition.y)
                 {
@@ -53,7 +55,7 @@ public class SwipeDetector : MonoBehaviour
             }
 
             // Diagonal Negative (top left to bottom right)
-            if (direction < -0.3f && direction >= -5)
+            else if (direction < -SWIPE_TRESHOLD && direction >= -5)
             {
                 if (startTouchPosition.y > endTouchPosition.y)
                 {
@@ -66,46 +68,26 @@ public class SwipeDetector : MonoBehaviour
             }
 
             // Vertical
-            if (direction > 5 && direction < 10000 || direction < -5 ||  double.IsInfinity(direction))
+            else if (direction > 5 && direction < 10000 || direction < -5 ||  double.IsInfinity(direction))
             {
 
                 if (startTouchPosition.y > endTouchPosition.y)
                 {
                     Debug.Log("Down");
-                    slime.lastGesture = Shape.Vertical;
+                    slime.UpdateGesture(Shape.Vertical);
 
                 }
                 else
                 {
                     Debug.Log("Up");
-                    slime.lastGesture = Shape.Vertical;
+                    slime.UpdateGesture(Shape.Vertical);
                 }
             }
 
-            //if (endtouchposition.x == starttouchposition.x)
-            //{
-            //    debug.log("jump");
-            //}
-
-            //if (endtouchposition.x > starttouchposition.x && ydiff > -50 && ydiff < 50)
-            //{
-            //    debug.log(">>>");
-            //}
-
-            //if (endtouchposition.x < starttouchposition.x && ydiff > -50 && ydiff < 50)
-            //{
-            //    debug.log("<<<");
-            //}
-
-            //if (starttouchposition.y < endtouchposition.y && xdiff > -50 && xdiff < 50)
-            //{
-            //    debug.log("up");
-            //}
-
-            //if (starttouchposition.y > endtouchposition.y && xdiff > -50 && xdiff < 50)
-            //{
-            //    debug.log("down");
-            //}
+            else {
+                Debug.Log("Tap");
+                slime.UpdateGesture(Shape.Suspended);
+            }
         }
     }
 }

@@ -12,7 +12,6 @@ public class Slime : MonoBehaviour
     public float gestureExclamationDistance = 10.0f;
     public float gestureResetSeconds = 1.0f;
 
-
     public Shape lastGesture;
     public Shape savedGesture;
 
@@ -30,6 +29,7 @@ public class Slime : MonoBehaviour
     void Start()
     {
         obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -180,5 +180,13 @@ public class Slime : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         lastGesture = Shape.Null;
+    }
+    
+    public void UpdateGesture(Shape newGesture)
+    {
+        lastGesture = newGesture;
+        if (newGesture == Shape.Suspended) {
+            rigidBody.AddForce(Vector3.up * 500);
+        }
     }
 }
