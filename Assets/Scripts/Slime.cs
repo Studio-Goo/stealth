@@ -9,7 +9,7 @@ public class Slime : MonoBehaviour
 
     public float gestureCheckDistance = 1.0f;
     public float gestureAllowedDistance = 25.0f;
-    public float gestureExclamationDistance = 10.0f;
+    public float exclamationMarkDistance = 10.0f;
     public float gestureResetSeconds = 1.0f;
 
     public Shape lastGesture;
@@ -19,6 +19,7 @@ public class Slime : MonoBehaviour
     public Sprite normal;
     public Sprite horizontal;
     public Sprite vertical;
+    public Sprite suspended;
 
     public GameObject exclamationMarkPrefab;
     private GameObject exclamationMark;
@@ -73,7 +74,7 @@ public class Slime : MonoBehaviour
     // Handle spawning and destroying the exclamation mark
     void HandleExclamationMark(GameObject obstacle)
     {
-        if (ObstacleDistance(obstacle) == gestureExclamationDistance && exclamationMark == null)
+        if (ObstacleDistance(obstacle) > exclamationMarkDistance && ObstacleDistance(obstacle) <= exclamationMarkDistance + speed && exclamationMark == null)
         {
             exclamationMark = Instantiate(exclamationMarkPrefab, transform.position, Quaternion.identity);
         }
@@ -97,7 +98,7 @@ public class Slime : MonoBehaviour
             else
             {
                 print("Wrong Gesture");
-                SceneManager.LoadScene("GameOver");
+                //SceneManager.LoadScene("GameOver");
             }
         }
     }
@@ -116,6 +117,11 @@ public class Slime : MonoBehaviour
         else if (lastGesture == Shape.Vertical)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = vertical;
+        }
+        else if (lastGesture == Shape.Suspended)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = suspended;
+            this.GetComponent<Rigidbody2D>().AddForce(transform.up * 10, ForceMode2D.Impulse);
         }
     }
 

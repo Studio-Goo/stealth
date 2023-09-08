@@ -24,19 +24,21 @@ public class Employee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = player.GetComponent<Slime>().ObstacleDistance(player.GetComponent<Slime>().GetNearestObstacle());
-
-        if (distance > 0 && distance < fullLookingDistance)
+        float distance = this.transform.position.x - player.transform.position.x;
+        Debug.Log(this.name);
+        Debug.Log(distance);
+        
+        if (distance > halfLookingDistance)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = fullLooking;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = notLooking;
         }
         else if (distance > fullLookingDistance && distance < halfLookingDistance)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = halfLooking;
         }
-        else if (distance > halfLookingDistance)
+        else if (distance > 0 && distance < fullLookingDistance)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = notLooking;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = fullLooking;
         }
 
         //transform.Translate(Vector3.left * speed * Time.deltaTime);

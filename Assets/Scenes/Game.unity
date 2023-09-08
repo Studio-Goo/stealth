@@ -825,10 +825,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -104.5, y: 14.2}
+    - - {x: -104.5, y: 13.81}
       - {x: -104.5, y: -3.9}
       - {x: 55, y: -3.9}
-      - {x: 55, y: 14.2}
+      - {x: 55, y: 13.81}
   m_UseDelaunayMesh: 0
 --- !u!1 &1274515077
 GameObject:
@@ -1642,6 +1642,7 @@ MonoBehaviour:
   normal: {fileID: 21300000, guid: 9afdd4c7dcaee38bab090d747f0a2d52, type: 3}
   horizontal: {fileID: 21300000, guid: 373807732df675872a175cbb53ba0ab0, type: 3}
   vertical: {fileID: 21300000, guid: 3714225106d8cd02c8c15f75f60236b7, type: 3}
+  suspended: {fileID: 21300000, guid: a5bffa6b2b596610cbb270e41940e9cd, type: 3}
   exclamationMarkPrefab: {fileID: 587773372122213484, guid: 739eadf35f2f5e646afc00851cea492e, type: 3}
   obstacleSpawner: {fileID: 0}
 --- !u!212 &2143131206
@@ -1725,7 +1726,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 1
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
