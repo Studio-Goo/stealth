@@ -12,6 +12,8 @@ public class Slime : MonoBehaviour
     public float gestureExclamationDistance = 10.0f;
     public float gestureResetSeconds = 1.0f;
 
+    private float resetGestureAfter = 0.0f;
+
     public Shape lastGesture;
     public Shape savedGesture;
 
@@ -48,7 +50,6 @@ public class Slime : MonoBehaviour
         {
             foreach (GameObject obstacle in obstacles)
             {
-                HandleGestureReset(obstacle);
                 HandleExclamationMark(obstacle);
 
                 if (ObstacleReached(obstacle))
@@ -58,16 +59,15 @@ public class Slime : MonoBehaviour
             }
         }
 
-        UpdateSlimeSprite();
-    }
-
-    // Handle resetting the gesture if needed
-    void HandleGestureReset(GameObject obstacle)
-    {
-        if (lastGesture != Shape.Null && !ObstacleReached(obstacle))
+        if (resetGestureAfter > 0.0f)
         {
-            StartCoroutine(WaitAndResetGesture(gestureResetSeconds));
+            resetGestureAfter -= Time.deltaTime;
+        } else
+        {
+            lastGesture = Shape.Null;
         }
+
+        UpdateSlimeSprite();
     }
 
     // Handle spawning and destroying the exclamation mark
@@ -179,16 +179,11 @@ public class Slime : MonoBehaviour
         }
     }
 
-    // Wait for a few seconds and reset the gesture
-    IEnumerator WaitAndResetGesture(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        lastGesture = Shape.Null;
-    }
-    
+ 
     public void UpdateGesture(Shape newGesture)
     {
         lastGesture = newGesture;
+        resetGestureAfter = gestureResetSeconds;
         if (newGesture == Shape.Suspended) {
             this.GetComponent<Rigidbody2D>().AddForce(transform.up * 1, ForceMode2D.Impulse);
         }
