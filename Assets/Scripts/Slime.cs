@@ -121,7 +121,7 @@ public class Slime : MonoBehaviour
         else if (lastGesture == Shape.Suspended)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = suspended;
-            this.GetComponent<Rigidbody2D>().AddForce(transform.up * 0.9f, ForceMode2D.Impulse);
+            // this.GetComponent<Rigidbody2D>().AddForce(transform.up * 0.9f, ForceMode2D.Impulse);
         }
     }
 
@@ -196,7 +196,7 @@ public class Slime : MonoBehaviour
     {
         lastGesture = newGesture;
         if (newGesture == Shape.Suspended) {
-            this.GetComponent<Rigidbody2D>().AddForce(transform.up * 1, ForceMode2D.Impulse);
+            this.GetComponent<Rigidbody2D>().AddForce(transform.up * 15, ForceMode2D.Impulse);
         }
     }
 }
