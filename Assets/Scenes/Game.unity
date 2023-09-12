@@ -173,7 +173,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -51, y: 13.08, z: 10}
   m_LocalScale: {x: 4.1539397, y: 4.1539397, z: 0.9996}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1765553552}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -218,7 +218,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 056a1d0ab3edf89c2b00f27304d216b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35401f9a974feb54aa97f8a560b7d719, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -1633,16 +1633,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  jumpHold: 0.2
+  initialJump: 15
   gestureCheckDistance: 1
   gestureAllowedDistance: 25
-  exclamationMarkDistance: 10
+  gestureExclamationDistance: 10
   gestureResetSeconds: 1.8
   lastGesture: 0
   savedGesture: 0
   normal: {fileID: 21300000, guid: 9afdd4c7dcaee38bab090d747f0a2d52, type: 3}
   horizontal: {fileID: 21300000, guid: 373807732df675872a175cbb53ba0ab0, type: 3}
   vertical: {fileID: 21300000, guid: 3714225106d8cd02c8c15f75f60236b7, type: 3}
-  suspended: {fileID: 21300000, guid: a5bffa6b2b596610cbb270e41940e9cd, type: 3}
   exclamationMarkPrefab: {fileID: 587773372122213484, guid: 739eadf35f2f5e646afc00851cea492e, type: 3}
   obstacleSpawner: {fileID: 0}
 --- !u!212 &2143131206
