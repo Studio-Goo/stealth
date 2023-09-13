@@ -7,7 +7,7 @@ public class SwipeDetector : MonoBehaviour
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
     // If distance between start & end is higher, count as a swipe.
-    private const float SWIPE_TRESHOLD = 1.0f;
+    private const float SWIPE_TRESHOLD = 10.0f;
     public Slime slime;
 
     private void Update()
