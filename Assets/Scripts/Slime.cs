@@ -16,6 +16,9 @@ public class Slime : MonoBehaviour
 
     private float resetGestureAfter = 0.0f;
 
+    private Vector3 startPosition;
+    public GameObject slime;
+
     public Shape lastGesture;
     public Shape savedGesture;
 
@@ -36,28 +39,53 @@ public class Slime : MonoBehaviour
     void Start()
     {
         obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
-        //rigidBody = GetComponent<Rigidbody>();
+    }
+
+    private void Awake()
+    {
+        startPosition = slime.transform.localPosition;
+        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+    }
+
+    public void GameManagerOnOnGameStateChanged(GameState state)
+    {
+        if (state == GameState.MainMenu)
+        {
+            //slime.transform.position = new Vector3(-115.99f, -7.5f, 0);
+            slime.transform.position = startPosition;
+        }
     }
 
     void Update()
     {
-        //automatic slime movement
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
-
-        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-
-        if (obstacles != null)
+        if(GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
         {
-            foreach (GameObject obstacle in obstacles)
-            {
-                HandleExclamationMark(obstacle);
+            //automatic slime movement
 
-                if (ObstacleReached(obstacle))
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+            obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+
+            if (obstacles != null)
+            {
+                foreach (GameObject obstacle in obstacles)
                 {
-                    HandleObstacleReached(obstacle);
+                    HandleExclamationMark(obstacle);
+
+                    if (ObstacleReached(obstacle))
+                    {
+                        HandleObstacleReached(obstacle);
+                    }
                 }
             }
+
         }
+
 
         if (resetGestureAfter > 0.0f)
         {
@@ -97,7 +125,8 @@ public class Slime : MonoBehaviour
             else
             {
                 print("Wrong Gesture");
-                SceneManager.LoadScene("GameOver");
+                // SceneManager.LoadScene("GameOver");
+                GameManager.Instance.UpdateGameState(GameState.GameOver);
             }
         }
     }
@@ -118,7 +147,7 @@ public class Slime : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().sprite = flat;
         } else if (lastGesture == Shape.Suspended) {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = jump;
-            // this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+            this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
         }
     }
     

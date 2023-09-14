@@ -17,7 +17,6 @@ public class ChangeScene : MonoBehaviour
 
     public void MoveToScene(int sceneID)
     {
-        Debug.LogError(sceneID);
         SceneManager.LoadScene(sceneID);
     }
 }

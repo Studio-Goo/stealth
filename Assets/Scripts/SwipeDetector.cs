@@ -13,7 +13,7 @@ public class SwipeDetector : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && GameManager.Instance.gameState == GameState.Playing)
         {
             Touch touch = Input.GetTouch(0);
 
