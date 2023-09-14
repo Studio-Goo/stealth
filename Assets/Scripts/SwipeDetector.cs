@@ -6,87 +6,69 @@ public class SwipeDetector : MonoBehaviour
 {
     private Vector2 startTouchPosition;
     private Vector2 endTouchPosition;
-    // If distance between start & end is higher, count as a swipe.
-    private const float SWIPE_TRESHOLD = 10.0f;
     public Slime slime;
+
+    // If distance between start & end is higher, count as a swipe.
+    private const float SWIPE_TRESHOLD = 100.0f;
 
     private void Update()
     {
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount > 0)
         {
-            startTouchPosition = Input.GetTouch(0).position;
-        }
+            Touch touch = Input.GetTouch(0);
 
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
-        {
-            endTouchPosition = Input.GetTouch(0).position;
-
-            // Calculating the slope between the start and endpoint
-            var dy = startTouchPosition.y - endTouchPosition.y;
-            var dx = startTouchPosition.x - endTouchPosition.x;
-            var direction = dy / dx;
-
-            // Horizontal
-            if (direction >= -SWIPE_TRESHOLD && direction <= SWIPE_TRESHOLD)
+            switch (touch.phase)
             {
+                case TouchPhase.Began:
 
-                if(endTouchPosition.x > startTouchPosition.x)
-                {
-                    Debug.Log(">>>");
-                    slime.UpdateGesture(Shape.Horizontal);
-                } else
-                {
-                    Debug.Log("<<<");
-                    slime.UpdateGesture(Shape.Horizontal);
-                }
-            }
+                    // Saving touch start position
+                    startTouchPosition = Input.GetTouch(0).position;
 
-            // Diagonal Positive (bottom left to top right)
-            else if(direction > SWIPE_TRESHOLD && direction <= 5)
-            {
-                if (startTouchPosition.y > endTouchPosition.y)
-                {
-                    Debug.Log("<<< Down");
-                }
-                else
-                {
-                    Debug.Log(">>> Up");
-                }
-            }
 
-            // Diagonal Negative (top left to bottom right)
-            else if (direction < -SWIPE_TRESHOLD && direction >= -5)
-            {
-                if (startTouchPosition.y > endTouchPosition.y)
-                {
-                    Debug.Log(">>> Down");
-                }
-                else
-                {
-                    Debug.Log("<<< Up");
-                }
-            }
+                    break;
 
-            // Vertical
-            else if (direction > 5 && direction < 10000 || direction < -5 ||  double.IsInfinity(direction))
-            {
+                case TouchPhase.Ended:
 
-                if (startTouchPosition.y > endTouchPosition.y)
-                {
-                    Debug.Log("Down");
-                    slime.UpdateGesture(Shape.Vertical);
 
-                }
-                else
-                {
-                    Debug.Log("Up");
-                    slime.UpdateGesture(Shape.Vertical);
-                }
-            }
+                    endTouchPosition = Input.GetTouch(0).position;
 
-            else {
-                Debug.Log("Tap");
-                slime.UpdateGesture(Shape.Suspended);
+                    // Calculating difference between touch start and end
+                    Vector2 difference = endTouchPosition - startTouchPosition;
+
+
+                    if(difference.magnitude > SWIPE_TRESHOLD)
+                    {
+                        if (Mathf.Abs(difference.x) > Mathf.Abs(difference.y))
+                        {
+
+                            //horizontal swipe (left & right)
+                            //slime.UpdateGesture(difference.x > 0 ? Shape.Horizontal /* right */ : Shape.Horizontal /* left */);
+
+
+                        }
+                        else
+                        {
+
+                            // Vertical swipe ( Up & Down )
+                            slime.UpdateGesture(difference.y > 0 ? Shape.Up /* up */ : Shape.Down /* down */);
+
+
+                        }
+
+                        // TODO swipe success indication (shader)
+                        // ...
+
+                    }
+                    else
+                    {
+
+                        // Swipe treshold not exceeded, so detected as TAP
+                        slime.UpdateGesture(Shape.Suspended);
+
+
+                    }
+
+                    break;
             }
         }
     }

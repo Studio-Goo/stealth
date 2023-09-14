@@ -21,8 +21,8 @@ public class Slime : MonoBehaviour
 
     // Sprites
     public Sprite normal;
-    public Sprite horizontal;
-    public Sprite vertical;
+    public Sprite tall;
+    public Sprite flat;
     public Sprite jump;
 
     public GameObject exclamationMarkPrefab;
@@ -109,13 +109,13 @@ public class Slime : MonoBehaviour
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = normal;
         }
-        else if (lastGesture == Shape.Horizontal)
+        else if (lastGesture == Shape.Up)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = horizontal;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = tall;
         }
-        else if (lastGesture == Shape.Vertical)
+        else if (lastGesture == Shape.Down)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = vertical;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = flat;
         } else if (lastGesture == Shape.Suspended) {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = jump;
             // this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);

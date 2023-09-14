@@ -25,8 +25,8 @@ public class Employee : MonoBehaviour
     void Update()
     {
         float distance = this.transform.position.x - player.transform.position.x;
-        Debug.Log(this.name);
-        Debug.Log(distance);
+        //Debug.Log(this.name);
+        //Debug.Log(distance);
         
         if (distance > halfLookingDistance)
         {

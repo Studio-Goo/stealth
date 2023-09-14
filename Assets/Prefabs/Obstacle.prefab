@@ -99,6 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shape: 0
   completed: 0
-  verticalObstacle: {fileID: 21300000, guid: 9edfa6b9cc7ebc07283a6dacfc227b1c, type: 3}
-  horizontalObstacle: {fileID: 21300000, guid: d297e18de8d71f9d0b2f49c0dc7fe1e6, type: 3}
-  suspendedObstacle: {fileID: 21300000, guid: 92ad878bb0b129b7abd3a4be5eaddb5e, type: 3}
+  tallObstacle: {fileID: 21300000, guid: 9edfa6b9cc7ebc07283a6dacfc227b1c, type: 3}
+  flatObstacle: {fileID: 21300000, guid: d297e18de8d71f9d0b2f49c0dc7fe1e6, type: 3}
+  suspendedObstacle: {fileID: 21300000, guid: 601881dd37a19b24692c8ee3655dcf73, type: 3}
