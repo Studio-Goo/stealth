@@ -168,7 +168,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 5
-  AndroidMinSdkVersion: 0
+  AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -796,7 +796,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: BUILD_TYPE_ANDROID;BUILD_PLATFORM_ANDROID;BUILD_ARCH_ANDROID;BUILD_BACKEND_IL2CPP
+    Android: 
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

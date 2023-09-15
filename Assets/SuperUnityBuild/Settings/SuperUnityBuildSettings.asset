@@ -47,7 +47,7 @@ MonoBehaviour:
     - Gradle Project
     isFlag: 0
   - variantName: Binary Type
-    selectedIndex: 0
+    selectedIndex: 2
     values:
     - APK
     - Split APK
@@ -246,9 +246,9 @@ MonoBehaviour:
     buildPath: $VERSION/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE/$SCRIPTING_BACKEND
     openFolderPostBuild: 1
   _productParameters:
-    buildCounter: 6
+    buildCounter: 12
     buildVersion: 1.11.0.6
-    versionTemplate: 1.11.0.$BUILD
+    versionTemplate: 1.$BUILD
     autoGenerate: 1
     syncWithPlayerSettings: 0
   _releaseTypeList:
@@ -268,9 +268,9 @@ MonoBehaviour:
     - {fileID: -7591184879113119327}
   _projectConfigurations:
     configSet:
-      _Buckets: 0000000001000000ffffffffffffffff040000000300000005000000
-      _HashCodes: 6f7d9359884acb49669d5e366dd6da0b971e23377b384b4c00000000
-      _Next: ffffffffffffffffffffffffffffffffffffffff0200000000000000
+      _Buckets: 0000000001000000ffffffffffffffff04000000ffffffff05000000
+      _HashCodes: 6f7d9359884acb49d4fec524a9044559971e23377b384b4c00000000
+      _Next: ffffffffffffffffffffffff02000000ffffffff0300000000000000
       _Count: 6
       _Version: 6
       _FreeList: -1
@@ -278,8 +278,8 @@ MonoBehaviour:
       _Keys:
       - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single Binary,Auto,Auto,Disabled)/IL2CPP
       - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single Binary,Auto,Auto,Disabled)
-      - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single Binary,Auto,Auto,Public)/IL2CPP
-      - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single Binary,Auto,Auto,Public)
+      - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single Binary,Auto,Auto,Public)/IL2CPP
+      - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single Binary,Auto,Auto,Public)
       - Android/Android
       - Android
       - 
@@ -294,13 +294,13 @@ MonoBehaviour:
         childKeys: []
       - enabled: 1
         childKeys:
-        - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
+        - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single
           Binary,Auto,Auto,Public)/IL2CPP
       - enabled: 1
         childKeys:
         - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
           Binary,Auto,Auto,Disabled)
-        - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
+        - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single
           Binary,Auto,Auto,Public)
       - enabled: 1
         childKeys:
