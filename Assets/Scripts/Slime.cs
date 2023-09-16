@@ -212,6 +212,7 @@ public class Slime : MonoBehaviour
         return false;
     }
 
+
     public GameObject GetNearestObstacle()
     {
         obstacles = GameObject.FindGameObjectsWithTag("Obstacle");

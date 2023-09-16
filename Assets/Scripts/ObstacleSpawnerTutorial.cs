@@ -7,6 +7,9 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     public GameObject employeePrefab;
+    public GameObject swipeDownPrefab;
+    public GameObject swipeUpPrefab;
+    public GameObject tapPrefab;
     public float spawnInterval = 10f;
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
@@ -149,7 +152,7 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
         // Use next shape for next object spawning
         index++;
 
-        // Checking if current shuffled shape list has been used completely
+        // Checking if the current shuffled shape list has been used completely
         if (index >= shapes.Count)
         {
             // Shuffle list and begin using again
@@ -161,11 +164,48 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
 
         if (count >= 3)
         {
-            //disable current script
+            // Disable the current script
             this.enabled = false;
             //SceneManager.LoadScene("GameOver");
         }
+
+        // Calculate the spawn position for the prefab exactly above the obstacle
+        Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y;
+
+        // Set the prefab's position to the calculated position
+        GameObject prefabToSpawn = null;
+
+        // Determine which prefab to spawn based on the count
+        if (count == 1)
+        {
+            prefabToSpawn = swipeDownPrefab;
+        }
+        else if (count == 2)
+        {
+            prefabToSpawn = swipeUpPrefab;
+        }
+        else if (count == 3)
+        {
+            prefabToSpawn = tapPrefab;
+        }
+
+        if (prefabToSpawn != null)
+        {
+            // Instantiate the prefab
+            GameObject spawnedPrefab = Instantiate(prefabToSpawn, prefabSpawnPosition, Quaternion.identity);
+            
+            // Set the sorting order of the prefab's renderer to be higher than the obstacle's renderer
+            Renderer prefabRenderer = spawnedPrefab.GetComponent<Renderer>();
+            Renderer obstacleRenderer = obstacle.GetComponent<Renderer>();
+            
+            if (prefabRenderer != null && obstacleRenderer != null)
+            {
+                prefabRenderer.sortingOrder = obstacleRenderer.sortingOrder + 1;
+            }
+        }
     }
+
+
 
     private void SpawnEmployee()
     {
