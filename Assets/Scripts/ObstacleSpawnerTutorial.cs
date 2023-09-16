@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ObstacleSpawnerTutorial : MonoBehaviour
 {
@@ -17,30 +16,80 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
     private List<GameObject> obstacles = new List<GameObject>();
     private List<GameObject> employees = new List<GameObject>();
 
-    private List<Shape> shapes = new List<Shape> { Shape.Horizontal, Shape.Vertical, Shape.Suspended };
+    private List<Shape> shapes = new List<Shape> { Shape.Down, Shape.Up, Shape.Suspended };
     private int index = 0;
+
     private int count = 0;
+
+    private void Awake()
+    {
+        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+    }
+
+    private void GameManagerOnOnGameStateChanged (GameState state)
+    {
+        // Making sure objects won't spawn inside of eachother
+        if(state == GameState.Paused)
+        {
+            Time.timeScale = 0;
+        }
+
+        if (state == GameState.Playing)
+        {
+            Time.timeScale = 1;
+        }
+
+        if (state == GameState.MainMenu)
+        {
+            if (obstacles.Count > 0)
+            {
+                foreach (var obstacle in obstacles.ToList())
+                {
+                    obstacles.Remove(obstacle);
+                    Destroy(obstacle);
+                }
+            }
+
+            if (employees.Count > 0)
+            {
+                foreach (var employee in employees.ToList())
+                {
+                    employees.Remove(employee);
+                    Destroy(employee);
+                }
+            }
+        }
+    }
 
     private void Start()
     {
         mainCamera = Camera.main;
     }
 
+
     private void Update()
     {
-        print("Obstacle count: " + count);
-        // Check if it's time to spawn a new obstacle
-        if (Time.time >= nextSpawnTime)
+        if (GameManager.Instance.gameState == GameState.Playing)
         {
+            // Check if it's time to spawn a new obstacle
+            if (Time.time >= nextSpawnTime)
+            {
+                
 
-            // Instantiate the obstacle
-            SpawnObstacle();
+                // Instantiate the obstacle
+                SpawnObstacle();
 
-            // TODO rewrite so this fits lol, general ObjectSpawner script?
-            SpawnEmployee();
+                // TODO rewrite so this fits lol, general ObjectSpawner script?
+                SpawnEmployee();
 
-            // Schedule the next spawn
-            nextSpawnTime = Time.time + spawnInterval;
+                // Schedule the next spawn
+                nextSpawnTime = Time.time + spawnInterval;
+            }
         }
 
         // Remove obstacles that are off-screen
@@ -84,7 +133,7 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
 
     private void SpawnObstacle()
     {
-
+        Debug.Log("New Obstacle");
         // Calculate the spawn position based on the camera's right edge and the desired height
         Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 4.4f));
 
@@ -107,7 +156,7 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
             shapes.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
             index = 0;
         }
-        
+
         count++;
 
         if (count >= 3)
@@ -115,9 +164,7 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
             //disable current script
             this.enabled = false;
             //SceneManager.LoadScene("GameOver");
-            
         }
-
     }
 
     private void SpawnEmployee()

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Slime : MonoBehaviour
 {
-    public float speed = 5.0f; // Adjust the speed in the Inspector.
+    public float speed = 8.0f; // Adjust the speed in the Inspector.
     public float jumpHold = 0.2f;
     public float initialJump = 15.0f;
 
@@ -15,6 +15,8 @@ public class Slime : MonoBehaviour
     public float gestureResetSeconds = 1.0f;
 
     private float resetGestureAfter = 0.0f;
+    private bool isHiding = false;
+
 
     private Vector3 startPosition;
     public GameObject slime;
@@ -63,6 +65,12 @@ public class Slime : MonoBehaviour
 
     void Update()
     {
+        if (isHiding)
+        {
+            speed = 1.0f;
+
+        }
+
         if(GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
         {
             //automatic slime movement
@@ -80,6 +88,11 @@ public class Slime : MonoBehaviour
                     if (ObstacleReached(obstacle))
                     {
                         HandleObstacleReached(obstacle);
+                    }
+
+                    if (ObstaclePassed(obstacle))
+                    {
+                        HandleObstaclePassed(obstacle);
                     }
                 }
             }
@@ -119,6 +132,7 @@ public class Slime : MonoBehaviour
         {
             if (CheckGesture(obstacle))
             {
+                isHiding = true;
                 print("Correct Gesture");
                 obstacle.GetComponent<Obstacle>().completed = true;
             }
@@ -128,6 +142,15 @@ public class Slime : MonoBehaviour
                 // SceneManager.LoadScene("GameOver");
                 GameManager.Instance.UpdateGameState(GameState.GameOver);
             }
+        }
+    }
+
+    void HandleObstaclePassed(GameObject obstacle)
+    {
+        if (ObstaclePassed(obstacle))
+        {
+            isHiding = false;
+            speed = 8.0f;
         }
     }
 
@@ -172,6 +195,16 @@ public class Slime : MonoBehaviour
     bool ObstacleReached(GameObject obstacle)
     {
         if (ObstacleDistance(obstacle) < gestureCheckDistance)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    bool ObstaclePassed(GameObject obstacle)
+    {
+        if (ObstacleDistance(obstacle) < 0)
         {
             return true;
         }
