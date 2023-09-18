@@ -2954,6 +2954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1784259274}
   - component: {fileID: 1784259273}
+  - component: {fileID: 1784259275}
   m_Layer: 0
   m_Name: ObstacleSpawner
   m_TagString: Untagged
@@ -2968,7 +2969,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784259272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16dbd221df4752e439ab7ba139470a8d, type: 3}
   m_Name: 
@@ -2993,6 +2994,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1784259275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784259272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9575be19521302041a00bf2dc0079a44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstaclePrefab: {fileID: 868221699987570516, guid: accdca32874883e4eae08aab5110d8a4, type: 3}
+  employeePrefab: {fileID: 53251403102717371, guid: 9feca7ebadbca9541babcb8d5fece97c, type: 3}
+  swipeDownPrefab: {fileID: 3857977623505033571, guid: 8271e387d69b74949b779d248f44a159, type: 3}
+  swipeUpPrefab: {fileID: 7493633418918938217, guid: 8f71f3d511bcc8849b609c50ab283de8, type: 3}
+  tapPrefab: {fileID: 2244506068911383462, guid: 4aae2817954f5d64f9ff867003b1da00, type: 3}
+  spawnInterval: 5
+  spawnHeight: 0.15
+  removeOffset: 2
 --- !u!1 &1893731891
 GameObject:
   m_ObjectHideFlags: 0
