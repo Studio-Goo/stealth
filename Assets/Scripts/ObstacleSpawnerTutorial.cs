@@ -7,9 +7,9 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     public GameObject employeePrefab;
-    public GameObject swipeDownPrefab;
-    public GameObject swipeUpPrefab;
-    public GameObject tapPrefab;
+    public GameObject squarePrefab;
+    public GameObject trianglePrefab;
+    public GameObject circlePrefab;
     public float spawnInterval = 10f;
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
@@ -162,6 +162,8 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
 
         count++;
 
+        TutorialSpawn(obstacle);
+        
         if (count >= 3)
         {
             // Disable the current script
@@ -169,6 +171,11 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
             //SceneManager.LoadScene("GameOver");
         }
 
+        
+    }
+
+    private void TutorialSpawn(GameObject obstacle)
+    {
         // Calculate the spawn position for the prefab exactly above the obstacle
         Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y;
 
@@ -178,15 +185,18 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
         // Determine which prefab to spawn based on the count
         if (count == 1)
         {
-            prefabToSpawn = swipeDownPrefab;
+            prefabToSpawn = squarePrefab;
+            
+            //lift this one up a bit
+            prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
         }
         else if (count == 2)
         {
-            prefabToSpawn = swipeUpPrefab;
+            prefabToSpawn = trianglePrefab;
         }
         else if (count == 3)
         {
-            prefabToSpawn = tapPrefab;
+            prefabToSpawn = circlePrefab;
         }
 
         if (prefabToSpawn != null)
@@ -204,8 +214,6 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
             }
         }
     }
-
-
 
     private void SpawnEmployee()
     {
