@@ -14,8 +14,6 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
 
-    public GameObject pointSystem;
-    private PointSystem pointSystemScript;
     private Camera mainCamera;
     private float nextSpawnTime = 0.0f;
     private List<GameObject> obstacles = new List<GameObject>();
@@ -24,7 +22,7 @@ public class ObstacleSpawner : MonoBehaviour
     private List<Shape> shapes = new List<Shape> { Shape.Down, Shape.Up, Shape.Suspended };
     private int index = 0;
 
-    private int count = 0;
+    public int count = 0;
     public bool tutorial = true;
 
     private void Awake()
@@ -75,7 +73,6 @@ public class ObstacleSpawner : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-        pointSystemScript = pointSystem.GetComponent<PointSystem>();
     }
 
 
@@ -167,7 +164,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         count++;
 
-        if (tutorial)
+        if (tutorial && count != 4)
         {
             TutorialSpawn(obstacle);
         }
@@ -190,18 +187,18 @@ public class ObstacleSpawner : MonoBehaviour
         GameObject prefabToSpawn = null;
 
         // Determine which prefab to spawn based on the count
-        if (count == 1)
+        if (obstacle.GetComponent<Obstacle>().shape == Shape.Down)
         {
             prefabToSpawn = squarePrefab;
             
             //lift this one up a bit
             prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
         }
-        else if (count == 2)
+        else if (obstacle.GetComponent<Obstacle>().shape == Shape.Up)
         {
             prefabToSpawn = trianglePrefab;
         }
-        else if (count == 3)
+        else if (obstacle.GetComponent<Obstacle>().shape == Shape.Suspended)
         {
             prefabToSpawn = circlePrefab;
         }

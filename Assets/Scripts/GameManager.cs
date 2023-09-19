@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState gameState;
+    public Slime slime;
+    public PointSystem pointSystem;
+    public ObstacleSpawner obstacleSpawner;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -45,6 +48,10 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
+                slime.setSpeed = 8.0f;
+                pointSystem.ResetPoints();
+                obstacleSpawner.count = 0;
+                obstacleSpawner.tutorial = true;
                 break;
 
             default:

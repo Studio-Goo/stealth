@@ -16,6 +16,8 @@ public class Slime : MonoBehaviour
 
     private float resetGestureAfter = 0.0f;
     private bool isHiding = false;
+    private float slowSpeed = 1.0f;
+    public float setSpeed = 8.0f;
 
 
     private Vector3 startPosition;
@@ -70,8 +72,12 @@ public class Slime : MonoBehaviour
     {
         if (isHiding)
         {
-            speed = 1.0f;
+            speed = slowSpeed;
 
+        }
+        else
+        {
+            speed = setSpeed;
         }
 
         if (obstacleSpawner.tutorial == false)
@@ -155,6 +161,9 @@ public class Slime : MonoBehaviour
                 pointSystemScript.pointCounter(obstacleSpawner.tutorial);
                 obstacle.GetComponent<Obstacle>().completed = true;
 
+                //increase speed (note: could be capped)
+                setSpeed = setSpeed * 1.03f;
+
             }
             else
             {
@@ -170,7 +179,6 @@ public class Slime : MonoBehaviour
         if (ObstaclePassed(obstacle))
         {
             isHiding = false;
-            speed = 8.0f;
         }
     }
 

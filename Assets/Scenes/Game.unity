@@ -1447,6 +1447,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
+  slime: {fileID: 2143131205}
+  pointSystem: {fileID: 1767276713}
+  obstacleSpawner: {fileID: 1784259275}
 --- !u!4 &527458777
 Transform:
   m_ObjectHideFlags: 0
@@ -4167,7 +4170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1416, y: 668}
+  m_AnchoredPosition: {x: 1104, y: 661}
   m_SizeDelta: {x: 200, y: 36.5677}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767276711
@@ -4190,7 +4193,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Placeholder
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c5213e88afbfab84da70f2455c9c83d7, type: 2}
   m_sharedMaterial: {fileID: 5157211752617753976, guid: c5213e88afbfab84da70f2455c9c83d7, type: 2}
@@ -4217,8 +4220,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 160
+  m_fontSizeBase: 160
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4253,7 +4256,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -318.18677, w: -159.09326}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -4331,7 +4334,8 @@ MonoBehaviour:
   spawnInterval: 5
   spawnHeight: 0.15
   removeOffset: 2
-  pointSystem: {fileID: 0}
+  count: 0
+  tutorial: 1
 --- !u!1 &1893731891
 GameObject:
   m_ObjectHideFlags: 0
@@ -4760,9 +4764,11 @@ MonoBehaviour:
   gestureAllowedDistance: 25
   gestureExclamationDistance: 10
   gestureResetSeconds: 1.8
+  setSpeed: 8
   slime: {fileID: 2143131204}
   lastGesture: 0
   savedGesture: 0
+  pointSystem: {fileID: 1767276709}
   normal: {fileID: 21300000, guid: 9afdd4c7dcaee38bab090d747f0a2d52, type: 3}
   tall: {fileID: 21300000, guid: 3714225106d8cd02c8c15f75f60236b7, type: 3}
   flat: {fileID: 21300000, guid: 373807732df675872a175cbb53ba0ab0, type: 3}
