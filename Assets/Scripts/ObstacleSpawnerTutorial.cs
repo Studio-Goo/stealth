@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ObstacleSpawnerTutorial : MonoBehaviour
+public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     public GameObject employeePrefab;
@@ -14,6 +14,8 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
 
+    public GameObject pointSystem;
+    private PointSystem pointSystemScript;
     private Camera mainCamera;
     private float nextSpawnTime = 0.0f;
     private List<GameObject> obstacles = new List<GameObject>();
@@ -23,6 +25,7 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
     private int index = 0;
 
     private int count = 0;
+    public bool tutorial = true;
 
     private void Awake()
     {
@@ -72,11 +75,13 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        pointSystemScript = pointSystem.GetComponent<PointSystem>();
     }
 
 
     private void Update()
     {
+
         if (GameManager.Instance.gameState == GameState.Playing)
         {
             // Check if it's time to spawn a new obstacle
@@ -162,13 +167,15 @@ public class ObstacleSpawnerTutorial : MonoBehaviour
 
         count++;
 
-        TutorialSpawn(obstacle);
-        
-        if (count >= 3)
+        if (tutorial)
         {
-            // Disable the current script
-            this.enabled = false;
-            //SceneManager.LoadScene("GameOver");
+            TutorialSpawn(obstacle);
+        }
+        
+        if (count > 3)
+        {
+            //Disable tutorial
+            tutorial = false;
         }
 
         

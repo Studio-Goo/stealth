@@ -23,6 +23,8 @@ public class Slime : MonoBehaviour
 
     public Shape lastGesture;
     public Shape savedGesture;
+    public GameObject pointSystem;
+    private PointSystem pointSystemScript;
 
     // Sprites
     public Sprite normal;
@@ -41,6 +43,7 @@ public class Slime : MonoBehaviour
     void Start()
     {
         obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
+        pointSystemScript = pointSystem.GetComponent<PointSystem>();
     }
 
     private void Awake()
@@ -69,6 +72,21 @@ public class Slime : MonoBehaviour
         {
             speed = 1.0f;
 
+        }
+
+        if (obstacleSpawner.tutorial == false)
+        {
+            //check if pointsystem is active
+            if (pointSystem.activeSelf)
+            {
+                //if it is, show points
+                pointSystemScript.showPoints();
+            }
+            else
+            {
+                //if it isn't, set it to active
+                pointSystem.SetActive(true);
+            }
         }
 
         if(GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
@@ -134,7 +152,9 @@ public class Slime : MonoBehaviour
             {
                 isHiding = true;
                 print("Correct Gesture");
+                pointSystemScript.pointCounter(obstacleSpawner.tutorial);
                 obstacle.GetComponent<Obstacle>().completed = true;
+
             }
             else
             {
