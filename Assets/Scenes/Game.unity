@@ -4173,6 +4173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: 1054777713}
   prevGroup: {fileID: 1165616019}
+  floor: {fileID: 1026447711}
+  prevFloor: {fileID: 2146235739}
   cameraBounds: {fileID: 1127076940}
   player: {fileID: 2143131204}
 --- !u!4 &1765553552
@@ -4381,7 +4383,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784259272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9575be19521302041a00bf2dc0079a44, type: 3}
   m_Name: 
