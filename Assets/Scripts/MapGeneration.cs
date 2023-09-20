@@ -7,9 +7,14 @@ public class MapGeneration : MonoBehaviour
     public GameObject group;
     public GameObject prevGroup;
 
+    public GameObject floor;
+    public GameObject prevFloor;
+
     private Vector3 startPositionGroup;
     private Vector3 startPositionPrevGroup;
     private Vector3 startPositionCameraBounds;
+
+    //private float xValueToChange;
 
     public GameObject cameraBounds;
 
@@ -17,6 +22,8 @@ public class MapGeneration : MonoBehaviour
 
     private void Awake()
     {
+        //xValueToChange = group.transform.GetChild(2).transform.position.x;
+
         startPositionGroup = group.transform.position;
         startPositionPrevGroup = prevGroup.transform.position;
         startPositionCameraBounds = cameraBounds.transform.position;
@@ -43,16 +50,21 @@ public class MapGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.transform.position.x > group.transform.GetChild(2).transform.position.x)
+        if(player.transform.position.x > floor.transform.position.x)
         {
             var tempGroup = prevGroup;
+            var tempFloor = prevFloor;
 
             prevGroup = group;
+            prevFloor = floor;
 
             tempGroup.transform.position += new Vector3(160, 0, 0);
             cameraBounds.transform.position += new Vector3(80, 0, 0);
 
             group = tempGroup;
+            floor = tempFloor;
+
+            //xValueToChange = group.transform.position.x;
         }
     }
 }

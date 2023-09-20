@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 147568577}
   - component: {fileID: 147568576}
   m_Layer: 0
-  m_Name: Leuke naam
+  m_Name: Light Shaft Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1173,7 +1173,7 @@ GameObject:
   - component: {fileID: 388137749}
   - component: {fileID: 388137750}
   m_Layer: 0
-  m_Name: Light
+  m_Name: Light shaft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1850,7 +1850,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1271018420}
   - {fileID: 786989548}
   - {fileID: 1695057651}
   - {fileID: 1953330040}
@@ -3080,10 +3079,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1513866642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1038.6, y: 388}
-  m_SizeDelta: {x: 183.28, y: 183}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 131.40002, y: -152}
+  m_SizeDelta: {x: 183.28003, y: 183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213248586
 MonoBehaviour:
@@ -3393,7 +3392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1271018419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3455,13 +3454,13 @@ Transform:
   m_GameObject: {fileID: 1271018418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.099998474, y: 0.018661499, z: 0}
+  m_LocalPosition: {x: -92.66, y: -8.111339, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 154157704}
   - {fileID: 369587414}
-  m_Father: {fileID: 708827600}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1274515077
 GameObject:
@@ -4428,6 +4427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   group: {fileID: 1054777713}
   prevGroup: {fileID: 1165616019}
+  floor: {fileID: 1026447711}
+  prevFloor: {fileID: 2146235739}
   cameraBounds: {fileID: 1127076940}
   player: {fileID: 2143131204}
 --- !u!4 &1765553552
@@ -4482,10 +4483,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 594329025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1104, y: 661}
-  m_SizeDelta: {x: 200, y: 36.5677}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -412, y: -20}
+  m_SizeDelta: {x: 200, y: 36.567688}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767276711
 MonoBehaviour:
@@ -4636,7 +4637,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784259272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9575be19521302041a00bf2dc0079a44, type: 3}
   m_Name: 
@@ -5364,6 +5365,7 @@ SceneRoots:
   - {fileID: 1359269262}
   - {fileID: 111380754}
   - {fileID: 1427574908}
+  - {fileID: 1271018420}
   - {fileID: 708827600}
   - {fileID: 529997695}
   - {fileID: 669625940}
