@@ -119,6 +119,23 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
+    public void RemoveOffScreenTutorial()
+    {
+        //GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle"); // Assuming obstacles have a "Obstacle" tag
+
+        foreach (var obstacle in obstacles.ToList())
+        {
+            Vector3 screenPoint = mainCamera.WorldToViewportPoint(obstacle.transform.position);
+
+            // If the obstacle is off-screen to the left, remove it
+            if (screenPoint.x < -.1f)
+            {
+                obstacles.Remove(obstacle);
+                Destroy(obstacle);
+            }
+        }
+    }
+
     public void RemoveOffScreenEmployees()
     {
         //GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle"); // Assuming obstacles have a "Obstacle" tag
@@ -193,10 +210,12 @@ public class ObstacleSpawner : MonoBehaviour
             
             //lift this one up a bit
             prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
+
         }
         else if (obstacle.GetComponent<Obstacle>().shape == Shape.Up)
         {
             prefabToSpawn = trianglePrefab;
+
         }
         else if (obstacle.GetComponent<Obstacle>().shape == Shape.Suspended)
         {
@@ -216,7 +235,12 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 prefabRenderer.sortingOrder = obstacleRenderer.sortingOrder + 1;
             }
+
+            //destroy after x seconds
+            Destroy(spawnedPrefab, 6.0f);
         }
+
+
     }
 
     private void SpawnEmployee()
