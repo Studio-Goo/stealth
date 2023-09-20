@@ -231,4 +231,9 @@ public class ObstacleSpawner : MonoBehaviour
         employees.Add(employee);
     }
 
+    public GameObject GetNextObstacle()
+    {
+        return obstacles[0];
+    }
+
 }

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameState gameState;
 
+    public GameState startState = GameState.MainMenu;
+
     public static event Action<GameState> OnGameStateChanged;
 
     private void Awake()
@@ -19,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.MainMenu);
+        UpdateGameState(startState);
     }
 
     public void UpdateGameState(GameState newState)

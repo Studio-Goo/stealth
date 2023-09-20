@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.U2D;
 
 public class Slime : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Slime : MonoBehaviour
 
     private Vector3 startPosition;
     public GameObject slime;
+    public GameObject shadowSlime1;
+    public GameObject shadowSlime2;
 
     public Shape lastGesture;
     public Shape savedGesture;
@@ -37,6 +40,8 @@ public class Slime : MonoBehaviour
 
     private GameObject[] obstacles;
     public ObstacleSpawner obstacleSpawner;
+
+    public SpriteShapeController spriteShapeController;
 
     //private Rigidbody rigidbody;
 
@@ -126,7 +131,7 @@ public class Slime : MonoBehaviour
             lastGesture = Shape.Null;
         }
 
-        UpdateSlimeSprite();
+        //UpdateSlimeSprite();
     }
 
     // Handle spawning and destroying the exclamation mark
@@ -273,5 +278,22 @@ public class Slime : MonoBehaviour
         if (newGesture == Shape.Suspended) {
             this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
         }
+    }
+
+    public void SplineClear()
+    {
+        spriteShapeController.spline.Clear();
+    }
+
+    public void SplineInsertPointAt(int index, Vector3 point)
+    {
+        Debug.Log("Updating");
+        spriteShapeController.spline.InsertPointAt(index, point);
+        //spriteShapeController.spriteShape = spline;
+        //shadowSlime1.GetComponent<SpriteShapeController>().spline.Equals(spline);
+        //shadowSlime2.GetComponent<SpriteShapeController>().spline.Equals(spline);
+        //GameObject shadowSlime1 = slime.transform.GetChild(0).gameObject;
+        //GameObject shadowSlime2 = slime.transform.GetChild(1).gameObject;
+        //shadowSlime1..spline.Equals(spline);
     }
 }
