@@ -48,9 +48,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOverAnimation:
-                //insert end animation
-
-                //also add switch to gameover
+                endAnimation.HandleEndAnimation();
                 break;
 
             case GameState.GameOver:
