@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PointSystem : MonoBehaviour
 {
-    private GameObject pointSystem;
+    public GameObject pointSystem;
     private int points = 0;
     // Start is called before the first frame update
     void Start()
     {
-       //set pointSystem text to 0
-        pointSystem = GameObject.Find("pointSystem");
+       //disable point system
         pointSystem.SetActive(false);
     }
 
@@ -55,5 +54,7 @@ public class PointSystem : MonoBehaviour
 
         //reset points
         points = 0;
+
+        pointSystem.SetActive(false);
     }
 }

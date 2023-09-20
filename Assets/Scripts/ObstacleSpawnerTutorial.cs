@@ -11,6 +11,7 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject trianglePrefab;
     public GameObject circlePrefab;
     public float spawnInterval = 10f;
+    public Slime slimeScript;
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
 

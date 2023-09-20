@@ -144,7 +144,10 @@ public class Slime : MonoBehaviour
                 obstacle.GetComponent<Obstacle>().completed = true;
 
                 //increase speed (note: could be capped)
-                setSpeed = setSpeed * 1.03f;
+                if (setSpeed < 20.0f)
+                {
+                    setSpeed = setSpeed * 1.03f;
+                }
 
             }
             else
