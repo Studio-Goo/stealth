@@ -70,11 +70,13 @@ public class Slime : MonoBehaviour
         if (isHiding)
         {
             speed = slowSpeed;
+            slime.GetComponent<Rigidbody2D>().gravityScale = 0.05f;
 
         }
         else
         {
             speed = setSpeed;
+            slime.GetComponent<Rigidbody2D>().gravityScale = 2f;
         }
 
         if (obstacleSpawner.tutorial == false)
@@ -147,6 +149,7 @@ public class Slime : MonoBehaviour
                 if (setSpeed < 20.0f)
                 {
                     setSpeed = setSpeed * 1.03f;
+
                 }
 
             }
@@ -183,7 +186,10 @@ public class Slime : MonoBehaviour
             this.gameObject.GetComponent<SpriteRenderer>().sprite = flat;
         } else if (lastGesture == Shape.Suspended) {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = jump;
-            this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+            if (!isHiding)
+            {
+                this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+            }
         }
     }
     
