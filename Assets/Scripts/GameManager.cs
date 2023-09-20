@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public Slime slime;
     public PointSystem pointSystem;
-    public ObstacleSpawner obstacleSpawner;
+    public ObstacleSpawner obstacleSpawner; 
+    public StartAnimation startAnimation;
+    public EndAnimation endAnimation;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -36,9 +38,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.StartAnimation:
-                //insert start animation
-
-                //also add switch to playing
+                startAnimation.HandleStartAnimation();
                 break;
 
             case GameState.Playing:
@@ -54,10 +54,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOver:
-                slime.setSpeed = 8.0f;
-                pointSystem.ResetPoints();
-                obstacleSpawner.count = 0;
-                obstacleSpawner.tutorial = true;
+                HandleGameOver();
                 break;
 
             default:
@@ -71,6 +68,15 @@ public class GameManager : MonoBehaviour
 
     public void HandleMainScene()
     {
-
+        //UpdateGameState(GameState.Playing);
     }
+
+    public void HandleGameOver()
+    {
+        slime.setSpeed = 8.0f;
+        pointSystem.ResetPoints();
+        obstacleSpawner.count = 0;
+        obstacleSpawner.tutorial = true;
+    }
+
 }

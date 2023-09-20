@@ -30,7 +30,7 @@ public class MenuManager : MonoBehaviour
         gameMenuPanel.SetActive(true);
         pausedMenuPanel.SetActive(false);
         
-        GameManager.Instance.UpdateGameState(GameState.Playing);
+        GameManager.Instance.UpdateGameState(GameState.StartAnimation);
     }
 
     public void HandlePauseClick()

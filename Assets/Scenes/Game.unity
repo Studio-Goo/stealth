@@ -1450,6 +1450,8 @@ MonoBehaviour:
   slime: {fileID: 2143131205}
   pointSystem: {fileID: 1767276713}
   obstacleSpawner: {fileID: 1784259275}
+  startAnimation: {fileID: 669625941}
+  endAnimation: {fileID: 529997696}
 --- !u!4 &527458777
 Transform:
   m_ObjectHideFlags: 0
@@ -1477,6 +1479,7 @@ GameObject:
   - component: {fileID: 529997694}
   - component: {fileID: 529997693}
   - component: {fileID: 529997692}
+  - component: {fileID: 529997696}
   m_Layer: 0
   m_Name: EndAnimation
   m_TagString: Untagged
@@ -1591,6 +1594,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &529997696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529997691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58aa14eabf21c5a48b3f55da73485e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &594329024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,13 +1720,14 @@ GameObject:
   - component: {fileID: 669625939}
   - component: {fileID: 669625938}
   - component: {fileID: 669625937}
+  - component: {fileID: 669625941}
   m_Layer: 0
   m_Name: StartAnimation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &669625937
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -1815,12 +1831,26 @@ Transform:
   m_GameObject: {fileID: 669625936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -107.38, y: -2.7247, z: -4}
+  m_LocalPosition: {x: -107.38, y: -2.7247, z: 10}
   m_LocalScale: {x: 0.7113341, y: 0.7709095, z: 0.7113341}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &669625941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669625936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e21fdc4799ac3429dc5afec34d6940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startAnimation: {fileID: 669625936}
+  player: {fileID: 2143131204}
 --- !u!1 &708827599
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,7 +4667,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784259272}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9575be19521302041a00bf2dc0079a44, type: 3}
   m_Name: 
@@ -4648,7 +4678,7 @@ MonoBehaviour:
   trianglePrefab: {fileID: 7493633418918938217, guid: 8f71f3d511bcc8849b609c50ab283de8, type: 3}
   circlePrefab: {fileID: 2244506068911383462, guid: 4aae2817954f5d64f9ff867003b1da00, type: 3}
   spawnInterval: 5
-  slimeScript: {fileID: 0}
+  slimeScript: {fileID: 2143131205}
   spawnHeight: 0.15
   removeOffset: 2
   count: 0
@@ -4787,7 +4817,7 @@ Transform:
   m_GameObject: {fileID: 1948416306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.0683365, y: -3.2337666, z: 0}
+  m_LocalPosition: {x: -0.008338928, y: -3.1537666, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5061,7 +5091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2143131205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5152,7 +5182,7 @@ Transform:
   m_GameObject: {fileID: 2143131204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -115.99, y: -7.39, z: 0}
+  m_LocalPosition: {x: -111.93, y: -7.31, z: 0}
   m_LocalScale: {x: 0.7318788, y: 0.7318788, z: 0.7318788}
   m_ConstrainProportionsScale: 0
   m_Children: []
