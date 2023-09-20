@@ -4,45 +4,55 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
 {
+    public GameObject group;
+    public GameObject prevGroup;
 
-    public GameObject ceiling;
-    public GameObject background;
-    public GameObject floor;
-    public GameObject prevCeiling;
-    public GameObject prevBackground;
-    public GameObject prevFloor;
+    private Vector3 startPositionGroup;
+    private Vector3 startPositionPrevGroup;
+    private Vector3 startPositionCameraBounds;
 
     public GameObject cameraBounds;
 
     public GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        startPositionGroup = group.transform.position;
+        startPositionPrevGroup = prevGroup.transform.position;
+        startPositionCameraBounds = cameraBounds.transform.position;
+
+        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
+    }
+
+    public void GameManagerOnOnGameStateChanged(GameState state)
+    {
+        if (state == GameState.MainMenu)
+        {
+            // Resetting map position
+            group.transform.position = startPositionGroup;
+            prevGroup.transform.position = startPositionPrevGroup;
+            cameraBounds.transform.position = startPositionCameraBounds;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.transform.position.x > floor.transform.position.x)
+        if(player.transform.position.x > group.transform.GetChild(2).transform.position.x)
         {
-            var tempCeiling = prevCeiling;
-            var tempBackground = prevBackground;
-            var tempFloor = prevFloor;
+            var tempGroup = prevGroup;
 
-            prevCeiling = ceiling;
-            prevBackground = background;
-            prevFloor = floor;
+            prevGroup = group;
 
-            tempCeiling.transform.position += new Vector3(160, 0, 0);
-            tempBackground.transform.position += new Vector3(160, 0, 0);
-            tempFloor.transform.position += new Vector3(160, 0, 0);
-            cameraBounds.transform.position += new Vector3(80,0,0);
+            tempGroup.transform.position += new Vector3(160, 0, 0);
+            cameraBounds.transform.position += new Vector3(80, 0, 0);
 
-            ceiling = tempCeiling;
-            background = tempBackground;
-            floor = tempFloor;
+            group = tempGroup;
         }
     }
 }

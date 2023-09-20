@@ -34,9 +34,6 @@ public class Slime : MonoBehaviour
     public Sprite flat;
     public Sprite jump;
 
-    public GameObject exclamationMarkPrefab;
-    private GameObject exclamationMark;
-
     private GameObject[] obstacles;
     public ObstacleSpawner obstacleSpawner;
 
@@ -107,7 +104,6 @@ public class Slime : MonoBehaviour
             {
                 foreach (GameObject obstacle in obstacles)
                 {
-                    HandleExclamationMark(obstacle);
 
                     if (ObstacleReached(obstacle))
                     {
@@ -133,20 +129,6 @@ public class Slime : MonoBehaviour
         }
 
         UpdateSlimeSprite();
-    }
-
-    // Handle spawning and destroying the exclamation mark
-    void HandleExclamationMark(GameObject obstacle)
-    {
-        if (ObstacleDistance(obstacle) == gestureExclamationDistance && exclamationMark == null)
-        {
-            exclamationMark = Instantiate(exclamationMarkPrefab, transform.position, Quaternion.identity);
-        }
-        else if (!GestureDistance(obstacle) && exclamationMark != null)
-        {
-            Destroy(exclamationMark);
-            exclamationMark = null;
-        }
     }
 
     // Handle actions when an obstacle is reached
