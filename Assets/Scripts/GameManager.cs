@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.StartAnimation:
+                //insert start animation
+
+                //also add switch to playing
                 break;
 
             case GameState.Playing:
@@ -45,6 +48,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.GameOverAnimation:
+                //insert end animation
+
+                //also add switch to gameover
                 break;
 
             case GameState.GameOver:

@@ -143,7 +143,7 @@ public class Slime : MonoBehaviour
                 pointSystemScript.pointCounter(obstacleSpawner.tutorial);
                 obstacle.GetComponent<Obstacle>().completed = true;
 
-                //increase speed (note: could be capped)
+                //increase speed
                 if (setSpeed < 20.0f)
                 {
                     setSpeed = setSpeed * 1.03f;
@@ -154,7 +154,7 @@ public class Slime : MonoBehaviour
             {
                 print("Wrong Gesture");
                 // SceneManager.LoadScene("GameOver");
-                GameManager.Instance.UpdateGameState(GameState.GameOver);
+                GameManager.Instance.UpdateGameState(GameState.GameOverAnimation);
             }
         }
     }
