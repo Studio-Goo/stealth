@@ -79,7 +79,7 @@ public class Slime : MonoBehaviour
             slime.GetComponent<Rigidbody2D>().gravityScale = 2f;
         }
 
-        if (obstacleSpawner.tutorial == false)
+        if (PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 0)
         {
             //check if pointsystem is active
             if (pointSystem.activeSelf)
@@ -142,7 +142,7 @@ public class Slime : MonoBehaviour
             {
                 isHiding = true;
                 print("Correct Gesture");
-                pointSystemScript.pointCounter(obstacleSpawner.tutorial);
+                pointSystemScript.pointCounter();
                 obstacle.GetComponent<Obstacle>().completed = true;
 
                 //increase speed

@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
         slime.setSpeed = 8.0f;
         pointSystem.ResetPoints();
         obstacleSpawner.count = 0;
-        obstacleSpawner.tutorial = true;
     }
 
 }
