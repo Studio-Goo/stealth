@@ -14,8 +14,8 @@ public class MapGeneration : MonoBehaviour
     private Vector3 startPositionPrevGroup;
     private Vector3 startPositionCameraBounds;
 
-    //private GameObject originalFloor;
-    //private GameObject originalPrevFloor;
+    private GameObject originalFloor;
+    private GameObject originalPrevFloor;
 
     //private float xValueToChange;
 
@@ -27,8 +27,8 @@ public class MapGeneration : MonoBehaviour
     {
         //xValueToChange = group.transform.GetChild(2).transform.position.x;
 
-        //originalFloor = floor;
-        //originalPrevFloor = prevFloor;
+        originalFloor = floor;
+        originalPrevFloor = prevFloor;
 
         startPositionGroup = group.transform.position;
         startPositionPrevGroup = prevGroup.transform.position;
@@ -51,8 +51,8 @@ public class MapGeneration : MonoBehaviour
             prevGroup.transform.position = startPositionPrevGroup;
             cameraBounds.transform.position = startPositionCameraBounds;
 
-            //floor = originalFloor;
-            //prevFloor = originalPrevFloor;
+            floor = originalFloor;
+            prevFloor = originalPrevFloor;
         }
     }
 
