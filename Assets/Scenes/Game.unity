@@ -459,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2528595864883540328, guid: 852ee5d7f3c1c5140b6933a926b34f1b, type: 3}
       propertyPath: m_Name
-      value: Light
+      value: Light shaft
       objectReference: {fileID: 0}
     - target: {fileID: 3238720008638804446, guid: 852ee5d7f3c1c5140b6933a926b34f1b, type: 3}
       propertyPath: m_Name
@@ -4163,9 +4163,9 @@ MonoBehaviour:
   removeOffset: 2
   employeeXOffset: 1.22
   obstaclePrefabs:
-  - {fileID: 3238720008638804446, guid: 4f84298f4d0b57545961385fde973a4c, type: 3}
-  - {fileID: 3238720008638804446, guid: b02bfeb119f18774aac45c25869150a9, type: 3}
-  - {fileID: 3238720008638804446, guid: 3eb64d7bd1e93314d8742a22dbc1c240, type: 3}
+  - {fileID: 3238720008638804446, guid: 501a3cd8a056e1c4db8a6d98a1cf034b, type: 3}
+  - {fileID: 3238720008638804446, guid: 65925468d2e585b4197cf4b73185914d, type: 3}
+  - {fileID: 3238720008638804446, guid: 1651c516fe94d4c4ab4a13555a7732b5, type: 3}
   count: 0
 --- !u!1 &1893731891
 GameObject:
