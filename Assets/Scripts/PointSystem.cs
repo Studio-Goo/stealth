@@ -19,9 +19,9 @@ public class PointSystem : MonoBehaviour
     
     }
 
-    public void pointCounter()
+    public void pointCounter(bool tutorial)
     {
-        if (PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1)
+        if (tutorial)
         {
             //do nothing lol
         }

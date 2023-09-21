@@ -24,6 +24,7 @@ public class ObstacleSpawner : MonoBehaviour
     private int index = 0;
 
     public int count = 0;
+    public bool tutorial = true;
 
     private void Awake()
     {
@@ -73,12 +74,6 @@ public class ObstacleSpawner : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-
-        //check if tutorial playerprefs exists
-        if (!PlayerPrefs.HasKey("Tutorial"))
-        {
-            PlayerPrefs.SetInt("Tutorial", 1);
-        }
     }
 
 
@@ -187,7 +182,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         count++;
 
-        if (PlayerPrefs.GetInt("Tutorial") == 1 && count != 4)
+        if (tutorial && count != 4)
         {
             TutorialSpawn(obstacle);
         }
@@ -195,7 +190,10 @@ public class ObstacleSpawner : MonoBehaviour
         if (count > 3)
         {
             //Disable tutorial
-            PlayerPrefs.SetInt("Tutorial", 0);
+            tutorial = false;
+
+            //save it to playerprefs
+            PlayerPrefs.SetInt("Tutorial", 1);
         }
 
         
