@@ -19,7 +19,7 @@ MonoBehaviour:
   - target: 13
     name: Android
     enabled: 1
-    binaryNameFormat: '{0}.apk'
+    binaryNameFormat: '{0}.aab'
   variants:
   - variantName: Device Type
     selectedIndex: -1
@@ -246,8 +246,8 @@ MonoBehaviour:
     buildPath: $VERSION/$RELEASE_TYPE/$PLATFORM/$ARCHITECTURE/$SCRIPTING_BACKEND
     openFolderPostBuild: 1
   _productParameters:
-    buildCounter: 12
-    buildVersion: 1.11.0.6
+    buildCounter: 18
+    buildVersion: 1.18
     versionTemplate: 1.$BUILD
     autoGenerate: 1
     syncWithPlayerSettings: 0
@@ -262,17 +262,25 @@ MonoBehaviour:
       sceneList:
         enabledScenes:
         - fileGUID: 8b2d1e6f860a97e46adab7e1e6feffdc
+    - typeName: Playstore
+      bundleIdentifier: com.studiogoo.adventureslime
+      companyName: Studio Goo
+      productName: Adventure Slime
+      buildOptions: 0
+      customDefines: 
+      sceneList:
+        enabledScenes: []
   _platformList:
     platforms:
     - {fileID: -4627645062461358050}
     - {fileID: -7591184879113119327}
   _projectConfigurations:
     configSet:
-      _Buckets: 0000000001000000ffffffffffffffff04000000ffffffff05000000
-      _HashCodes: 6f7d9359884acb49d4fec524a9044559971e23377b384b4c00000000
-      _Next: ffffffffffffffffffffffff02000000ffffffff0300000000000000
-      _Count: 6
-      _Version: 6
+      _Buckets: 07000000ffffffff0200000008000000ffffffffffffffffffffffff050000000b0000000600000001000000ffffffffffffffff00000000ffffffff0a00000004000000
+      _HashCodes: 6f7d9359884acb49d4fec524a9044559971e23377b384b4c17880e17ec7a03510c6b6317a5e6f50e1f6c4f789b90e31a0000000000000000000000000000000000000000
+      _Next: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff03000000ffffffff090000000000000000000000000000000000000000000000
+      _Count: 12
+      _Version: 12
       _FreeList: -1
       _FreeCount: 0
       _Keys:
@@ -282,6 +290,20 @@ MonoBehaviour:
       - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single Binary,Auto,Auto,Public)
       - Android/Android
       - Android
+      - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
+        Binary,Auto,Auto,Disabled)/IL2CPP
+      - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
+        Binary,Auto,Auto,Disabled)
+      - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single
+        Binary,Auto,Auto,Public)/IL2CPP
+      - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single
+        Binary,Auto,Auto,Public)
+      - Playstore/Android
+      - Playstore
+      - 
+      - 
+      - 
+      - 
       - 
       _Values:
       - enabled: 1
@@ -290,7 +312,7 @@ MonoBehaviour:
         childKeys:
         - Android/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
           Binary,Auto,Auto,Disabled)/IL2CPP
-      - enabled: 1
+      - enabled: 0
         childKeys: []
       - enabled: 1
         childKeys:
@@ -305,6 +327,35 @@ MonoBehaviour:
       - enabled: 1
         childKeys:
         - Android/Android
+      - enabled: 0
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
+          Binary,Auto,Auto,Disabled)/IL2CPP
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys:
+        - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single
+          Binary,Auto,Auto,Public)/IL2CPP
+      - enabled: 1
+        childKeys:
+        - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,APK,Single
+          Binary,Auto,Auto,Disabled)
+        - Playstore/Android/Android (ARMv7+ARM64+X86+X86_64,Generic,App,AAB,Single
+          Binary,Auto,Auto,Public)
+      - enabled: 1
+        childKeys:
+        - Playstore/Android
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
+      - enabled: 1
+        childKeys: []
       - enabled: 1
         childKeys: []
     showViewOptions: 0
