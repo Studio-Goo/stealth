@@ -168,7 +168,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Debug.Log("New Obstacle");
         // Calculate the spawn position based on the camera's right edge and the desired height
-        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 4.4f));
+        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 4f));
 
         //GameObject newObstacle = obstaclePrefabs[index];
 
