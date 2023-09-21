@@ -13,14 +13,19 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnInterval = 10f;
     public Slime slimeScript;
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
-    public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
+    public float removeOffset = 2.5f; // Offset for removing obstacles when they're off-screen
+    public float employeeXOffset = 1.22f;
 
     private Camera mainCamera;
     private float nextSpawnTime = 0.0f;
+
+
+    public List<GameObject> obstaclePrefabs = new List<GameObject>();
+
     private List<GameObject> obstacles = new List<GameObject>();
     private List<GameObject> employees = new List<GameObject>();
 
-    private List<Shape> shapes = new List<Shape> { Shape.Down, Shape.Up, Shape.Suspended };
+    //private List<Shape> shapes = new List<Shape> { Shape.Down, Shape.Up, Shape.Suspended };
     private int index = 0;
 
     public int count = 0;
@@ -165,23 +170,24 @@ public class ObstacleSpawner : MonoBehaviour
         // Calculate the spawn position based on the camera's right edge and the desired height
         Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 4.4f));
 
-        Shape objectShape = shapes[index];
+        //GameObject newObstacle = obstaclePrefabs[index];
 
         // Spawning the obstacle and assigning shape
-        GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
-        obstacle.GetComponent<Obstacle>().shape = objectShape;
+        GameObject newObstacle = Instantiate(obstaclePrefabs[index], spawnPosition, Quaternion.identity);
+        //GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+        //obstacle.GetComponent<Obstacle>().shape = objectShape;
 
         // Adding new obstacle to list
-        obstacles.Add(obstacle);
+        obstacles.Add(newObstacle);
 
         // Use next shape for next object spawning
         index++;
 
         // Checking if the current shuffled shape list has been used completely
-        if (index >= shapes.Count)
+        if (index >= obstaclePrefabs.Count)
         {
             // Shuffle list and begin using again
-            shapes.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
+            obstaclePrefabs.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
             index = 0;
         }
 
@@ -189,7 +195,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         if (PlayerPrefs.GetInt("Tutorial") == 1 && count != 4)
         {
-            TutorialSpawn(obstacle);
+            TutorialSpawn(newObstacle);
         }
         
         if (count > 3)
@@ -252,10 +258,15 @@ public class ObstacleSpawner : MonoBehaviour
     private void SpawnEmployee()
     {
         // Calculate the spawn position based on the camera's right edge and the desired height
-        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, 0.72f, 4.8f));
+        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(employeeXOffset, 0.72f, 4.8f));
         GameObject employee = Instantiate(employeePrefab, spawnPosition, Quaternion.identity);
 
         employees.Add(employee);
+    }
+
+    public List<GameObject> getObstacles()
+    {
+        return obstacles;
     }
 
 }

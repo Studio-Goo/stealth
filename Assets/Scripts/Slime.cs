@@ -34,14 +34,14 @@ public class Slime : MonoBehaviour
     public Sprite flat;
     public Sprite jump;
 
-    private GameObject[] obstacles;
+    private List<GameObject> obstacles;
     public ObstacleSpawner obstacleSpawner;
 
     //private Rigidbody rigidbody;
 
     void Start()
     {
-        obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
+        //obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
         pointSystemScript = pointSystem.GetComponent<PointSystem>();
     }
 
@@ -97,16 +97,15 @@ public class Slime : MonoBehaviour
         if(GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
         {
             //automatic slime movement
-
             transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-            obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            obstacles = obstacleSpawner.getObstacles();
 
             if (obstacles != null)
             {
                 foreach (GameObject obstacle in obstacles)
                 {
-
                     if (ObstacleReached(obstacle))
                     {
                         HandleObstacleReached(obstacle);
@@ -118,7 +117,6 @@ public class Slime : MonoBehaviour
                     }
                 }
             }
-
         }
 
 
@@ -175,31 +173,42 @@ public class Slime : MonoBehaviour
     {
         if (lastGesture == Shape.Null)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = normal;
+            ChangeSlimeSprite(normal);
         }
         else if (lastGesture == Shape.Up)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = tall;
+            ChangeSlimeSprite(tall);
         }
         else if (lastGesture == Shape.Down)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = flat;
+            ChangeSlimeSprite(flat);
         } else if (lastGesture == Shape.Suspended) {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = jump;
+
+            ChangeSlimeSprite(jump);
             if (!isHiding)
             {
                 this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
             }
         }
     }
+
+    private void ChangeSlimeSprite(Sprite sprite)
+    {
+        slime.GetComponent<SpriteRenderer>().sprite = sprite;
+        slime.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        slime.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+    }
     
     // Check if the gesture is correct
     bool CheckGesture(GameObject obstacle)
     {
-        float distance = ObstacleDistance(obstacle);
+        float distance = ObstacleDistance(obstacle.transform.GetChild(1).gameObject);
 
+
+        Debug.Log(distance);
         if (distance > 0 && distance < gestureCheckDistance)
         {
+            //Debug.Log(obstacle);
             if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
             {
                 obstacle.GetComponent<Obstacle>().completed = true;
@@ -213,7 +222,7 @@ public class Slime : MonoBehaviour
     // Check if the obstacle is reached
     bool ObstacleReached(GameObject obstacle)
     {
-        if (ObstacleDistance(obstacle) < gestureCheckDistance)
+        if (ObstacleDistance(obstacle.transform.GetChild(1).gameObject) < gestureCheckDistance)
         {
             return true;
         }
@@ -223,7 +232,7 @@ public class Slime : MonoBehaviour
 
     bool ObstaclePassed(GameObject obstacle)
     {
-        if (ObstacleDistance(obstacle) < 0)
+        if (ObstacleDistance(obstacle.transform.GetChild(1).gameObject) < 0)
         {
             return true;
         }
@@ -234,7 +243,7 @@ public class Slime : MonoBehaviour
 
     public GameObject GetNearestObstacle()
     {
-        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        obstacles = obstacleSpawner.getObstacles();
 
         foreach (GameObject obstacle in obstacles)
         {
