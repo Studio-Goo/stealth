@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public ObstacleSpawner obstacleSpawner; 
     public StartAnimation startAnimation;
     public EndAnimation endAnimation;
+    public GameObject backgroundMusic;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -42,12 +43,14 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Playing:
+                backgroundMusic.SetActive(true);
                 break;
 
             case GameState.Paused:
                 break;
 
             case GameState.GameOverAnimation:
+                backgroundMusic.SetActive(false);
                 endAnimation.HandleEndAnimation();
                 break;
 
