@@ -10,7 +10,7 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject squarePrefab;
     public GameObject trianglePrefab;
     public GameObject circlePrefab;
-    public float spawnInterval = 10f;
+    public float spawnInterval = 5f;
     public Slime slimeScript;
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
     public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
@@ -78,6 +78,10 @@ public class ObstacleSpawner : MonoBehaviour
         if (!PlayerPrefs.HasKey("Tutorial"))
         {
             PlayerPrefs.SetInt("Tutorial", 1);
+        }
+        else {
+            //delete tutorial key
+            PlayerPrefs.DeleteKey("Tutorial");
         }
     }
 
@@ -180,9 +184,17 @@ public class ObstacleSpawner : MonoBehaviour
         // Checking if the current shuffled shape list has been used completely
         if (index >= shapes.Count)
         {
-            // Shuffle list and begin using again
-            shapes.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
-            index = 0;
+            if (PlayerPrefs.GetInt("Tutorial") == 1)
+            {
+                // Do not shuffle list
+                index = 0;
+            }
+            else
+            {
+                // Shuffle list and begin using again
+                shapes.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
+                index = 0;
+            }
         }
 
         count++;
@@ -199,6 +211,19 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         
+    }
+
+    public void DecreaseSpawnInterval()
+    {
+        spawnInterval = spawnInterval * 0.97f;
+    }
+
+    public void ResetAll()
+    {
+        spawnInterval = 5f;
+        nextSpawnTime = 0.0f;
+        count = 0;
+        index = 0;
     }
 
     private void TutorialSpawn(GameObject obstacle)

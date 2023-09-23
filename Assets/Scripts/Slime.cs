@@ -152,6 +152,9 @@ public class Slime : MonoBehaviour
 
                 }
 
+                //decrease obstacle spawn interval
+                obstacleSpawner.DecreaseSpawnInterval();
+
             }
             else
             {
