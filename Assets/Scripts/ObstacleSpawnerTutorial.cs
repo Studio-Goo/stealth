@@ -80,8 +80,7 @@ public class ObstacleSpawner : MonoBehaviour
             PlayerPrefs.SetInt("Tutorial", 1);
         }
         else {
-            //delete tutorial key
-            PlayerPrefs.DeleteKey("Tutorial");
+            PlayerPrefs.SetInt("Tutorial", 1);
         }
     }
 

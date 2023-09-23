@@ -34,6 +34,12 @@ public class Slime : MonoBehaviour
     public Sprite flat;
     public Sprite jump;
 
+    //audio
+    public GameObject jumpAudio;
+    public GameObject walkAudio;
+    public GameObject stretchAudio;
+
+
     private GameObject[] obstacles;
     public ObstacleSpawner obstacleSpawner;
 
@@ -43,6 +49,8 @@ public class Slime : MonoBehaviour
     {
         obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
         pointSystemScript = pointSystem.GetComponent<PointSystem>();
+
+        //walkAudio.SetActive(true);
     }
 
     private void Awake()
@@ -178,17 +186,26 @@ public class Slime : MonoBehaviour
     {
         if (lastGesture == Shape.Null)
         {
+            //walkAudio.SetActive(true);
             this.gameObject.GetComponent<SpriteRenderer>().sprite = normal;
         }
         else if (lastGesture == Shape.Up)
         {
+            /* walkAudio.SetActive(false);
+            stretchAudio.SetActive(true); */
             this.gameObject.GetComponent<SpriteRenderer>().sprite = tall;
         }
         else if (lastGesture == Shape.Down)
         {
+            /* walkAudio.SetActive(false);
+            stretchAudio.SetActive(true); */
             this.gameObject.GetComponent<SpriteRenderer>().sprite = flat;
         } else if (lastGesture == Shape.Suspended) {
+
+            /* walkAudio.SetActive(false);
+            jumpAudio.SetActive(true); */
             this.gameObject.GetComponent<SpriteRenderer>().sprite = jump;
+
             if (!isHiding)
             {
                 this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);

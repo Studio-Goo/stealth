@@ -6,6 +6,7 @@ public class EndAnimation : MonoBehaviour
 {
     public GameObject endAnimation;
     public GameObject player;
+    public GameObject endAudio;
     // Start is called before the first frame update
     public void Start()
     {
@@ -34,6 +35,7 @@ public class EndAnimation : MonoBehaviour
 
         // Set the "isPlaying" parameter to true in the Animator.
         endAnimation.SetActive(true);
+        endAudio.SetActive(true);
 
         StartCoroutine(WaitForAnimationComplete());
 
@@ -47,6 +49,7 @@ public class EndAnimation : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
 
         endAnimation.SetActive(false);
+        endAudio.SetActive(false);
     
 
         GameManager.Instance.UpdateGameState(GameState.GameOver);
