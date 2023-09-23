@@ -6,7 +6,7 @@ public class StartAnimation : MonoBehaviour
 {
     public GameObject startAnimation;
     public GameObject player;
-    public GameObject startAudio;
+    public AudioSource startAudio;
     // Start is called before the first frame update
     public void Start()
     {
@@ -24,7 +24,7 @@ public class StartAnimation : MonoBehaviour
     {
         // Set the "isPlaying" parameter to true in the Animator.
         startAnimation.SetActive(true);
-        startAudio.SetActive(true);
+        startAudio.Play();
 
         StartCoroutine(WaitForAnimationComplete());
 
@@ -38,7 +38,7 @@ public class StartAnimation : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
 
         startAnimation.SetActive(false);
-        startAudio.SetActive(false);
+        startAudio.Stop();
         player.SetActive(true);
 
     

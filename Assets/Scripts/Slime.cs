@@ -16,7 +16,7 @@ public class Slime : MonoBehaviour
 
     private float resetGestureAfter = 0.0f;
     private bool isHiding = false;
-    private float slowSpeed = 1.0f;
+    public float slowSpeed = 1.0f;
     public float setSpeed = 8.0f;
 
 
@@ -157,6 +157,7 @@ public class Slime : MonoBehaviour
                 if (setSpeed < 20.0f)
                 {
                     setSpeed = setSpeed * 1.03f;
+                    slowSpeed = slowSpeed * 1.03f;
 
                 }
 

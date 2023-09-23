@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public ObstacleSpawner obstacleSpawner; 
     public StartAnimation startAnimation;
     public EndAnimation endAnimation;
-    public GameObject backgroundMusic;
+    public AudioSource backgroundMusic;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -43,14 +43,14 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Playing:
-                backgroundMusic.SetActive(true);
+                backgroundMusic.Play();
                 break;
 
             case GameState.Paused:
                 break;
 
             case GameState.GameOverAnimation:
-                backgroundMusic.SetActive(false);
+                backgroundMusic.Stop();
                 endAnimation.HandleEndAnimation();
                 break;
 
@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     public void HandleGameOver()
     {
         slime.setSpeed = 8.0f;
+        slime.slowSpeed = 1.0f;
         pointSystem.ResetPoints();
         obstacleSpawner.ResetAll();
         //tutorial = true;

@@ -1452,7 +1452,7 @@ MonoBehaviour:
   obstacleSpawner: {fileID: 1784259275}
   startAnimation: {fileID: 669625941}
   endAnimation: {fileID: 529997696}
-  backgroundMusic: {fileID: 941023956}
+  backgroundMusic: {fileID: 941023957}
 --- !u!4 &527458777
 Transform:
   m_ObjectHideFlags: 0
@@ -1609,7 +1609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endAnimation: {fileID: 529997691}
   player: {fileID: 2143131204}
-  endAudio: {fileID: 1466773073}
+  endAudio: {fileID: 1466773074}
 --- !u!1 &594329024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,7 +1983,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAnimation: {fileID: 669625936}
   player: {fileID: 2143131204}
-  startAudio: {fileID: 1199431185}
+  startAudio: {fileID: 1199431187}
 --- !u!1 &708827599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2826,7 +2826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &941023957
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2838,7 +2838,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f3c3b07ed0b00b048b451066ca54a952, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -3481,7 +3481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1199431186
 Transform:
   m_ObjectHideFlags: 0
@@ -3508,7 +3508,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8243c187383555a42910bff6355623ff, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -4583,7 +4583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1466773074
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4595,7 +4595,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d97bd55d4472e8543828c3719cabb265, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
