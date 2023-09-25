@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameState gameState;
+    public Slime slime;
+    public PointSystem pointSystem;
+    public ObstacleSpawner obstacleSpawner; 
+    public StartAnimation startAnimation;
+    public EndAnimation endAnimation;
+    public AudioSource backgroundMusic;
 
     public GameState startState = GameState.MainMenu;
 
@@ -35,18 +41,23 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.StartAnimation:
+                startAnimation.HandleStartAnimation();
                 break;
 
             case GameState.Playing:
+                backgroundMusic.Play();
                 break;
 
             case GameState.Paused:
                 break;
 
             case GameState.GameOverAnimation:
+                backgroundMusic.Stop();
+                endAnimation.HandleEndAnimation();
                 break;
 
             case GameState.GameOver:
+                HandleGameOver();
                 break;
 
             default:
@@ -60,6 +71,16 @@ public class GameManager : MonoBehaviour
 
     public void HandleMainScene()
     {
-
+        //UpdateGameState(GameState.Playing);
     }
+
+    public void HandleGameOver()
+    {
+        slime.setSpeed = 8.0f;
+        slime.slowSpeed = 1.0f;
+        pointSystem.ResetPoints();
+        obstacleSpawner.ResetAll();
+        //tutorial = true;
+    }
+
 }

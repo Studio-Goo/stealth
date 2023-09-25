@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PointSystem : MonoBehaviour
 {
-    private GameObject pointSystem;
+    public GameObject pointSystem;
     private int points = 0;
     // Start is called before the first frame update
     void Start()
     {
-       //set pointSystem text to 0
-        pointSystem = GameObject.Find("pointSystem");
+       //disable point system
         pointSystem.SetActive(false);
     }
 
@@ -20,9 +19,9 @@ public class PointSystem : MonoBehaviour
     
     }
 
-    public void pointCounter(bool tutorial)
+    public void pointCounter()
     {
-        if (tutorial)
+        if (PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1)
         {
             //do nothing lol
         }
@@ -33,6 +32,29 @@ public class PointSystem : MonoBehaviour
 
     public void showPoints()
     {
-        pointSystem.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + points.ToString();
+        TMPro.TextMeshProUGUI pointText = pointSystem.GetComponent<TMPro.TextMeshProUGUI>();
+        pointText.text = "Score: " + points.ToString();
+
+        if (PlayerPrefs.GetInt("HighScore") > 0)
+        {
+            pointText.text += "\n<size=50%>Highscore: " + PlayerPrefs.GetInt("HighScore").ToString() + "</size>";
+        }
+    }
+
+
+
+    public void ResetPoints()
+    {
+        //save highscore
+        if (points > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", points);
+            PlayerPrefs.Save();
+        }
+
+        //reset points
+        points = 0;
+
+        pointSystem.SetActive(false);
     }
 }

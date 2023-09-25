@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7875522935605712905}
   m_Layer: 0
   m_Name: circle
-  m_TagString: Untagged
+  m_TagString: Tutorial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4120284ab99665447a46524948439007, type: 3}
-  m_Color: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7d93f51ef8d58b6498b8779d19b99980, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

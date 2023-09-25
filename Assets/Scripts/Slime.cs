@@ -17,6 +17,8 @@ public class Slime : MonoBehaviour
 
     private float resetGestureAfter = 0.0f;
     private bool isHiding = false;
+    public float slowSpeed = 1.0f;
+    public float setSpeed = 8.0f;
 
 
     private Vector3 startPosition;
@@ -35,10 +37,13 @@ public class Slime : MonoBehaviour
     public Sprite flat;
     public Sprite jump;
 
-    public GameObject exclamationMarkPrefab;
-    private GameObject exclamationMark;
+    //audio
+    public GameObject jumpAudio;
+    public GameObject walkAudio;
+    public GameObject stretchAudio;
 
-    private GameObject[] obstacles;
+
+    private List<GameObject> obstacles;
     public ObstacleSpawner obstacleSpawner;
 
     public SpriteShapeController spriteShapeController;
@@ -47,8 +52,10 @@ public class Slime : MonoBehaviour
 
     void Start()
     {
-        obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
+        //obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
         pointSystemScript = pointSystem.GetComponent<PointSystem>();
+
+        //walkAudio.SetActive(true);
     }
 
     private void Awake()
@@ -75,11 +82,17 @@ public class Slime : MonoBehaviour
     {
         if (isHiding)
         {
-            speed = 1.0f;
+            speed = slowSpeed;
+            slime.GetComponent<Rigidbody2D>().gravityScale = 0.05f;
 
         }
+        else
+        {
+            speed = setSpeed;
+            slime.GetComponent<Rigidbody2D>().gravityScale = 2f;
+        }
 
-        if (obstacleSpawner.tutorial == false)
+        if (PlayerPrefs.GetInt("Tutorial") == 0)
         {
             //check if pointsystem is active
             if (pointSystem.activeSelf)
@@ -97,17 +110,15 @@ public class Slime : MonoBehaviour
         if(GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
         {
             //automatic slime movement
-
             transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-            obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            obstacles = obstacleSpawner.getObstacles();
 
             if (obstacles != null)
             {
                 foreach (GameObject obstacle in obstacles)
                 {
-                    HandleExclamationMark(obstacle);
-
                     if (ObstacleReached(obstacle))
                     {
                         HandleObstacleReached(obstacle);
@@ -119,7 +130,6 @@ public class Slime : MonoBehaviour
                     }
                 }
             }
-
         }
 
 
@@ -134,20 +144,6 @@ public class Slime : MonoBehaviour
         //UpdateSlimeSprite();
     }
 
-    // Handle spawning and destroying the exclamation mark
-    void HandleExclamationMark(GameObject obstacle)
-    {
-        if (ObstacleDistance(obstacle) == gestureExclamationDistance && exclamationMark == null)
-        {
-            exclamationMark = Instantiate(exclamationMarkPrefab, transform.position, Quaternion.identity);
-        }
-        else if (!GestureDistance(obstacle) && exclamationMark != null)
-        {
-            Destroy(exclamationMark);
-            exclamationMark = null;
-        }
-    }
-
     // Handle actions when an obstacle is reached
     void HandleObstacleReached(GameObject obstacle)
     {
@@ -157,15 +153,26 @@ public class Slime : MonoBehaviour
             {
                 isHiding = true;
                 print("Correct Gesture");
-                pointSystemScript.pointCounter(obstacleSpawner.tutorial);
+                pointSystemScript.pointCounter();
                 obstacle.GetComponent<Obstacle>().completed = true;
+
+                //increase speed
+                if (setSpeed < 20.0f)
+                {
+                    setSpeed = setSpeed * 1.03f;
+                    slowSpeed = slowSpeed * 1.03f;
+
+                }
+
+                //decrease obstacle spawn interval
+                obstacleSpawner.DecreaseSpawnInterval();
 
             }
             else
             {
                 print("Wrong Gesture");
                 // SceneManager.LoadScene("GameOver");
-                GameManager.Instance.UpdateGameState(GameState.GameOver);
+                GameManager.Instance.UpdateGameState(GameState.GameOverAnimation);
             }
         }
     }
@@ -175,7 +182,6 @@ public class Slime : MonoBehaviour
         if (ObstaclePassed(obstacle))
         {
             isHiding = false;
-            speed = 8.0f;
         }
     }
 
@@ -184,28 +190,42 @@ public class Slime : MonoBehaviour
     {
         if (lastGesture == Shape.Null)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = normal;
+            ChangeSlimeSprite(normal);
         }
         else if (lastGesture == Shape.Up)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = tall;
+            ChangeSlimeSprite(tall);
         }
         else if (lastGesture == Shape.Down)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = flat;
+            ChangeSlimeSprite(flat);
         } else if (lastGesture == Shape.Suspended) {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = jump;
-            this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+
+            ChangeSlimeSprite(jump);
+            if (!isHiding)
+            {
+                this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+            }
         }
+    }
+
+    private void ChangeSlimeSprite(Sprite sprite)
+    {
+        slime.GetComponent<SpriteRenderer>().sprite = sprite;
+        slime.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        slime.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
     }
     
     // Check if the gesture is correct
     bool CheckGesture(GameObject obstacle)
     {
-        float distance = ObstacleDistance(obstacle);
+        float distance = ObstacleDistance(obstacle.transform.GetChild(1).gameObject);
 
+
+        Debug.Log(distance);
         if (distance > 0 && distance < gestureCheckDistance)
         {
+            //Debug.Log(obstacle);
             if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
             {
                 obstacle.GetComponent<Obstacle>().completed = true;
@@ -219,7 +239,7 @@ public class Slime : MonoBehaviour
     // Check if the obstacle is reached
     bool ObstacleReached(GameObject obstacle)
     {
-        if (ObstacleDistance(obstacle) < gestureCheckDistance)
+        if (ObstacleDistance(obstacle.transform.GetChild(1).gameObject) < gestureCheckDistance)
         {
             return true;
         }
@@ -229,7 +249,7 @@ public class Slime : MonoBehaviour
 
     bool ObstaclePassed(GameObject obstacle)
     {
-        if (ObstacleDistance(obstacle) < 0)
+        if (ObstacleDistance(obstacle.transform.GetChild(1).gameObject) < 0)
         {
             return true;
         }
@@ -240,7 +260,7 @@ public class Slime : MonoBehaviour
 
     public GameObject GetNearestObstacle()
     {
-        obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        obstacles = obstacleSpawner.getObstacles();
 
         foreach (GameObject obstacle in obstacles)
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject player;
     [SerializeField] private GameObject mainMenuPanel, gameMenuPanel, pausedMenuPanel, gameoverMenuPanel;
 
     private void Awake()
@@ -30,7 +31,15 @@ public class MenuManager : MonoBehaviour
         gameMenuPanel.SetActive(true);
         pausedMenuPanel.SetActive(false);
         
-        GameManager.Instance.UpdateGameState(GameState.Playing);
+        //check if player is active
+        if (player.activeSelf)
+        {
+            GameManager.Instance.UpdateGameState(GameState.Playing);
+        }
+        else
+        {
+            GameManager.Instance.UpdateGameState(GameState.StartAnimation);
+        }
     }
 
     public void HandlePauseClick()
