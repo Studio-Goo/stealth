@@ -43,6 +43,7 @@ public class Slime : MonoBehaviour
     {
         //obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
         pointSystemScript = pointSystem.GetComponent<PointSystem>();
+
     }
 
     private void Awake()

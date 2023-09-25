@@ -84,6 +84,10 @@ public class ObstacleSpawner : MonoBehaviour
         {
             PlayerPrefs.SetInt("Tutorial", 1);
         }
+        else
+        {
+            PlayerPrefs.SetInt("Tutorial", 1);
+        }
     }
 
 
@@ -195,6 +199,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         if (PlayerPrefs.GetInt("Tutorial") == 1 && count != 4)
         {
+            //TutorialSpawn(newObstacle.transform.GetChild(1).gameObject);
             TutorialSpawn(newObstacle);
         }
         
@@ -210,7 +215,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void TutorialSpawn(GameObject obstacle)
     {
         // Calculate the spawn position for the prefab exactly above the obstacle
-        Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y;
+        Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>().bounds.extents.y;
 
         // Set the prefab's position to the calculated position
         GameObject prefabToSpawn = null;
@@ -221,7 +226,7 @@ public class ObstacleSpawner : MonoBehaviour
             prefabToSpawn = squarePrefab;
             
             //lift this one up a bit
-            prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
+            prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
 
         }
         else if (obstacle.GetComponent<Obstacle>().shape == Shape.Up)
@@ -241,7 +246,7 @@ public class ObstacleSpawner : MonoBehaviour
             
             // Set the sorting order of the prefab's renderer to be higher than the obstacle's renderer
             Renderer prefabRenderer = spawnedPrefab.GetComponent<Renderer>();
-            Renderer obstacleRenderer = obstacle.GetComponent<Renderer>();
+            Renderer obstacleRenderer = obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>();
             
             if (prefabRenderer != null && obstacleRenderer != null)
             {
