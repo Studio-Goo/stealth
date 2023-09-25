@@ -1753,6 +1753,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAnimation: {fileID: 669625936}
   player: {fileID: 2143131204}
+  startAudio: {fileID: 1199431187}
 --- !u!1 &786645662
 GameObject:
   m_ObjectHideFlags: 0
@@ -5013,6 +5014,7 @@ MonoBehaviour:
   gestureAllowedDistance: 25
   gestureExclamationDistance: 10
   gestureResetSeconds: 1.8
+  slowSpeed: 1
   setSpeed: 8
   slime: {fileID: 2143131204}
   lastGesture: 0
@@ -5022,6 +5024,9 @@ MonoBehaviour:
   tall: {fileID: 21300000, guid: 3714225106d8cd02c8c15f75f60236b7, type: 3}
   flat: {fileID: 21300000, guid: 373807732df675872a175cbb53ba0ab0, type: 3}
   jump: {fileID: 21300000, guid: a5bffa6b2b596610cbb270e41940e9cd, type: 3}
+  jumpAudio: {fileID: 0}
+  walkAudio: {fileID: 0}
+  stretchAudio: {fileID: 0}
   obstacleSpawner: {fileID: 1784259275}
 --- !u!212 &2143131206
 SpriteRenderer:
@@ -5303,3 +5308,8 @@ SceneRoots:
   - {fileID: 529997695}
   - {fileID: 669625940}
   - {fileID: 239954695}
+  - {fileID: 603729395}
+  - {fileID: 930870882}
+  - {fileID: 941023958}
+  - {fileID: 1199431186}
+  - {fileID: 1466773075}

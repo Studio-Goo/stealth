@@ -198,8 +198,9 @@ public class ObstacleSpawner : MonoBehaviour
             else
             {
                 // Shuffle list and begin using again
-                shapes.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
+                obstaclePrefabs.Sort((a, b) => 1 - 2 * Random.Range(0, 1));
                 index = 0;
+
             }
         }
 
