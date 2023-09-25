@@ -13,14 +13,19 @@ public class ObstacleSpawner : MonoBehaviour
     public float spawnInterval = 5f;
     public Slime slimeScript;
     public float spawnHeight = 0.24f; // Height at which obstacles spawn
-    public float removeOffset = 2.0f; // Offset for removing obstacles when they're off-screen
+    public float removeOffset = 2.5f; // Offset for removing obstacles when they're off-screen
+    public float employeeXOffset = 1.22f;
 
     private Camera mainCamera;
     private float nextSpawnTime = 0.0f;
+
+
+    public List<GameObject> obstaclePrefabs = new List<GameObject>();
+
     private List<GameObject> obstacles = new List<GameObject>();
     private List<GameObject> employees = new List<GameObject>();
 
-    private List<Shape> shapes = new List<Shape> { Shape.Down, Shape.Up, Shape.Suspended };
+    //private List<Shape> shapes = new List<Shape> { Shape.Down, Shape.Up, Shape.Suspended };
     private int index = 0;
 
     public int count = 0;
@@ -79,7 +84,8 @@ public class ObstacleSpawner : MonoBehaviour
         {
             PlayerPrefs.SetInt("Tutorial", 1);
         }
-        else {
+        else
+        {
             PlayerPrefs.SetInt("Tutorial", 1);
         }
     }
@@ -166,22 +172,23 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Debug.Log("New Obstacle");
         // Calculate the spawn position based on the camera's right edge and the desired height
-        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 4.4f));
+        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, spawnHeight, 4f));
 
-        Shape objectShape = shapes[index];
+        //GameObject newObstacle = obstaclePrefabs[index];
 
         // Spawning the obstacle and assigning shape
-        GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
-        obstacle.GetComponent<Obstacle>().shape = objectShape;
+        GameObject newObstacle = Instantiate(obstaclePrefabs[index], spawnPosition, Quaternion.identity);
+        //GameObject obstacle = Instantiate(obstaclePrefab, spawnPosition, Quaternion.identity);
+        //obstacle.GetComponent<Obstacle>().shape = objectShape;
 
         // Adding new obstacle to list
-        obstacles.Add(obstacle);
+        obstacles.Add(newObstacle);
 
         // Use next shape for next object spawning
         index++;
 
         // Checking if the current shuffled shape list has been used completely
-        if (index >= shapes.Count)
+        if (index >= obstaclePrefabs.Count)
         {
             if (PlayerPrefs.GetInt("Tutorial") == 1)
             {
@@ -200,7 +207,8 @@ public class ObstacleSpawner : MonoBehaviour
 
         if(PlayerPrefs.GetInt("Tutorial") == 1 && count != 4)
         {
-            TutorialSpawn(obstacle);
+            //TutorialSpawn(newObstacle.transform.GetChild(1).gameObject);
+            TutorialSpawn(newObstacle);
         }
         
         if (count > 3)
@@ -228,7 +236,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void TutorialSpawn(GameObject obstacle)
     {
         // Calculate the spawn position for the prefab exactly above the obstacle
-        Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y;
+        Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>().bounds.extents.y;
 
         // Set the prefab's position to the calculated position
         GameObject prefabToSpawn = null;
@@ -239,7 +247,7 @@ public class ObstacleSpawner : MonoBehaviour
             prefabToSpawn = squarePrefab;
             
             //lift this one up a bit
-            prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
+            prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
 
         }
         else if (obstacle.GetComponent<Obstacle>().shape == Shape.Up)
@@ -259,7 +267,7 @@ public class ObstacleSpawner : MonoBehaviour
             
             // Set the sorting order of the prefab's renderer to be higher than the obstacle's renderer
             Renderer prefabRenderer = spawnedPrefab.GetComponent<Renderer>();
-            Renderer obstacleRenderer = obstacle.GetComponent<Renderer>();
+            Renderer obstacleRenderer = obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>();
             
             if (prefabRenderer != null && obstacleRenderer != null)
             {
@@ -276,10 +284,15 @@ public class ObstacleSpawner : MonoBehaviour
     private void SpawnEmployee()
     {
         // Calculate the spawn position based on the camera's right edge and the desired height
-        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(1.1f, 0.72f, 4.8f));
+        Vector3 spawnPosition = mainCamera.ViewportToWorldPoint(new Vector3(employeeXOffset, 0.72f, 4.8f));
         GameObject employee = Instantiate(employeePrefab, spawnPosition, Quaternion.identity);
 
         employees.Add(employee);
+    }
+
+    public List<GameObject> getObstacles()
+    {
+        return obstacles;
     }
 
 }

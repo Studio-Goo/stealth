@@ -14,7 +14,7 @@ public class EmployeeSpawner : MonoBehaviour
     private float nextSpawnTime = 0.0f;
     private List<GameObject> obstacles = new List<GameObject>();
 
-    private List<Shape> shapes = new List<Shape> { Shape.Horizontal, Shape.Vertical };
+    private List<Shape> shapes = new List<Shape> { Shape.Up, Shape.Down };
     private int index = 0;
 
     private void Start()

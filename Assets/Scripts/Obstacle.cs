@@ -1,37 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine;
 
-// Shape Null is the default value and used for resetting
-public enum Shape { Null, Up, Down, Horizontal, Vertical, Suspended };
+public enum Shape { Null, Up, Down, Suspended };
 
 public class Obstacle : MonoBehaviour
 {
     public Shape shape;
+    public Sprite ObstacleSprite;
+    public Sprite ShadowSprite;
+
     public bool completed = false;
 
-    public Sprite tallObstacle;
-    public Sprite flatObstacle;
-    public Sprite suspendedObstacle;
+    private GameObject obstacle;
+    private GameObject obstacleShadow;
+    private GameObject obstacleShadowMask;
+
+    //private GameObject Employee;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if (shape == Shape.Up)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = tallObstacle;
-        } else if (shape == Shape.Down)
-        {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = flatObstacle;
-        } else if (shape == Shape.Suspended) {
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = suspendedObstacle;
-        }
+        obstacle = this.gameObject.transform.GetChild(1).gameObject;
+        obstacleShadow = this.gameObject.transform.GetChild(2).gameObject;
+        obstacleShadowMask = obstacleShadow.transform.GetChild(0).gameObject;
+
+        ChangeObstacle(ObstacleSprite, ShadowSprite);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeObstacle(Sprite obstacleSprite, Sprite obstacleShadowSprite)
     {
-        
+        obstacle.GetComponent<SpriteRenderer>().sprite = obstacleSprite;
+        obstacleShadow.GetComponent<SpriteMask>().sprite = obstacleShadowSprite;
+        obstacleShadowMask.GetComponent<SpriteRenderer>().sprite = obstacleShadowSprite;
     }
 }
