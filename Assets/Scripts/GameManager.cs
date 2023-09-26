@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public StartAnimation startAnimation;
     public EndAnimation endAnimation;
     public AudioSource backgroundMusic;
+    public GameObject endScreen;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MainMenu:
                 HandleMainScene();
+                endScreen.SetActive(false);
                 break;
 
             case GameState.StartAnimation:
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Playing:
+                endScreen.SetActive(false); //just in case
                 backgroundMusic.Play();
                 break;
 
@@ -78,7 +81,7 @@ public class GameManager : MonoBehaviour
         slime.slowSpeed = 1.0f;
         pointSystem.ResetPoints();
         obstacleSpawner.ResetAll();
-        //tutorial = true;
+        endScreen.SetActive(true);
     }
 
 }

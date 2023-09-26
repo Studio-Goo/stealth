@@ -5,6 +5,7 @@ using UnityEngine;
 public class PointSystem : MonoBehaviour
 {
     public GameObject pointSystem;
+    public GameObject endScreen;
     private int points = 0;
     // Start is called before the first frame update
     void Start()
@@ -41,7 +42,17 @@ public class PointSystem : MonoBehaviour
         }
     }
 
-
+    public void endPoints()
+    {
+        TMPro.TextMeshProUGUI screenText = endScreen.GetComponent<TMPro.TextMeshProUGUI>();
+        
+        //display score and highscore
+        screenText.text = "Score: " + points.ToString();
+        if (PlayerPrefs.GetInt("HighScore") > 0)
+        {
+            screenText.text += "\n<size=50%>Highscore: " + PlayerPrefs.GetInt("HighScore").ToString() + "</size>";
+        }
+    }
 
     public void ResetPoints()
     {
