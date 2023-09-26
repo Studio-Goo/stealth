@@ -102,10 +102,10 @@ public class ObstacleSpawner : MonoBehaviour
                 
 
                 // Instantiate the obstacle
-                SpawnObstacle();
+                //SpawnObstacle();
 
                 // TODO rewrite so this fits lol, general ObjectSpawner script?
-                SpawnEmployee();
+                //SpawnEmployee();
 
                 // Schedule the next spawn
                 nextSpawnTime = Time.time + spawnInterval;

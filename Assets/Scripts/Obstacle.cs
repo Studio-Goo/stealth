@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Shape { Null, Up, Down, Suspended };
+//public enum Shape { Null, Up, Down, Suspended };
 
 public class Obstacle : MonoBehaviour
 {
