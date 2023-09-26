@@ -299,4 +299,10 @@ public class Slime : MonoBehaviour
             this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
         }
     }
+
+    public void ResetAll()
+    {
+        slowSpeed = 1.0f;
+        setSpeed = 8.0f;
+    }
 }

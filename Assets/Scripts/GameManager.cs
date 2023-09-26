@@ -77,8 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void HandleGameOver()
     {
-        slime.setSpeed = 8.0f;
-        slime.slowSpeed = 1.0f;
+        slime.ResetAll();
         pointSystem.ResetPoints();
         obstacleSpawner.ResetAll();
         endScreen.SetActive(true);
