@@ -9,6 +9,7 @@ public class Slime : MonoBehaviour
     public float jumpHold = 0.2f;
     public float initialJump = 15.0f;
 
+
     public float gestureCheckDistance = 1.0f;
     public float gestureAllowedDistance = 25.0f;
     public float gestureExclamationDistance = 10.0f;
@@ -75,6 +76,7 @@ public class Slime : MonoBehaviour
 
     void Update()
     {
+
         if (isHiding)
         {
             speed = slowSpeed;
@@ -290,7 +292,7 @@ public class Slime : MonoBehaviour
     {
         lastGesture = newGesture;
         resetGestureAfter = gestureResetSeconds;
-        if (newGesture == Shape.Suspended) {
+        if (newGesture == Shape.Suspended && transform.position.y <= -7.31f) {
             this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
         }
     }
