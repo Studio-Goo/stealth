@@ -99,8 +99,6 @@ public class ObstacleSpawner : MonoBehaviour
             // Check if it's time to spawn a new obstacle
             if (Time.time >= nextSpawnTime)
             {
-                
-
                 // Instantiate the obstacle
                 SpawnObstacle();
 
@@ -237,7 +235,7 @@ public class ObstacleSpawner : MonoBehaviour
     private void TutorialSpawn(GameObject obstacle)
     {
         // Calculate the spawn position for the prefab exactly above the obstacle
-        Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>().bounds.extents.y;
+        Vector3 prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
 
         // Set the prefab's position to the calculated position
         GameObject prefabToSpawn = null;
@@ -246,9 +244,6 @@ public class ObstacleSpawner : MonoBehaviour
         if (obstacle.GetComponent<Obstacle>().shape == Shape.Down)
         {
             prefabToSpawn = squarePrefab;
-            
-            //lift this one up a bit
-            prefabSpawnPosition = obstacle.transform.position + Vector3.up * obstacle.transform.GetChild(1).gameObject.GetComponent<Renderer>().bounds.extents.y + Vector3.up * 4.5f;
 
         }
         else if (obstacle.GetComponent<Obstacle>().shape == Shape.Up)
