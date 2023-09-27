@@ -22,11 +22,8 @@ public class PointSystem : MonoBehaviour
 
     public void pointCounter()
     {
-        if (PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1)
+        if (!(PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1))
         {
-            //do nothing lol
-        }
-        else{
             points++;
         }
     }

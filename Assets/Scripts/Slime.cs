@@ -20,6 +20,8 @@ public class Slime : MonoBehaviour
     public float slowSpeed = 1.0f;
     public float setSpeed = 8.0f;
 
+    private bool cheatOn = true;
+
 
     private Vector3 startPosition;
     public GameObject slime;
@@ -148,32 +150,43 @@ public class Slime : MonoBehaviour
         {
             if (CheckGesture(obstacle))
             {
-                isHiding = true;
-                print("Correct Gesture");
-                pointSystemScript.pointCounter();
-                obstacle.GetComponent<Obstacle>().completed = true;
-
-                //increase speed
-                if (setSpeed < 20.0f)
-                {
-                    setSpeed = setSpeed * 1.03f;
-                    slowSpeed = slowSpeed * 1.03f;
-
-                }
-
-                //decrease obstacle spawn interval
-                if (obstacleSpawner.spawnInterval > 0.5f)
-                {
-                    obstacleSpawner.DecreaseSpawnInterval();
-                }
-
+                correctGesture(obstacle);
             }
             else
             {
-                print("Wrong Gesture");
-                // SceneManager.LoadScene("GameOver");
-                GameManager.Instance.UpdateGameState(GameState.GameOverAnimation);
+                if (cheatOn)
+                {
+                    correctGesture(obstacle);
+                }
+                else
+                {
+                    print("Wrong Gesture");
+                    // SceneManager.LoadScene("GameOver");
+                    GameManager.Instance.UpdateGameState(GameState.GameOverAnimation);
+                }
             }
+        }
+    }
+
+    void correctGesture(GameObject obstacle)
+    {
+        isHiding = true;
+        print("Correct Gesture");
+        pointSystemScript.pointCounter();
+        obstacle.GetComponent<Obstacle>().completed = true;
+
+        //increase speed
+        if (setSpeed < 20.0f)
+        {
+            setSpeed = setSpeed * 1.03f;
+            slowSpeed = slowSpeed * 1.03f;
+
+        }
+
+        //decrease obstacle spawn interval
+        if (obstacleSpawner.spawnInterval > 0.5f)
+        {
+            obstacleSpawner.DecreaseSpawnInterval();
         }
     }
 
