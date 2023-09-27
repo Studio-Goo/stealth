@@ -50,7 +50,7 @@ public class SwipeDetector : MonoBehaviour
                         {
 
                             // Vertical swipe ( Up & Down )
-                            slime.UpdateGesture(difference.y > 0 ? Shape.Up /* up */ : Shape.Down /* down */);
+                            //slime.UpdateGesture(difference.y > 0 ? Shape.Up /* up */ : Shape.Down /* down */);
 
 
                         }
@@ -63,7 +63,7 @@ public class SwipeDetector : MonoBehaviour
                     {
 
                         // Swipe treshold not exceeded, so detected as TAP
-                        slime.UpdateGesture(Shape.Suspended);
+                        //slime.UpdateGesture(Shape.Suspended);
 
 
                     }

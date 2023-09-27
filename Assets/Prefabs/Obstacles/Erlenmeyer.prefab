@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 5530935740897077923}
   - component: {fileID: -4258242420126297213}
   m_Layer: 0
-  m_Name: Sign
+  m_Name: Erlenmeyer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322cb8cec279a004a9ca451f072463db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shape: 3
-  ObstacleSprite: {fileID: 21300000, guid: d7157e070e31f8d48a2115858d2c79f1, type: 3}
-  ShadowSprite: {fileID: 21300000, guid: 96c72002b1c7f9d478867f18ebe9648c, type: 3}
+  shape: 5
+  ObstacleSprite: {fileID: 21300000, guid: 44d0ecac267516b4cb46844a3310f796, type: 3}
+  ShadowSprite: {fileID: 21300000, guid: 3d3130d86c767e04a843ada64d50c26c, type: 3}
   completed: 0
 --- !u!1 &3474708110438160119
 GameObject:
@@ -612,7 +612,7 @@ SpriteRenderer:
   m_Size: {x: 1.46, y: 3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &5998808649444468104
@@ -834,6 +834,6 @@ SpriteRenderer:
   m_Size: {x: 1.61, y: 2.91}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0

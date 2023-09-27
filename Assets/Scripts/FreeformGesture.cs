@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEditor;
+using System.Collections;
 
 //[Serializable]
 public enum Shape { Null, Up, Down, Suspended, Square, Triangle, Circle };
@@ -12,33 +13,23 @@ public class FreeformGestures : MonoBehaviour
 {
     private bool gestureAllowed = false;
 
-    public float minimumDistance = 1.0f;
+    public float distanceBetweenPoints = 1.0f;
     private Vector3 lastPosition;
-    public SpriteShapeController sc;
+    public SpriteShapeController spriteShapeController;
     private List<Vector2> points = new List<Vector2> { };
 
-
-    //public GameObject Player;
-    //public ObstacleSpawner ObstacleSpawner;
+    public Slime slime;
 
     // Enable this to show the normalized points (for creating new shapes)
-    bool debug = false;
+    bool debug = true;
     public GameObject dot;
     private List<GameObject> dots = new List<GameObject>();
 
     [SerializeField]
-    public List<Gesture> gestures = new List<Gesture>();
+    public List<Gesture> gestures = new List<Gesture>(new Gesture());
 
-    public Gesture currentGesture;
-
-    // Use this for initialization
     void Start()
     {
-        if (gestures.Count > 0)
-        {
-            currentGesture = gestures[0];
-        }
-        else throw new Exception("There are no gestures, please add at least one.");
     }
 
     private static int NextIndex(int index, int pointCount)
@@ -92,9 +83,9 @@ public class FreeformGestures : MonoBehaviour
             tp.z = 10.0f;
 
             var dt = Mathf.Abs((tp - lastPosition).magnitude);
-            var md = (minimumDistance > 1.0f) ? minimumDistance : 1.0f;
+            var md = (distanceBetweenPoints > 1.0f) ? distanceBetweenPoints : 1.0f;
 
-            var spline = sc.spline;
+            var spline = spriteShapeController.spline;
 
 
             switch (touch.phase)
@@ -113,7 +104,7 @@ public class FreeformGestures : MonoBehaviour
                         dots = new List<GameObject>();
                     }
 
-                    points = new List<Vector2>();
+                    //points = new List<Vector2>();
 
                     break;
 
@@ -123,9 +114,8 @@ public class FreeformGestures : MonoBehaviour
                     {
                         spline.InsertPointAt(spline.GetPointCount(), tp);
                         var newPointIndex = spline.GetPointCount() - 1;
-                        Smoothen(sc, newPointIndex - 1);
+                        Smoothen(spriteShapeController, newPointIndex - 1);
 
-                        //spline.SetHeight(newPointIndex, UnityEngine.Random.Range(0.1f, 2.0f));
                         lastPosition = tp;
 
                         points.Add(tp);
@@ -134,56 +124,33 @@ public class FreeformGestures : MonoBehaviour
                     break;
 
                 case TouchPhase.Ended:
-
+                    spline.isOpenEnded = false;
 
                     if (points.Count > 1)
                     {
                         var shapeArea = GetArea(points);
                         var squaredArea = Mathf.Sqrt(shapeArea);
 
-                        spline.isOpenEnded = false;
-                        // Generating collider and get center from it
-                        sc.BakeCollider();
-                        Vector3 objectCenter = sc.polygonCollider.bounds.center;
+                        spriteShapeController.BakeCollider();
+                        Vector3 objectCenter = spriteShapeController.polygonCollider.bounds.center;
 
 
                         List<Vector2> normalizedPoints = new List<Vector2> { };
 
-                        //Spline slimeSpline = Player.GetComponent<SpriteShapeController>().spline;
-
-                        //Slime slime = Player.GetComponent<Slime>();
-                        //Spline spline = new Spline();
-                        //slime.SplineClear();
 
                         var smallestPoint = points.OrderBy(v => v.sqrMagnitude).First();
 
                         foreach (Vector2 p in points)
                         {
-                            //Vector2 normalizedPoint = new Vector2((p.x - objectCenter.x) / shapeArea, (p.y - objectCenter.y) / shapeArea);
-                            //Vector2 normalizedPoint = new Vector2((p.x - objectCenter.x + Camera.main.transform.position.x - smallestPoint.x) / squaredArea, (p.y - objectCenter.y + Camera.main.transform.position.y - smallestPoint.y) / squaredArea);
                             Vector2 normalizedPoint = new Vector2((p.x - objectCenter.x + Camera.main.transform.position.x), (p.y - objectCenter.y + Camera.main.transform.position.y)) / squaredArea;
                             normalizedPoints.Add(normalizedPoint);
-                            //Vector2 playerPosition = new Vector2((p.x - objectCenter.x + Camera.main.transform.position.x) / squaredArea, (p.y - objectCenter.y + Camera.main.transform.position.y) / squaredArea) * 3f;
-
-                            //Debug.Log(slimeSpline.GetPointCount());
-
-                            //if (slimeSpline.GetPointCount() == 0)
-                            //{
-                            // add first point to spline
-                            //slime.SplineInsertPointAt(slimeSpline.GetPointCount() == 0 ? 0 : slimeSpline.GetPointCount() - 1, playerPosition);
-                            //}
-                            //else
-                            //{
-                            //    SafeSequentialInsertPointIntoSpline(slimeSpline.GetPointCount() - 1, playerPosition, slimeSpline);
-
-                            //}
+                            
                             if (debug)
                             {
                                 GameObject newDot = Instantiate(dot, normalizedPoint, Quaternion.identity);
                                 dots.Add(newDot);
 
                             }
-                            //newDot.transform.parent = Camera.main.transform;
 
                         }
 
@@ -191,10 +158,27 @@ public class FreeformGestures : MonoBehaviour
 
                         float amountPointsInBounds = 0f;
 
+                        //gestures[0].collider.GetComponent<PolygonCollider2D>().
+                        //foreach(gestures[0].collider.GetComponent<PolygonCollider2D>().)
+                        //{
+
+                        //}
+
+
                         // Check if points are in collider
-                        
+
                         foreach (Gesture g in gestures)
                         {
+                            Vector2[] gesturePoints = g.collider.GetComponent<PolygonCollider2D>().points;
+                            float gestureArea = GetAreaArray(gesturePoints);
+
+                            float shapeNormalizedArea = GetArea(normalizedPoints);
+
+                            //foreach (Vector3 gp in g.collider.GetComponent<PolygonCollider2D>().points)
+                            //{
+
+                            //}
+
                             foreach (Vector2 p in normalizedPoints)
                             {
                                 if (g.collider.GetComponent<PolygonCollider2D>().OverlapPoint(p))
@@ -203,57 +187,45 @@ public class FreeformGestures : MonoBehaviour
                                 }
                             }
 
-                            //Debug.Log(amountPointsInBounds + " > " + g.acceptableGesturePercent);
-
-                            
-
                             float correctPrcntPoints = (amountPointsInBounds / normalizedPoints.Count) * 100f;
-                            //float correctPrcntArea = (squaredArea / GetArea(normalizedPoints)) * 100f;
 
                             if (correctPrcntPoints > g.acceptableGesturePercent)
                             {
                                 results.Add(correctPrcntPoints);
+                            } else
+                            {
+                                results.Add(-1f);
                             }
 
-                            //Debug.Log(g.shape + " " + amountPointsInBounds);
+                            //Debug.Log(g.shape + " score: " + correctPrcntPoints);
+                            Debug.Log(g.shape + " area: " + gestureArea);
+                            Debug.Log(g.shape + " shape area: " + shapeNormalizedArea);
 
-                            Debug.Log(g.shape + " area: " + correctPrcntPoints);
-                            Debug.Log(g.shape + " points: " + correctPrcntPoints);
                             amountPointsInBounds = 0f;
                         }
 
-                        Shape bestScoredShape = Shape.Null;
-                        Debug.Log(results.Count);
-                        if(results.Count > 0)
+                        Gesture bestScoredGesture = new Gesture(Shape.Null);
+
+                        float bestScore = Mathf.Max(results.ToArray());
+
+                        if (results.Count > 0 && bestScore != -1)
                         {
-                            bestScoredShape = gestures[results.IndexOf(results.Max())].shape;
+                            bestScoredGesture = gestures[results.IndexOf(bestScore)];
                         }
+                        else Debug.Log("Couldn't classify your gesture with any shape.");
 
-                        
-                        //int correctPrcntArea = (shapeArea / ()) / 100;
+                        Debug.Log("Gesture: " + bestScoredGesture.shape);
+                        slime.UpdateGesture(bestScoredGesture);
 
-                        //m_Collider
+                        //spline.InsertPointAt(0, new Vector3(100, 100, 100));
+                        //spline.
 
-                        //Debug.Log("area: " + correctPrcntPoints);
-                        //Debug.Log("points: " + correctPrcntPoints);
-                        Debug.Log(bestScoredShape);
 
-                        //if (correctPrcntPoints > acceptableGesturePercent)
-                        //{
-                        //    Debug.Log(correctPrcntPoints);
-                        //}
+                        spline.Clear();
 
-                        //TODO
+                        points = new List<Vector2>();
 
-                        // get gesture from obstacle
-                        //Debug.Log("obstacle:");
-                        //Debug.Log(ObstacleSpawner.GetNextObstacle());
 
-                        // instantiate bounds
-
-                        // check if performed gesture has enough score
-
-                        // return true/false state back to slime
                     }
                     else
                     {
@@ -262,8 +234,10 @@ public class FreeformGestures : MonoBehaviour
 
                     break;
 
-
+                //spline.Clear();
             }
+
+            //spline.Clear();
 
         }
     }
@@ -277,40 +251,13 @@ public class FreeformGestures : MonoBehaviour
            );
     }
 
-    private void SafeSequentialInsertPointIntoSpline(int index, Vector3 position, Spline spline)
+    private float GetAreaArray(Vector2[] points)
     {
-        float MinimalSafeDistanceBetweenPoints = 0.05f;
-
-        Debug.Log("Inserting point " + index + " to length " + spline.GetPointCount());
-
-        if (index < spline.GetPointCount() - 1)
-        {
-            throw new InvalidOperationException("Point is not being inserted sequentially.");
-        }
-
-        if (index > 0)
-        {
-            Vector3 previousPoint = spline.GetPosition(index - 1);
-            // Check distance with the start of the spline, due to the position validating logic of Spline.
-            Vector3 originPoint = spline.GetPosition(0);
-
-            float squaredDistanceFromPreviousPoint = Vector3.SqrMagnitude(previousPoint - position);
-            //float squaredDistanceFromOriginPoint = Vector3.SqrMagnitude(originPoint - position);
-
-            Vector3 safeDirection = (position - originPoint).normalized + (position - previousPoint).normalized;
-
-            if (squaredDistanceFromPreviousPoint <
-                MinimalSafeDistanceBetweenPoints * MinimalSafeDistanceBetweenPoints
-                //|| squaredDistanceFromOriginPoint <
-                //MinimalSafeDistanceBetweenPoints * MinimalSafeDistanceBetweenPoints
-                )
-            {
-                position += MinimalSafeDistanceBetweenPoints * safeDirection.normalized;
-            }
-        }
-
-        //spline.InsertPointAt(index, position);
-        //Player.GetComponent<Slime>().SplineInsertPointAt(index, position);
+        points[points.Length - 1] = points[0];
+        return Math.Abs(points.Take(points.Length - 1)
+           .Select((p, i) => (points[i + 1].x - p.x) * (points[i + 1].y + p.y))
+           .Sum() / 2
+           );
     }
 
     private void Awake()
@@ -328,9 +275,9 @@ public class FreeformGestures : MonoBehaviour
         //gestureAllowed = state == GameState.Playing;
     }
 
-    public void setCurrentGesture(Gesture gesture)
-    {
-        currentGesture = gesture;
-    }
+    //public void setCurrentGesture(Gesture gesture)
+    //{
+    //    currentGesture = gesture;
+    //}
 
 }

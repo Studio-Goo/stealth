@@ -187,7 +187,21 @@ PolygonCollider2D:
     - - {x: 0.420519, y: 0.49946848}
       - {x: -0.00425392, y: 0.62916124}
       - {x: -0.39242655, y: 0.505341}
-      - {x: -0.61832184, y: 0.22578794}
+      - {x: -0.55378723, y: 0.30266017}
+      - {x: -0.63668114, y: 0.09673049}
+      - {x: -0.46335334, y: 0.08386744}
+      - {x: -0.41323322, y: 0.22267075}
+      - {x: -0.2837154, y: 0.3717907}
+      - {x: -0.011946589, y: 0.4406636}
+      - {x: 0.33482313, y: 0.3289164}
+      - {x: 0.4361542, y: 0.16367927}
+      - {x: 0.4186024, y: -0.12834841}
+      - {x: 0.29773006, y: -0.3083684}
+      - {x: 0.057529315, y: -0.3966647}
+      - {x: -0.21953006, y: -0.31738868}
+      - {x: -0.3961088, y: -0.11541128}
+      - {x: -0.4693775, y: 0.05293432}
+      - {x: -0.6333911, y: 0.061897993}
       - {x: -0.57109845, y: -0.14484426}
       - {x: -0.3604665, y: -0.4636112}
       - {x: 0.02023232, y: -0.56470937}
@@ -998,6 +1012,91 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &360256342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 360256344}
+  - component: {fileID: 360256343}
+  m_Layer: 0
+  m_Name: Collider Triangle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!60 &360256343
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360256342}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.0330843, y: -0.70574385}
+      - {x: 0.15740235, y: 0.8231488}
+      - {x: -0.8810494, y: -0.4136885}
+      - {x: -0.5345725, y: -0.4175278}
+      - {x: 0.13870016, y: 0.43465894}
+      - {x: 0.6403729, y: -0.501917}
+      - {x: -0.90972656, y: -0.4193328}
+      - {x: -0.9223635, y: -0.61554736}
+  m_UseDelaunayMesh: 0
+--- !u!4 &360256344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360256342}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &369587413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,10 +2923,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -4.0887184, y: 13.270851}
+    - - {x: -4.0884285, y: 13.271351}
       - {x: -4.0884285, y: 15.270351}
       - {x: -2.0894282, y: 15.270351}
-      - {x: -2.089138, y: 13.270851}
+      - {x: -2.0894282, y: 13.271351}
+      - {x: -4.0884285, y: 13.271351}
   m_UseDelaunayMesh: 0
 --- !u!114 &978621891
 MonoBehaviour:
@@ -2842,7 +2942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Spline:
-    m_IsOpenEnded: 1
+    m_IsOpenEnded: 0
     m_ControlPoints:
     - position: {x: -4.088928, y: 13.270851, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
@@ -2893,10 +2993,11 @@ MonoBehaviour:
   m_Creator: {fileID: 0}
   m_Modifiers: []
   m_ColliderSegment:
-  - {x: -4.0887184, y: 13.270851}
+  - {x: -4.0884285, y: 13.271351}
   - {x: -4.0884285, y: 15.270351}
   - {x: -2.0894282, y: 15.270351}
-  - {x: -2.089138, y: 13.270851}
+  - {x: -2.0894282, y: 13.271351}
+  - {x: -4.0884285, y: 13.271351}
 --- !u!1971053207 &978621892
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2953,8 +3054,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: -3.0889282, y: 14.395851, z: 0}
-    m_Extent: {x: 1.25, y: 1.125, z: 0}
+    m_Center: {x: -3.0889282, y: 14.270851, z: 0}
+    m_Extent: {x: 1.25, y: 1.25, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &978621893
 MonoBehaviour:
@@ -2968,23 +3069,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dc60264e02be747b3d9c104032fc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumDistance: 1
-  sc: {fileID: 978621891}
+  distanceBetweenPoints: 1
+  spriteShapeController: {fileID: 978621891}
+  slime: {fileID: 2143131205}
   dot: {fileID: 1966606771}
   gestures:
-  - shape: 4
-    collider: {fileID: 239028214}
-    slimeSprite: {fileID: 0}
-    acceptableGesturePercent: 90
-  - shape: 6
-    collider: {fileID: 8029814}
-    slimeSprite: {fileID: 0}
-    acceptableGesturePercent: 90
-  currentGesture:
-    shape: 0
-    collider: {fileID: 0}
-    slimeSprite: {fileID: 0}
-    acceptableGesturePercent: 0
+  - {fileID: 0}
 --- !u!1 &1002203470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5518,8 +5608,8 @@ MonoBehaviour:
   slowSpeed: 1
   setSpeed: 8
   slime: {fileID: 2143131204}
-  lastGesture: 0
-  savedGesture: 0
+  lastShape: 0
+  savedShape: 0
   pointSystem: {fileID: 1767276709}
   normal: {fileID: 21300000, guid: 9afdd4c7dcaee38bab090d747f0a2d52, type: 3}
   tall: {fileID: 21300000, guid: 3714225106d8cd02c8c15f75f60236b7, type: 3}
@@ -5796,6 +5886,7 @@ SceneRoots:
   - {fileID: 1966606772}
   - {fileID: 239028216}
   - {fileID: 8029816}
+  - {fileID: 360256344}
   - {fileID: 322123310}
   - {fileID: 2143131207}
   - {fileID: 1127076941}

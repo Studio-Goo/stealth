@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 5530935740897077923}
   - component: {fileID: -4258242420126297213}
   m_Layer: 0
-  m_Name: Barrel
+  m_Name: Round
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,9 +356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322cb8cec279a004a9ca451f072463db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shape: 1
-  ObstacleSprite: {fileID: 21300000, guid: dad6a48a41535b9448a3a1a586b0cd93, type: 3}
-  ShadowSprite: {fileID: 21300000, guid: 75932461174970449ab0f9cb88d2219d, type: 3}
+  shape: 6
+  ObstacleSprite: {fileID: 21300000, guid: d23f2697ffbbb9b4f93ee1db9727209a, type: 3}
+  ShadowSprite: {fileID: 21300000, guid: a38a6a12e7985ab469454febdda92d02, type: 3}
   completed: 0
 --- !u!1 &3474708110438160119
 GameObject:

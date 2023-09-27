@@ -23,8 +23,8 @@ public class Slime : MonoBehaviour
     private Vector3 startPosition;
     public GameObject slime;
 
-    public Shape lastGesture;
-    public Shape savedGesture;
+    public Shape lastShape;
+    public Shape savedShape;
     public GameObject pointSystem;
     private PointSystem pointSystemScript;
 
@@ -133,7 +133,7 @@ public class Slime : MonoBehaviour
             resetGestureAfter -= Time.deltaTime;
         } else
         {
-            lastGesture = Shape.Null;
+            lastShape = Shape.Null;
         }
 
         UpdateSlimeSprite();
@@ -183,18 +183,18 @@ public class Slime : MonoBehaviour
     // Update the slime sprite based on the last gesture
     void UpdateSlimeSprite()
     {
-        if (lastGesture == Shape.Null)
+        if (lastShape == Shape.Null)
         {
             ChangeSlimeSprite(normal);
         }
-        else if (lastGesture == Shape.Up)
+        else if (lastShape == Shape.Up)
         {
             ChangeSlimeSprite(tall);
         }
-        else if (lastGesture == Shape.Down)
+        else if (lastShape == Shape.Down)
         {
             ChangeSlimeSprite(flat);
-        } else if (lastGesture == Shape.Suspended) {
+        } else if (lastShape == Shape.Suspended) {
 
             ChangeSlimeSprite(jump);
             if (!isHiding)
@@ -221,7 +221,7 @@ public class Slime : MonoBehaviour
         if (distance > 0 && distance < gestureCheckDistance)
         {
             //Debug.Log(obstacle);
-            if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
+            if (obstacle.GetComponent<Obstacle>().shape == lastShape)
             {
                 obstacle.GetComponent<Obstacle>().completed = true;
                 return true;
@@ -286,12 +286,14 @@ public class Slime : MonoBehaviour
     }
 
  
-    public void UpdateGesture(Shape newGesture)
+    public void UpdateGesture(Gesture newGesture)
     {
-        lastGesture = newGesture;
+        lastShape = newGesture.shape;
         resetGestureAfter = gestureResetSeconds;
-        if (newGesture == Shape.Suspended) {
-            this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
-        }
+
+        ChangeSlimeSprite(newGesture.slimeSprite);
+        //if (newGesture == Shape.Suspended) {
+        //    this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
+        //}
     }
 }

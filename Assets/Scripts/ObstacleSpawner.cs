@@ -99,13 +99,13 @@ public class ObstacleSpawner : MonoBehaviour
             // Check if it's time to spawn a new obstacle
             if (Time.time >= nextSpawnTime)
             {
-                
+
 
                 // Instantiate the obstacle
-                //SpawnObstacle();
+                SpawnObstacle();
 
                 // TODO rewrite so this fits lol, general ObjectSpawner script?
-                //SpawnEmployee();
+                SpawnEmployee();
 
                 // Schedule the next spawn
                 nextSpawnTime = Time.time + spawnInterval;
