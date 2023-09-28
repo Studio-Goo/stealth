@@ -20,7 +20,7 @@ public class Slime : MonoBehaviour
     public float slowSpeed = 1.0f;
     public float setSpeed = 8.0f;
 
-    private bool cheatOn = true;
+    private bool cheatOn = false;
 
 
     private Vector3 startPosition;
