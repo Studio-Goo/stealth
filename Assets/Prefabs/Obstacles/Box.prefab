@@ -357,8 +357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shape: 4
-  ObstacleSprite: {fileID: 21300000, guid: e74cea1f737b9a64c94b77d86fe29d2a, type: 3}
-  ShadowSprite: {fileID: 21300000, guid: b7e1611b3cef05841a99ff77dcbddcf6, type: 3}
+  ObstacleSprite: {fileID: 21300000, guid: dad6a48a41535b9448a3a1a586b0cd93, type: 3}
+  ShadowSprite: {fileID: 21300000, guid: 75932461174970449ab0f9cb88d2219d, type: 3}
   completed: 0
 --- !u!1 &3474708110438160119
 GameObject:

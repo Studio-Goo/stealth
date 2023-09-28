@@ -26,7 +26,7 @@ public class FreeformGestures : MonoBehaviour
     private List<GameObject> dots = new List<GameObject>();
 
     [SerializeField]
-    public List<Gesture> gestures = new List<Gesture>(new Gesture());
+    public List<Gesture> gestures = new List<Gesture>();
 
     void Start()
     {
@@ -118,6 +118,8 @@ public class FreeformGestures : MonoBehaviour
 
                         lastPosition = tp;
 
+                        Debug.Log(spline.GetPointCount());
+
                         points.Add(tp);
                     }
 
@@ -189,6 +191,8 @@ public class FreeformGestures : MonoBehaviour
 
                             float correctPrcntPoints = (amountPointsInBounds / normalizedPoints.Count) * 100f;
 
+                            correctPrcntPoints = correctPrcntPoints* g.thresholdMultiplier;
+
                             if (correctPrcntPoints > g.acceptableGesturePercent)
                             {
                                 results.Add(correctPrcntPoints);
@@ -197,9 +201,9 @@ public class FreeformGestures : MonoBehaviour
                                 results.Add(-1f);
                             }
 
-                            //Debug.Log(g.shape + " score: " + correctPrcntPoints);
-                            Debug.Log(g.shape + " area: " + gestureArea);
-                            Debug.Log(g.shape + " shape area: " + shapeNormalizedArea);
+                            Debug.Log(g.shape + " score: " + correctPrcntPoints);
+                            //Debug.Log(g.shape + " area: " + gestureArea);
+                            //Debug.Log(g.shape + " shape area: " + shapeNormalizedArea);
 
                             amountPointsInBounds = 0f;
                         }
