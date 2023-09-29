@@ -52,6 +52,7 @@ public class MenuManager : MonoBehaviour
     public void HandleReplayClick()
     {
         gameoverMenuPanel.SetActive(false);
+        pausedMenuPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
 
         GameManager.Instance.UpdateGameState(GameState.MainMenu);

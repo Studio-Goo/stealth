@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Slime : MonoBehaviour
 {
+    public static Slime Instance;
     public float speed = 8.0f; // Adjust the speed in the Inspector.
     public float jumpHold = 0.2f;
     public float initialJump = 15.0f;
@@ -16,11 +18,13 @@ public class Slime : MonoBehaviour
     public float gestureResetSeconds = 1.0f;
 
     private float resetGestureAfter = 0.0f;
-    private bool isHiding = false;
+    [NonSerialized]
+    public bool isHiding = false;
     public float slowSpeed = 1.0f;
     public float setSpeed = 8.0f;
 
-    private bool cheatOn = true;
+    [NonSerialized]
+    public bool cheatOn = false;
 
 
     private Vector3 startPosition;
@@ -29,7 +33,8 @@ public class Slime : MonoBehaviour
     public Shape lastGesture;
     public Shape savedGesture;
     public GameObject pointSystem;
-    private PointSystem pointSystemScript;
+    [NonSerialized]
+    public PointSystem pointSystemScript;
 
     // Sprites
     public Sprite normal;
@@ -58,6 +63,7 @@ public class Slime : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         startPosition = slime.transform.localPosition;
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
     }
@@ -111,24 +117,24 @@ public class Slime : MonoBehaviour
             //automatic slime movement
             transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-            //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-            obstacles = obstacleSpawner.getObstacles();
+            //    //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+            //    obstacles = obstacleSpawner.getObstacles();
 
-            if (obstacles != null)
-            {
-                foreach (GameObject obstacle in obstacles)
-                {
-                    if (ObstacleReached(obstacle))
-                    {
-                        HandleObstacleReached(obstacle);
-                    }
+            //    if (obstacles != null)
+            //    {
+            //        foreach (GameObject obstacle in obstacles)
+            //        {
+            //            if (ObstacleReached(obstacle))
+            //            {
+            //                HandleObstacleReached(obstacle);
+            //            }
 
-                    if (ObstaclePassed(obstacle))
-                    {
-                        HandleObstaclePassed(obstacle);
-                    }
-                }
-            }
+            //            if (ObstaclePassed(obstacle))
+            //            {
+            //                HandleObstaclePassed(obstacle);
+            //            }
+            //        }
+            //    }
         }
 
 
