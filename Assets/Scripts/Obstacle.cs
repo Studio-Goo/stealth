@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField]
     public Sprite ObstacleSprite;
     public Sprite ShadowSprite;
+    public Sprite FloorShadowSprite;
 
     [Header("Player")]
     [SerializeField]
@@ -23,6 +24,9 @@ public class Obstacle : MonoBehaviour
     private GameObject obstacle;
     private GameObject obstacleShadow;
     private GameObject obstacleShadowMask;
+    private GameObject ParentFloor;
+    private GameObject FloorShadow;
+    private GameObject FloorShadowMask;
 
     private float gestureCheckDistance = 0.5f;
 
@@ -30,10 +34,13 @@ public class Obstacle : MonoBehaviour
     void Start()
     {
         obstacle = this.gameObject.transform.GetChild(0).gameObject;
-        obstacleShadow = this.gameObject.transform.GetChild(1).gameObject;
+        obstacleShadow = obstacle.transform.GetChild(0).gameObject;
         obstacleShadowMask = obstacleShadow.transform.GetChild(0).gameObject;
+        ParentFloor = this.gameObject.transform.GetChild(1).gameObject;
+        FloorShadow = ParentFloor.transform.GetChild(0).gameObject;
+        FloorShadowMask = FloorShadow.transform.GetChild(0).gameObject;
 
-        ChangeObstacle(ObstacleSprite, ShadowSprite);
+        ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
     }
 
     private void Update()
@@ -114,10 +121,12 @@ public class Obstacle : MonoBehaviour
         return this.gameObject.transform.position.x - slime.transform.position.x;
     }
 
-    public void ChangeObstacle(Sprite obstacleSprite, Sprite obstacleShadowSprite)
+    public void ChangeObstacle(Sprite obstacleSprite, Sprite obstacleShadowSprite, Sprite floorShadowSprite)
     {
         obstacle.GetComponent<SpriteRenderer>().sprite = obstacleSprite;
         obstacleShadow.GetComponent<SpriteMask>().sprite = obstacleShadowSprite;
         obstacleShadowMask.GetComponent<SpriteRenderer>().sprite = obstacleShadowSprite;
+        FloorShadow.GetComponent<SpriteRenderer>().sprite = floorShadowSprite;
+        FloorShadowMask.GetComponent<SpriteRenderer>().sprite = floorShadowSprite;
     }
 }
