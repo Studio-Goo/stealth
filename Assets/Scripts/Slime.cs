@@ -12,9 +12,6 @@ public class Slime : MonoBehaviour
     public float initialJump = 15.0f;
 
 
-    public float gestureCheckDistance = 1.0f;
-    public float gestureAllowedDistance = 25.0f;
-    public float gestureExclamationDistance = 10.0f;
     public float gestureResetSeconds = 1.0f;
 
     private float resetGestureAfter = 0.0f;
@@ -47,15 +44,8 @@ public class Slime : MonoBehaviour
     public GameObject walkAudio;
     public GameObject stretchAudio;
 
-
-    private List<GameObject> obstacles;
-    public ObstacleSpawner obstacleSpawner;
-
-    //private Rigidbody rigidbody;
-
     void Start()
     {
-        //obstacleSpawner = GameObject.Find("ObstacleSpawner").GetComponent<ObstacleSpawner>();
         pointSystemScript = pointSystem.GetComponent<PointSystem>();
 
         //walkAudio.SetActive(true);
@@ -77,14 +67,12 @@ public class Slime : MonoBehaviour
     {
         if (state == GameState.MainMenu)
         {
-            //slime.transform.position = new Vector3(-115.99f, -7.5f, 0);
             slime.transform.position = startPosition;
         }
     }
 
     void Update()
     {
-        //Debug.Log(isHiding);
         if (isHiding)
         {
             speed = slowSpeed;
@@ -117,24 +105,6 @@ public class Slime : MonoBehaviour
             //automatic slime movement
             transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-            //    //obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-            //    obstacles = obstacleSpawner.getObstacles();
-
-            //    if (obstacles != null)
-            //    {
-            //        foreach (GameObject obstacle in obstacles)
-            //        {
-            //            if (ObstacleReached(obstacle))
-            //            {
-            //                HandleObstacleReached(obstacle);
-            //            }
-
-            //            if (ObstaclePassed(obstacle))
-            //            {
-            //                HandleObstaclePassed(obstacle);
-            //            }
-            //        }
-            //    }
         }
 
 
@@ -149,83 +119,31 @@ public class Slime : MonoBehaviour
         UpdateSlimeSprite();
     }
 
-    // Handle actions when an obstacle is reached
-    //void HandleObstacleReached(GameObject obstacle)
-    //{
-    //    if (!obstacle.GetComponent<Obstacle>().completed)
-    //    {
-    //        if (CheckGesture(obstacle))
-    //        {
-    //            correctGesture(obstacle);
-    //        }
-    //        else
-    //        {
-    //            if (cheatOn)
-    //            {
-    //                correctGesture(obstacle);
-    //            }
-    //            else
-    //            {
-    //                print("Wrong Gesture");
-    //                // SceneManager.LoadScene("GameOver");
-    //                GameManager.Instance.UpdateGameState(GameState.GameOverAnimation);
-    //            }
-    //        }
-    //    }
-    //}
-
-    //void correctGesture(GameObject obstacle)
-    //{
-    //    isHiding = true;
-    //    print("Correct Gesture");
-    //    pointSystemScript.pointCounter();
-    //    obstacle.GetComponent<Obstacle>().completed = true;
-
-    //    //increase speed
-    //    if (setSpeed < 20.0f)
-    //    {
-    //        setSpeed = setSpeed * 1.03f;
-    //        slowSpeed = slowSpeed * 1.03f;
-
-    //    }
-
-    //    //decrease obstacle spawn interval
-    //    if (obstacleSpawner.spawnInterval > 0.5f)
-    //    {
-    //        obstacleSpawner.DecreaseSpawnInterval();
-    //    }
-    //}
-
-    //void HandleObstaclePassed(GameObject obstacle)
-    //{
-    //    if (ObstaclePassed(obstacle))
-    //    {
-    //        isHiding = false;
-    //    }
-    //}
-
     // Update the slime sprite based on the last gesture
     void UpdateSlimeSprite()
     {
-        if (lastGesture == Shape.Null)
+        if (!isHiding)
         {
-            ChangeSlimeSprite(normal);
-        }
-        else if (lastGesture == Shape.Up)
-        {
-            ChangeSlimeSprite(tall);
-        }
-        else if (lastGesture == Shape.Down)
-        {
-            ChangeSlimeSprite(flat);
-        }
-        else if (lastGesture == Shape.Suspended)
-        {
-
-            ChangeSlimeSprite(jump);
-            if (!isHiding)
+            if (lastGesture == Shape.Null)
             {
-                this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+                ChangeSlimeSprite(normal);
+            }
+            else if (lastGesture == Shape.Up)
+            {
+                ChangeSlimeSprite(tall);
+            }
+            else if (lastGesture == Shape.Down)
+            {
+                ChangeSlimeSprite(flat);
+            }
+            else if (lastGesture == Shape.Suspended)
+            {
+
+                ChangeSlimeSprite(jump);
+                if (!isHiding)
+                {
+                    this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+                }
             }
         }
     }
@@ -236,80 +154,6 @@ public class Slime : MonoBehaviour
         slime.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
         slime.transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
     }
-
-    // Check if the gesture is correct
-    //bool CheckGesture(GameObject obstacle)
-    //{
-    //    float distance = ObstacleDistance(obstacle.transform.GetChild(1).gameObject);
-
-
-    //    Debug.Log(distance);
-    //    if (distance > 0 && distance < gestureCheckDistance)
-    //    {
-    //        //Debug.Log(obstacle);
-    //        if (obstacle.GetComponent<Obstacle>().shape == lastGesture)
-    //        {
-    //            obstacle.GetComponent<Obstacle>().completed = true;
-    //            return true;
-    //        }
-    //    }
-
-    //    return false;
-    //}
-
-    // Check if the obstacle is reached
-    //bool ObstacleReached(GameObject obstacle)
-    //{
-    //    if (ObstacleDistance(obstacle.transform.GetChild(1).gameObject) < gestureCheckDistance)
-    //    {
-    //        return true;
-    //    }
-
-    //    return false;
-    //}
-
-    //bool ObstaclePassed(GameObject obstacle)
-    //{
-    //    if (ObstacleDistance(obstacle.transform.GetChild(1).gameObject) < 0)
-    //    {
-    //        return true;
-    //    }
-
-    //    return false;
-    //}
-
-
-    //public GameObject GetNearestObstacle()
-    //{
-    //    obstacles = obstacleSpawner.getObstacles();
-
-    //    foreach (GameObject obstacle in obstacles)
-    //    {
-    //        return obstacle;
-    //    }
-
-    //    return null;
-    //}
-
-    //public float ObstacleDistance(GameObject obstacle)
-    //{
-    //    return obstacle.transform.position.x - transform.position.x;
-    //}
-
-    // Check if the gesture distance is reached
-    //bool GestureDistance(GameObject obstacle)
-    //{
-    //    float distance = ObstacleDistance(obstacle);
-
-    //    if (distance < gestureAllowedDistance)
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
 
 
     public void UpdateGesture(Shape newGesture)

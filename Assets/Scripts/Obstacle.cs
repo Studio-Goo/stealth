@@ -28,7 +28,7 @@ public class Obstacle : MonoBehaviour
     private GameObject FloorShadow;
     private GameObject FloorShadowMask;
 
-    private float gestureCheckDistance = 0.5f;
+    private float gestureCheckDistance = .9f;
 
     void Start()
     {
@@ -40,6 +40,7 @@ public class Obstacle : MonoBehaviour
         FloorShadowMask = FloorShadow.transform.GetChild(0).gameObject;
 
         ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
+
     }
 
     private void Update()
@@ -72,7 +73,6 @@ public class Obstacle : MonoBehaviour
     {
         if (!passed)
         {
-            Debug.Log(shape + " hinding = true, " + SlimeDistance());
             slime.isHiding = true;
             print("Correct Gesture");
             slime.pointSystemScript.pointCounter();
@@ -117,7 +117,7 @@ public class Obstacle : MonoBehaviour
     {
         float distance = SlimeDistance();
 
-        if (distance > 0 && distance < gestureCheckDistance)
+        if (!passed && distance < gestureCheckDistance)
         {
             return true;
         }
@@ -129,7 +129,8 @@ public class Obstacle : MonoBehaviour
     {
         float distance = SlimeDistance();
 
-        if (distance < 0)
+
+        if (distance < (gestureCheckDistance * -1))
         {
             return true;
         }
@@ -143,7 +144,6 @@ public class Obstacle : MonoBehaviour
         {
             if (ObstaclePassed())
             {
-                Debug.Log(shape + " hinding = false, " + SlimeDistance());
                 slime.isHiding = false;
                 passed = true;
             }
@@ -176,7 +176,9 @@ public class Obstacle : MonoBehaviour
 
     private float SlimeDistance()
     {
-        return this.gameObject.transform.position.x - slime.transform.position.x;
+        float distance = this.gameObject.transform.position.x - slime.transform.position.x;
+        Debug.Log(distance);
+        return distance;
     }
 
     public void ChangeObstacle(Sprite obstacleSprite, Sprite obstacleShadowSprite, Sprite floorShadowSprite)
@@ -184,7 +186,7 @@ public class Obstacle : MonoBehaviour
         obstacle.GetComponent<SpriteRenderer>().sprite = obstacleSprite;
         obstacleShadow.GetComponent<SpriteMask>().sprite = obstacleShadowSprite;
         obstacleShadowMask.GetComponent<SpriteRenderer>().sprite = obstacleShadowSprite;
-        FloorShadow.GetComponent<SpriteRenderer>().sprite = floorShadowSprite;
+        FloorShadow.GetComponent<SpriteMask>().sprite = floorShadowSprite;
         FloorShadowMask.GetComponent<SpriteRenderer>().sprite = floorShadowSprite;
     }
 }
