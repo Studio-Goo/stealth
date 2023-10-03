@@ -125,7 +125,7 @@ public class Slime : MonoBehaviour
                 ChangeSlimeSprite(jump);
                 if (!isHiding)
                 {
-                    this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
+                    // this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
                 }
             }
         }
@@ -144,7 +144,7 @@ public class Slime : MonoBehaviour
         lastGesture = newGesture;
         resetGestureAfter = gestureResetSeconds;
         if (newGesture == Shape.Suspended && transform.position.y <= -7.31f) { //could maybe put it between 2 heights for the double jump spawning
-            this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
+            // this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
         }
     }
 
