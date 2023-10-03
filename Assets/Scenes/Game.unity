@@ -710,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 322123307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.14001, y: 0.1437664, z: -4}
+  m_LocalPosition: {x: -51.18, y: 0.14376593, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1170,6 +1170,7 @@ MonoBehaviour:
   endAnimation: {fileID: 529997696}
   backgroundMusic: {fileID: 941023957}
   endScreen: {fileID: 1427574904}
+  slimePosition: {fileID: 1332012132}
 --- !u!4 &527458777
 Transform:
   m_ObjectHideFlags: 0
@@ -1576,7 +1577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &669625937
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -1700,6 +1701,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAnimation: {fileID: 669625936}
   player: {fileID: 2143131204}
+  slimePosition: {fileID: 1332012131}
   startAudio: {fileID: 1199431187}
 --- !u!1 &786645662
 GameObject:
@@ -4072,6 +4074,55 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1332012131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1332012133}
+  - component: {fileID: 1332012132}
+  m_Layer: 0
+  m_Name: SlimePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1332012132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332012131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2dd0fc2c3f744345b96db167da104b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  journeyLength: 0
+  distanceCovered: 0
+  fractionOfJourney: 0
+  newX: 0
+  slime: {fileID: 2143131204}
+--- !u!4 &1332012133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332012131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -37.165924, y: -0.36235026, z: 0.04511261}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359269258
 GameObject:
   m_ObjectHideFlags: 0
@@ -5524,7 +5575,7 @@ Transform:
   m_GameObject: {fileID: 1948416306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000011444092, y: -3.3619661, z: 0}
+  m_LocalPosition: {x: 0, y: -3.3637657, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5606,7 +5657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2143131205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5693,7 +5744,7 @@ Transform:
   m_GameObject: {fileID: 2143131204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -55.14, y: -7.5182, z: 0}
+  m_LocalPosition: {x: -62.18, y: -7.52, z: 0}
   m_LocalScale: {x: 0.7318788, y: 0.7318788, z: 0.7318788}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5993,3 +6044,4 @@ SceneRoots:
   - {fileID: 941023958}
   - {fileID: 1199431186}
   - {fileID: 1466773075}
+  - {fileID: 1332012133}
