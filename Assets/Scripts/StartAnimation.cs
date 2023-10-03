@@ -35,9 +35,9 @@ public class StartAnimation : MonoBehaviour
     IEnumerator WaitForAnimationComplete()
     {
         // Wait for the animation to finish.
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.4f);
 
-        startAnimation.SetActive(false);
+        //startAnimation.SetActive(false);
         startAudio.Stop();
         player.SetActive(true);
 
