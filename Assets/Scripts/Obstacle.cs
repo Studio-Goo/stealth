@@ -22,12 +22,12 @@ public class Obstacle : MonoBehaviour
     private bool completed = false;
     private bool passed = false;
 
-    private GameObject obstacle;
-    private GameObject obstacleShadow;
-    private GameObject obstacleShadowMask;
-    private GameObject ParentFloor;
-    private GameObject FloorShadow;
-    private GameObject FloorShadowMask;
+    //private GameObject obstacle;
+    //private GameObject obstacleShadow;
+    //private GameObject obstacleShadowMask;
+    //private GameObject ParentFloor;
+    //private GameObject FloorShadow;
+    //private GameObject FloorShadowMask;
 
     private GameObject startAnimation;
 
@@ -38,17 +38,20 @@ public class Obstacle : MonoBehaviour
 
     void Start()
     {
-        obstacle = this.gameObject.transform.GetChild(0).gameObject;
-        obstacleShadow = obstacle.transform.GetChild(0).gameObject;
-        obstacleShadowMask = obstacleShadow.transform.GetChild(0).gameObject;
-        ParentFloor = this.gameObject.transform.GetChild(1).gameObject;
-        FloorShadow = ParentFloor.transform.GetChild(0).gameObject;
-        FloorShadowMask = FloorShadow.transform.GetChild(0).gameObject;
+        //obstacle = this.gameObject.transform.GetChild(0).gameObject;
+        //obstacleShadow = obstacle.transform.GetChild(0).gameObject;
+        //obstacleShadowMask = obstacleShadow.transform.GetChild(0).gameObject;
+        //ParentFloor = this.gameObject.transform.GetChild(1).gameObject;
+        //FloorShadow = ParentFloor.transform.GetChild(0).gameObject;
+        //FloorShadowMask = FloorShadow.transform.GetChild(0).gameObject;
 
-        ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
+        //ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
 
         startAnimation = GameObject.Find("StartAnimation");
-        startAnimation.SetActive(false);
+        if (startAnimation)
+        {
+            startAnimation.SetActive(false);
+        }
 
         //pointSystemScript = pointSystem.GetComponent<PointSystem>();
     }
@@ -70,26 +73,31 @@ public class Obstacle : MonoBehaviour
                 HandleObstaclePassed();
             }
 
+            if (!tutorial)
+            {
+                pointSystem.showPoints();
+            }
+
 
             //if (SlimeDistance() < 0f)
             //{
             //    slime.isHiding = false;
             //}
 
-            if (PlayerPrefs.GetInt("Tutorial") == 0)
-            {
+            //if (PlayerPrefs.GetInt("Tutorial") == 0)
+            //{
                 //check if pointsystem is active
                 //if (pointSystem.activeSelf)
                 //{
                     //if it is, show points
-                    pointSystem.showPoints();
+                    //pointSystem.showPoints();
                 //}
                 //else
                 //{
                     //if it isn't, set it to active
                     //pointSystem.SetActive(true);
                 //}
-            }
+            //}
         }
         
     }
@@ -100,8 +108,14 @@ public class Obstacle : MonoBehaviour
         {
             slime.isHiding = true;
             print("Correct Gesture");
-            pointSystem.pointCounter();
             completed = true;
+
+            //if(!tutorial)
+            //{
+            //    // Only add point if not tutorial
+            //    pointSystem.pointCounter();
+            //    pointSystem.showPoints();
+            //}
         }
 
         //increase speed
@@ -175,6 +189,7 @@ public class Obstacle : MonoBehaviour
                 if (!tutorial)
                 {
                     // todo: add point
+                    pointSystem.enable();
                     pointSystem.pointCounter();
                 }
             }
@@ -208,16 +223,16 @@ public class Obstacle : MonoBehaviour
     private float SlimeDistance()
     {
         float distance = this.gameObject.transform.position.x - slime.transform.position.x;
-        Debug.Log(distance);
+        //Debug.Log(distance);
         return distance;
     }
 
-    public void ChangeObstacle(Sprite obstacleSprite, Sprite obstacleShadowSprite, Sprite floorShadowSprite)
-    {
-        obstacle.GetComponent<SpriteRenderer>().sprite = obstacleSprite;
-        obstacleShadow.GetComponent<SpriteMask>().sprite = obstacleShadowSprite;
-        obstacleShadowMask.GetComponent<SpriteRenderer>().sprite = obstacleShadowSprite;
-        FloorShadow.GetComponent<SpriteMask>().sprite = floorShadowSprite;
-        FloorShadowMask.GetComponent<SpriteRenderer>().sprite = floorShadowSprite;
-    }
+    //public void ChangeObstacle(Sprite obstacleSprite, Sprite obstacleShadowSprite, Sprite floorShadowSprite)
+    //{
+    //    obstacle.GetComponent<SpriteRenderer>().sprite = obstacleSprite;
+    //    obstacleShadow.GetComponent<SpriteMask>().sprite = obstacleShadowSprite;
+    //    obstacleShadowMask.GetComponent<SpriteRenderer>().sprite = obstacleShadowSprite;
+    //    FloorShadow.GetComponent<SpriteMask>().sprite = floorShadowSprite;
+    //    FloorShadowMask.GetComponent<SpriteRenderer>().sprite = floorShadowSprite;
+    //}
 }

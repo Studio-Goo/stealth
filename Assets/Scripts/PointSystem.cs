@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PointSystem : MonoBehaviour
@@ -19,10 +20,16 @@ public class PointSystem : MonoBehaviour
 
     public void pointCounter()
     {
-        if (!(PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1))
-        {
+        //if (!(PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1))
+        //{
             points++;
-        }
+            Debug.Log(points);
+        //}
+    }
+
+    public void enable()
+    {
+        pointSystem.SetActive(true);
     }
 
     public void showPoints()
