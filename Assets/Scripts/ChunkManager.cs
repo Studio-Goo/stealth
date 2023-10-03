@@ -12,12 +12,15 @@ public class ChunkManager : MonoBehaviour
     [SerializeField]
     public List<GameObject> chunkPrefabs = new List<GameObject>();
 
+    public GameObject tutorialChunk;
+
     private List<GameObject> chunks = new List<GameObject>();
 
     private float nextSpawnPosition;
     private float levelPositionY;
     private Vector3 startPositionCameraBounds;
     private bool useEmptyChunk = false;
+    private float tutorial;
 
     void Awake()
     {
@@ -25,6 +28,18 @@ public class ChunkManager : MonoBehaviour
         levelPositionY = startChunk.transform.position.y;
         startPositionCameraBounds = cameraBounds.transform.position;
         GameManager.OnGameStateChanged += OnGameStateChanged;
+
+        if (!PlayerPrefs.HasKey("Tutorial"))
+        {
+            Debug.Log("Doesnt have tutorial");
+            PlayerPrefs.SetInt("Tutorial", 1);
+            tutorial = 1;
+        }
+        else
+        {
+            // Disable this in build!!
+            PlayerPrefs.SetInt("Tutorial", 1);
+        }
     }
 
     private void OnDestroy()
@@ -40,7 +55,7 @@ public class ChunkManager : MonoBehaviour
             {
                 float chunkWidth = chunks[i].GetComponent<BoxCollider2D>().size.x;
 
-                if (player.transform.position.x > nextSpawnPosition - chunkWidth / 2)
+                if (player.transform.position.x > nextSpawnPosition - ((chunkWidth / 3) * 2))
                 {
                     Vector3 newPosition = new Vector3(nextSpawnPosition, levelPositionY, 0);
                     float newChunkWidth;
@@ -58,9 +73,20 @@ public class ChunkManager : MonoBehaviour
                     {
 
                         // Spawning a chunk with obstacles
-                        int randomChunkIndex = UnityEngine.Random.Range(0, chunkPrefabs.Count);
-                        GameObject newChunk =  InstanciateChunk(chunkPrefabs[randomChunkIndex], newPosition);
-                        newChunkWidth = newChunk.GetComponent<BoxCollider2D>().size.x;
+                        if (tutorial == 1)
+                        {
+                            // Spawn tutorial chunk
+                            //int randomChunkIndex = UnityEngine.Random.Range(0, chunkPrefabs.Count);
+                            GameObject newChunk = InstanciateChunk(tutorialChunk, newPosition);
+                            newChunkWidth = newChunk.GetComponent<BoxCollider2D>().size.x;
+                            tutorial = 0;
+                        } else
+                        {
+                            // Spawn normal chunk
+                            int randomChunkIndex = UnityEngine.Random.Range(0, chunkPrefabs.Count);
+                            GameObject newChunk = InstanciateChunk(chunkPrefabs[randomChunkIndex], newPosition);
+                            newChunkWidth = newChunk.GetComponent<BoxCollider2D>().size.x;
+                        }
 
                     }
 

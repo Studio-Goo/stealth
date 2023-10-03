@@ -29,9 +29,8 @@ public class Slime : MonoBehaviour
 
     public Shape lastGesture;
     public Shape savedGesture;
-    public GameObject pointSystem;
-    [NonSerialized]
-    public PointSystem pointSystemScript;
+    //public GameObject pointSystem;
+
 
     // Sprites
     public Sprite normal;
@@ -46,7 +45,7 @@ public class Slime : MonoBehaviour
 
     void Start()
     {
-        pointSystemScript = pointSystem.GetComponent<PointSystem>();
+        //pointSystemScript = pointSystem.GetComponent<PointSystem>();
 
         //walkAudio.SetActive(true);
     }
@@ -85,22 +84,9 @@ public class Slime : MonoBehaviour
             slime.GetComponent<Rigidbody2D>().gravityScale = 2f;
         }
 
-        if (PlayerPrefs.GetInt("Tutorial") == 0)
-        {
-            //check if pointsystem is active
-            if (pointSystem.activeSelf)
-            {
-                //if it is, show points
-                pointSystemScript.showPoints();
-            }
-            else
-            {
-                //if it isn't, set it to active
-                pointSystem.SetActive(true);
-            }
-        }
+        
 
-        if(GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
+        if (GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
         {
             //automatic slime movement
             transform.Translate(Vector3.right * speed * Time.deltaTime);
