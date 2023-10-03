@@ -5477,6 +5477,7 @@ MonoBehaviour:
   startChunk: {fileID: 4072041321313626739}
   emptyChunk: {fileID: 1985122246199348221, guid: 460e9018fcf33a44c83cbf6088aef77f, type: 3}
   chunkPrefabs:
+  - {fileID: 1985122246199348221, guid: 2713793955e462740834629d3b0e7881, type: 3}
   - {fileID: 1985122246199348221, guid: 199005d2501f4bc7e8e01030df38eaf1, type: 3}
 --- !u!4 &1899330234
 Transform:
