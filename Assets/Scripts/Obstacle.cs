@@ -45,11 +45,7 @@ public class Obstacle : MonoBehaviour
         //FloorShadow = ParentFloor.transform.GetChild(0).gameObject;
         //FloorShadowMask = FloorShadow.transform.GetChild(0).gameObject;
 
-<<<<<<< HEAD
         // ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
-=======
-        //ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
->>>>>>> f827f220242eaebadea053dda11aee922437e320
 
         startAnimation = GameObject.Find("StartAnimation");
         if (startAnimation)
