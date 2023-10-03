@@ -734,7 +734,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 1
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -5585,7 +5585,7 @@ MonoBehaviour:
   m_BoundingVolume: {fileID: 0}
   m_BoundingShape2D: {fileID: 1127076942}
   m_ConfineScreenEdges: 1
-  m_Damping: 0
+  m_Damping: 0.56
 --- !u!1 &2143131204
 GameObject:
   m_ObjectHideFlags: 0
