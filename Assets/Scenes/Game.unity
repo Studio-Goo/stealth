@@ -532,7 +532,7 @@ SpriteRenderer:
   m_Size: {x: 19.23268, y: 5.240154}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &293351666
@@ -3140,7 +3140,7 @@ SpriteRenderer:
   m_Size: {x: 19.23268, y: 5.240154}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &1199431185
@@ -4490,7 +4490,7 @@ SpriteRenderer:
   m_Size: {x: 19.23268, y: 5.240154}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &1503540236
@@ -4823,7 +4823,7 @@ SpriteRenderer:
   m_Size: {x: 19.23268, y: 5.240154}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &1765553550
@@ -5477,7 +5477,7 @@ MonoBehaviour:
   startChunk: {fileID: 4072041321313626739}
   emptyChunk: {fileID: 1985122246199348221, guid: 460e9018fcf33a44c83cbf6088aef77f, type: 3}
   chunkPrefabs:
-  - {fileID: 1985122246199348221, guid: 65be2124176a6144b893a28a81feb65d, type: 3}
+  - {fileID: 1985122246199348221, guid: 199005d2501f4bc7e8e01030df38eaf1, type: 3}
 --- !u!4 &1899330234
 Transform:
   m_ObjectHideFlags: 0
@@ -5621,9 +5621,6 @@ MonoBehaviour:
   speed: 8
   jumpHold: 0.04
   initialJump: 15
-  gestureCheckDistance: 1
-  gestureAllowedDistance: 25
-  gestureExclamationDistance: 10
   gestureResetSeconds: 1.8
   slowSpeed: 1
   setSpeed: 8
@@ -5638,7 +5635,6 @@ MonoBehaviour:
   jumpAudio: {fileID: 0}
   walkAudio: {fileID: 0}
   stretchAudio: {fileID: 0}
-  obstacleSpawner: {fileID: 1784259275}
 --- !u!212 &2143131206
 SpriteRenderer:
   m_ObjectHideFlags: 0
