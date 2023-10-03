@@ -85,7 +85,7 @@ public class ChunkManager : MonoBehaviour
             {
                 float chunkWidth = chunks[i].GetComponent<BoxCollider2D>().size.x;
 
-                if (player.transform.position.x > nextSpawnPosition - (chunkWidth / 2))
+                if (player.transform.position.x > nextSpawnPosition - 40)
                 {
                     Vector3 newPosition = new Vector3(nextSpawnPosition, levelPositionY, 0);
                     float newChunkWidth;
