@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638181ab8d5b93d4e8b787be04fb177f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notLooking: {fileID: 0}
-  halfLooking: {fileID: 0}
-  fullLooking: {fileID: 0}
+  notLooking: {fileID: 21300000, guid: 7e3cb1d750d368d46bd367294e6983e0, type: 3}
+  halfLooking: {fileID: 21300000, guid: 7ae94e11108ba5548816ffdb6c031209, type: 3}
+  fullLooking: {fileID: 21300000, guid: 068356a2aa05db5419738e3d61f283a6, type: 3}

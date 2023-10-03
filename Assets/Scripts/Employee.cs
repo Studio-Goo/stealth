@@ -34,7 +34,7 @@ public class Employee : MonoBehaviour
         employees.Add(Lars);
         employees.Add(Demi);
         employees.Add(Dani);
-        //employees.Add(Maya);
+        employees.Add(Maya);
         employees.Add(Regiena);
 
         selectedEmployee = employees[Random.Range(0, employees.Count)];
