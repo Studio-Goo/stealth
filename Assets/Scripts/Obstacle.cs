@@ -28,6 +28,8 @@ public class Obstacle : MonoBehaviour
     private GameObject FloorShadow;
     private GameObject FloorShadowMask;
 
+    private GameObject startAnimation;
+
     private float gestureCheckDistance = .9f;
 
     void Start()
@@ -40,6 +42,9 @@ public class Obstacle : MonoBehaviour
         FloorShadowMask = FloorShadow.transform.GetChild(0).gameObject;
 
         ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
+
+        startAnimation = GameObject.Find("StartAnimation");
+        startAnimation.SetActive(false);
 
     }
 

@@ -39,10 +39,7 @@ public class Slime : MonoBehaviour
     public Sprite flat;
     public Sprite jump;
 
-    //audio
-    public GameObject jumpAudio;
-    public GameObject walkAudio;
-    public GameObject stretchAudio;
+
 
     void Start()
     {
