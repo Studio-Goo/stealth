@@ -710,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 322123307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -50.5, y: 0.1437664, z: -4}
+  m_LocalPosition: {x: -44.14001, y: 0.1437664, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1576,7 +1576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!320 &669625937
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -5524,7 +5524,7 @@ Transform:
   m_GameObject: {fileID: 1948416306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.3619661, z: 0}
+  m_LocalPosition: {x: 0.000011444092, y: -3.3619661, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5606,7 +5606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2143131205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5628,14 +5628,10 @@ MonoBehaviour:
   slime: {fileID: 2143131204}
   lastGesture: 0
   savedGesture: 0
-  pointSystem: {fileID: 1767276709}
   normal: {fileID: 21300000, guid: 9afdd4c7dcaee38bab090d747f0a2d52, type: 3}
   tall: {fileID: 21300000, guid: 3714225106d8cd02c8c15f75f60236b7, type: 3}
   flat: {fileID: 21300000, guid: 373807732df675872a175cbb53ba0ab0, type: 3}
   jump: {fileID: 21300000, guid: a5bffa6b2b596610cbb270e41940e9cd, type: 3}
-  jumpAudio: {fileID: 0}
-  walkAudio: {fileID: 0}
-  stretchAudio: {fileID: 0}
 --- !u!212 &2143131206
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5697,7 +5693,7 @@ Transform:
   m_GameObject: {fileID: 2143131204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -61.5, y: -7.5182, z: 0}
+  m_LocalPosition: {x: -55.14, y: -7.5182, z: 0}
   m_LocalScale: {x: 0.7318788, y: 0.7318788, z: 0.7318788}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1869407953585256490}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.15, z: 0}
-  m_LocalScale: {x: 2.411585, y: 2.6, z: 2.411585}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.9, y: 2.9, z: 2.9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2223852252372118333}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: dad6a48a41535b9448a3a1a586b0cd93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de98d7b8b361e01489d6651a7cc0d4d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -110,8 +110,8 @@ Transform:
   m_GameObject: {fileID: 2609621171524927145}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.01, z: 0.03515809}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.1, y: -0.63, z: 0.03515809}
+  m_LocalScale: {x: 1.3630563, y: 1.1125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7390779290865700972}
@@ -145,7 +145,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9773288, y: 1.321117, z: 2.3872733}
+  m_LocalScale: {x: 2.0020454, y: 1.5027707, z: 2.3872733}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8004288909900818860}
@@ -192,7 +192,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a7a3be8cb847f7e4c929b681cccd7aa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d4cb274fc926d44792225dc87150307, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -233,7 +233,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2223852252372118333}
   - component: {fileID: 6992306738142420666}
-  - component: {fileID: 866361911505679215}
   m_Layer: 0
   m_Name: Sprite Mask Barrel
   m_TagString: Untagged
@@ -250,8 +249,8 @@ Transform:
   m_GameObject: {fileID: 5614981147757199581}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.22, z: 0}
-  m_LocalScale: {x: 0.81992906, y: 1.1881423, z: 0.9899187}
+  m_LocalPosition: {x: 0.0092, y: 0.0293, z: 0}
+  m_LocalScale: {x: 0.9820782, y: 1.0469294, z: 0.9899187}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7125759970023603656}
@@ -298,7 +297,7 @@ SpriteMask:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a7a3be8cb847f7e4c929b681cccd7aa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 767ae8051ab3a2a408bcf3315a3d159a, type: 3}
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: 0
   m_BackSortingLayerID: 0
@@ -308,27 +307,6 @@ SpriteMask:
   m_BackSortingOrder: 3
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
---- !u!95 &866361911505679215
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5614981147757199581}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 720ba2cde9e1bd7449323480eb83adaf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5737478636766343968
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +380,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: a7a3be8cb847f7e4c929b681cccd7aa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d4cb274fc926d44792225dc87150307, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.47058824}
   m_FlipX: 0
   m_FlipY: 0
@@ -486,7 +464,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: a7a3be8cb847f7e4c929b681cccd7aa6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 767ae8051ab3a2a408bcf3315a3d159a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.47058824}
   m_FlipX: 0
   m_FlipY: 0
@@ -508,7 +486,7 @@ GameObject:
   - component: {fileID: 3440381018200978358}
   - component: {fileID: 9181046902657358925}
   m_Layer: 0
-  m_Name: Obstacle
+  m_Name: Books
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,4 +524,4 @@ MonoBehaviour:
   ObstacleSprite: {fileID: 0}
   ShadowSprite: {fileID: 0}
   FloorShadowSprite: {fileID: 0}
-  shape: 0
+  shape: 2
