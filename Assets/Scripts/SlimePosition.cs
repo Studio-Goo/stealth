@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class SlimePosition : MonoBehaviour
 {
-    private float startX = -62.18f; // Initial X position
-    private float endX = -55.14f;   // Desired spawn X position
-    private float duration = 4.4f;  // Duration of the animation in seconds
+    public float startX = -62.18f; // Initial X position
+    public float endX = -55.14f;   // Desired spawn X position
+    public float duration = 4.4f;  // Duration of the animation in seconds
 
     public float journeyLength;
     public float distanceCovered;
     public float fractionOfJourney;
     public float newX;
-    private float startTime;
+    public float startTime;
 
     public GameObject slime;
 
@@ -37,10 +37,16 @@ public class SlimePosition : MonoBehaviour
 
     public void ResetPosition()
     {
+        // Set the initial position of the slime
+        Vector3 startPosition = new Vector3(startX, slime.transform.position.y, slime.transform.position.z);
+        slime.transform.position = startPosition;
+        startTime = Time.time;
+
+        newX = startX;
         journeyLength = 0;
         distanceCovered = 0;
         fractionOfJourney = 0;
-        newX = 0;
+
         startTime = Time.time;
     }
 }

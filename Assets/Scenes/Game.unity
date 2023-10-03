@@ -710,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 322123307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -44.14, y: 0.1437664, z: -4}
+  m_LocalPosition: {x: -51.18, y: 0.14376593, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4102,10 +4102,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2dd0fc2c3f744345b96db167da104b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startX: -62.18
+  endX: -55.14
+  duration: 4.4
   journeyLength: 0
   distanceCovered: 0
   fractionOfJourney: 0
   newX: 0
+  startTime: 0
   slime: {fileID: 2143131204}
 --- !u!4 &1332012133
 Transform:
@@ -5575,7 +5579,7 @@ Transform:
   m_GameObject: {fileID: 1948416306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000011444092, y: -3.3619661, z: 0}
+  m_LocalPosition: {x: 0, y: -3.3637657, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

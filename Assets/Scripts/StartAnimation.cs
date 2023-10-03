@@ -23,9 +23,6 @@ public class StartAnimation : MonoBehaviour
 
     public void HandleStartAnimation()
     {
-
-        player.transform.position = new Vector3(-62.18f, -7.52f, 0);
-
         // Set the "isPlaying" parameter to true in the Animator.
         startAnimation.SetActive(true);
         startAudio.Play();
