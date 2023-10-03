@@ -9,10 +9,9 @@ public class ChunkManager : MonoBehaviour
     public GameObject cameraBounds;
     public GameObject startChunk;
     public GameObject emptyChunk;
+    public GameObject tutorialChunk;
     [SerializeField]
     public List<GameObject> chunkPrefabs = new List<GameObject>();
-
-    public GameObject tutorialChunk;
 
     private List<GameObject> chunks = new List<GameObject>();
 
@@ -55,7 +54,7 @@ public class ChunkManager : MonoBehaviour
             {
                 float chunkWidth = chunks[i].GetComponent<BoxCollider2D>().size.x;
 
-                if (player.transform.position.x > nextSpawnPosition - ((chunkWidth / 3) * 2))
+                if (player.transform.position.x > nextSpawnPosition - ((chunkWidth / 5) * 3))
                 {
                     Vector3 newPosition = new Vector3(nextSpawnPosition, levelPositionY, 0);
                     float newChunkWidth;

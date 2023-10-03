@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public EndAnimation endAnimation;
     public AudioSource backgroundMusic;
     public GameObject endScreen;
+    public SlimePosition slimePosition;
 
     public static event Action<GameState> OnGameStateChanged;
 
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         pointSystem.ResetPoints();
         obstacleSpawner.ResetAll();
         endScreen.SetActive(true);
+        slimePosition.ResetPosition();
     }
 
 }

@@ -6,6 +6,7 @@ public class StartAnimation : MonoBehaviour
 {
     public GameObject startAnimation;
     public GameObject player;
+    public GameObject slimePosition;
     public AudioSource startAudio;
     // Start is called before the first frame update
     public void Start()
@@ -25,6 +26,7 @@ public class StartAnimation : MonoBehaviour
         // Set the "isPlaying" parameter to true in the Animator.
         startAnimation.SetActive(true);
         startAudio.Play();
+        slimePosition.SetActive(true);
 
         StartCoroutine(WaitForAnimationComplete());
 
@@ -40,6 +42,7 @@ public class StartAnimation : MonoBehaviour
         //startAnimation.SetActive(false);
         startAudio.Stop();
         player.SetActive(true);
+        slimePosition.SetActive(false);
 
     
 
