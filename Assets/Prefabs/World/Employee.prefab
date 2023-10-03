@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 786481697662109166}
   - component: {fileID: 6049390304805305041}
-  - component: {fileID: 4127447879043882163}
+  - component: {fileID: 7324286475876463141}
   m_Layer: 0
   m_Name: Employee
   m_TagString: Employee
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4832, y: 0.4832, z: 0.4832}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4127447879043882163
+--- !u!114 &7324286475876463141
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,9 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43039efa7fc3774d8834577c54ab0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notLooking: {fileID: 21300000, guid: 02b62977782e72e43b2a3ddff5847120, type: 3}
   notLookingDistance: 20
-  halfLooking: {fileID: 21300000, guid: e8e83a151cebca84c9f1893201e882b2, type: 3}
   halfLookingDistance: 10
-  fullLooking: {fileID: 21300000, guid: e2a825d6dfa20454983cbfc80335294f, type: 3}
   fullLookingDistance: 1
+  Lara: {fileID: 53251403102717371, guid: b506ee201cf4bfa409d955e70ef01c73, type: 3}
+  Lars: {fileID: 53251403102717371, guid: 7a481eaf5a465774f95de8e2fde46ff0, type: 3}
+  Demi: {fileID: 53251403102717371, guid: 5200d714752b9cc4db3467ebaa4ed9e5, type: 3}
+  Dani: {fileID: 53251403102717371, guid: 971cc67078983f64e8ff554cf7155507, type: 3}
+  Maya: {fileID: 53251403102717371, guid: 6c596157bb587e742982daf04a8c12c1, type: 3}
+  Regiena: {fileID: 53251403102717371, guid: 6c596157bb587e742982daf04a8c12c1, type: 3}
+  employees: []
