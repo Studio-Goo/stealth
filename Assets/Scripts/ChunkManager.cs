@@ -36,6 +36,7 @@ public class ChunkManager : MonoBehaviour
     private float tutorial;
 
     private PointSystem pointSystem;
+    private float oldChunkWidth = 80;
 
     void Awake()
     {
@@ -84,7 +85,7 @@ public class ChunkManager : MonoBehaviour
             {
                 float chunkWidth = chunks[i].GetComponent<BoxCollider2D>().size.x;
 
-                if (player.transform.position.x > nextSpawnPosition - ((chunkWidth / 5) * 3))
+                if (player.transform.position.x > nextSpawnPosition - (chunkWidth / 2))
                 {
                     Vector3 newPosition = new Vector3(nextSpawnPosition, levelPositionY, 0);
                     float newChunkWidth;
@@ -130,12 +131,14 @@ public class ChunkManager : MonoBehaviour
 
                     }
 
-                    cameraBounds.transform.position = new Vector3(cameraBounds.transform.position.x + newChunkWidth, cameraBounds.transform.position.y, cameraBounds.transform.position.z);
+                    cameraBounds.transform.position = new Vector3(cameraBounds.transform.position.x + oldChunkWidth, cameraBounds.transform.position.y, cameraBounds.transform.position.z);
                     nextSpawnPosition += newChunkWidth;
                     useEmptyChunk = !useEmptyChunk;
+                    oldChunkWidth = newChunkWidth;
 
                     // Removing the old chunks
-                    if (chunks.Count > 2)
+                    // Keeping 3 loaded at the same time avoids chunks despawning while still in view
+                    if (chunks.Count > 3)
                     {
                         Destroy(chunks[0]);
                         chunks.Remove(chunks[0]);
