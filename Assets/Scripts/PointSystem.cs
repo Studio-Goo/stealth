@@ -18,12 +18,16 @@ public class PointSystem : MonoBehaviour
         Instance = this;
     }
 
+    public int GetPoints()
+    {
+        return points;
+    }
+
     public void pointCounter()
     {
         //if (!(PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1))
         //{
             points++;
-            Debug.Log(points);
         //}
     }
 

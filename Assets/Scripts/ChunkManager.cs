@@ -10,8 +10,22 @@ public class ChunkManager : MonoBehaviour
     public GameObject startChunk;
     public GameObject emptyChunk;
     public GameObject tutorialChunk;
+
     [SerializeField]
-    public List<GameObject> chunkPrefabs = new List<GameObject>();
+    //public List<List<GameObject>> chunkPrefabs = new List<List<GameObject>>();
+    public List<GameObject>[] chunkPrefabs = new List<GameObject>[7];
+
+    [Header("Level chunks")]
+    [SerializeField]
+    public List<GameObject> chunkPrefabs1 = new List<GameObject>();
+    public List<GameObject> chunkPrefabs2 = new List<GameObject>();
+    public List<GameObject> chunkPrefabs3 = new List<GameObject>();
+    public List<GameObject> chunkPrefabs4 = new List<GameObject>();
+    public List<GameObject> chunkPrefabs5 = new List<GameObject>();
+    public List<GameObject> chunkPrefabs6 = new List<GameObject>();
+    public List<GameObject> chunkPrefabs7 = new List<GameObject>();
+
+    private List<GameObject> currentChunks = new List<GameObject>();
 
     private List<GameObject> chunks = new List<GameObject>();
 
@@ -20,6 +34,8 @@ public class ChunkManager : MonoBehaviour
     private Vector3 startPositionCameraBounds;
     private bool useEmptyChunk = false;
     private float tutorial;
+
+    private PointSystem pointSystem;
 
     void Awake()
     {
@@ -39,6 +55,20 @@ public class ChunkManager : MonoBehaviour
             // Disable this in build!!
             PlayerPrefs.SetInt("Tutorial", 1);
         }
+    }
+
+    private void Start()
+    {
+        //chunkPrefabs[0] = chunkPrefabs1;
+        //chunkPrefabs[1] = chunkPrefabs2;
+        //chunkPrefabs[2] = chunkPrefabs3;
+        //chunkPrefabs[3] = chunkPrefabs4;
+        //chunkPrefabs[4] = chunkPrefabs5;
+        //chunkPrefabs[5] = chunkPrefabs6;
+        //chunkPrefabs[6] = chunkPrefabs7;
+        currentChunks = chunkPrefabs1;
+
+        //pointSystem = PointSystem.Instance;
     }
 
     private void OnDestroy()
@@ -82,8 +112,19 @@ public class ChunkManager : MonoBehaviour
                         } else
                         {
                             // Spawn normal chunk
-                            int randomChunkIndex = UnityEngine.Random.Range(0, chunkPrefabs.Count);
-                            GameObject newChunk = InstanciateChunk(chunkPrefabs[randomChunkIndex], newPosition);
+                            //int randomChunkIndex;
+                            GameObject newChunk;
+
+                            if (currentChunks.Count > 0)
+                            {
+                                int randomChunkIndex = UnityEngine.Random.Range(0, currentChunks.Count);
+                                newChunk = InstanciateChunk(currentChunks[randomChunkIndex], newPosition);
+                            } else
+                            {
+                                Debug.LogError("Chunk level doesn't have any chunks instanciated.");
+                                newChunk = InstanciateChunk(emptyChunk, newPosition);
+                            }
+                            //GameObject newChunk = InstanciateChunk(chunkPrefabs[currentChunkLevel][randomChunkIndex], newPosition);
                             newChunkWidth = newChunk.GetComponent<BoxCollider2D>().size.x;
                         }
 
@@ -107,6 +148,37 @@ public class ChunkManager : MonoBehaviour
         else
         {
             chunks.Add(startChunk);
+        }
+
+        if (pointSystem)
+        {
+            int points = pointSystem.GetPoints();
+
+            if (points > 0 && points < 14)
+            {
+                currentChunks = chunkPrefabs1;
+            } else if (points >= 15 && points < 29)
+            {
+                currentChunks = chunkPrefabs2;
+            } else if (points >= 30 && points < 49)
+            {
+                currentChunks = chunkPrefabs3;
+            } else if (points >= 50 && points < 74)
+            {
+                currentChunks = chunkPrefabs4;
+            } else if (points >= 75 && points < 99)
+            {
+                currentChunks = chunkPrefabs5;
+            } else if (points >= 100 && points <= 149)
+            {
+                currentChunks = chunkPrefabs6;
+            } else if (points >= 150)
+            {
+                currentChunks = chunkPrefabs7;
+            }
+        } else
+        {
+            pointSystem = PointSystem.Instance;
         }
     }
 
