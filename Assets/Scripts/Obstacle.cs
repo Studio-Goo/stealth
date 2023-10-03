@@ -17,6 +17,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField]
     public Shape shape;
     private Slime slime = Slime.Instance;
+    public bool tutorial = false;
 
     private bool completed = false;
     private bool passed = false;
@@ -31,6 +32,9 @@ public class Obstacle : MonoBehaviour
     private GameObject startAnimation;
 
     private float gestureCheckDistance = .9f;
+    //[NonSerialized]
+    //public PointSystem pointSystemScript;
+    private PointSystem pointSystem = PointSystem.Instance;
 
     void Start()
     {
@@ -46,6 +50,7 @@ public class Obstacle : MonoBehaviour
         startAnimation = GameObject.Find("StartAnimation");
         startAnimation.SetActive(false);
 
+        //pointSystemScript = pointSystem.GetComponent<PointSystem>();
     }
 
     private void Update()
@@ -70,6 +75,21 @@ public class Obstacle : MonoBehaviour
             //{
             //    slime.isHiding = false;
             //}
+
+            if (PlayerPrefs.GetInt("Tutorial") == 0)
+            {
+                //check if pointsystem is active
+                //if (pointSystem.activeSelf)
+                //{
+                    //if it is, show points
+                    pointSystem.showPoints();
+                //}
+                //else
+                //{
+                    //if it isn't, set it to active
+                    //pointSystem.SetActive(true);
+                //}
+            }
         }
         
     }
@@ -80,7 +100,7 @@ public class Obstacle : MonoBehaviour
         {
             slime.isHiding = true;
             print("Correct Gesture");
-            slime.pointSystemScript.pointCounter();
+            pointSystem.pointCounter();
             completed = true;
         }
 
@@ -151,6 +171,12 @@ public class Obstacle : MonoBehaviour
             {
                 slime.isHiding = false;
                 passed = true;
+
+                if (!tutorial)
+                {
+                    // todo: add point
+                    pointSystem.pointCounter();
+                }
             }
         }
     }

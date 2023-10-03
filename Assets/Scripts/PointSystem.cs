@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PointSystem : MonoBehaviour
 {
+    public static PointSystem Instance;
+
     public GameObject pointSystem;
     public GameObject endScreen;
     private int points = 0;
@@ -12,12 +14,7 @@ public class PointSystem : MonoBehaviour
     {
        //disable point system
         pointSystem.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    
+        Instance = this;
     }
 
     public void pointCounter()
