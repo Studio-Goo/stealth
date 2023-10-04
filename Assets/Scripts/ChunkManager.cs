@@ -137,8 +137,8 @@ public class ChunkManager : MonoBehaviour
                     oldChunkWidth = newChunkWidth;
 
                     // Removing the old chunks
-                    // Keeping 3 loaded at the same time avoids chunks despawning while still in view
-                    if (chunks.Count > 3)
+                    // Keeping 4 loaded at the same time avoids chunks despawning while still in view
+                    if (chunks.Count > 4)
                     {
                         Destroy(chunks[0]);
                         chunks.Remove(chunks[0]);
@@ -157,22 +157,22 @@ public class ChunkManager : MonoBehaviour
         {
             int points = pointSystem.GetPoints();
 
-            if (points < 10)
+            if (points < 5)
             {
                 currentChunks = chunkPrefabs1;
-            } else if (points < 20)
+            } else if (points < 15)
             {
                 currentChunks = chunkPrefabs2;
-            } else if (points < 35)
+            } else if (points < 25)
             {
                 currentChunks = chunkPrefabs3;
-            } else if (points < 50)
+            } else if (points < 40)
             {
                 currentChunks = chunkPrefabs4;
-            } else if (points < 70)
+            } else if (points < 60)
             {
                 currentChunks = chunkPrefabs5;
-            } else if (points < 100)
+            } else if (points < 80)
             {
                 currentChunks = chunkPrefabs6;
             } else
