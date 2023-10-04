@@ -26,10 +26,11 @@ public class PointSystem : MonoBehaviour
 
     public void pointCounter()
     {
-        //if (!(PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1))
-        //{
+        print("tutorial: " + PlayerPrefs.GetInt("Tutorial"));
+        if (PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 0)
+        {
             points++;
-        //}
+        }
     }
 
     public void enable()
@@ -66,7 +67,7 @@ public class PointSystem : MonoBehaviour
     public void ResetPoints()
     {
         endPoints();
-        
+
         //save highscore
         if (points > PlayerPrefs.GetInt("HighScore", 0))
         {

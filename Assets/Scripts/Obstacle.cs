@@ -30,6 +30,7 @@ public class Obstacle : MonoBehaviour
     //private GameObject FloorShadowMask;
 
     private GameObject startAnimation;
+    private int obstacleCount = 0;
 
     private float gestureCheckDistance = .9f;
     //[NonSerialized]
@@ -107,8 +108,19 @@ public class Obstacle : MonoBehaviour
         if (!passed)
         {
             slime.isHiding = true;
-            print("Correct Gesture");
+            //print("Correct Gesture");
             completed = true;
+
+            if (PlayerPrefs.HasKey("Tutorial") && PlayerPrefs.GetInt("Tutorial") == 1)
+            {
+                PlayerPrefs.SetInt("obstaclePassed", PlayerPrefs.GetInt("obstaclePassed") + 1);
+            }
+
+            if(PlayerPrefs.GetInt("obstaclePassed") == 3)
+            {
+                PlayerPrefs.SetInt("Tutorial", 0);
+                PlayerPrefs.SetInt("obstaclePassed", 0);
+            }
 
             //if(!tutorial)
             //{
@@ -181,7 +193,7 @@ public class Obstacle : MonoBehaviour
                 slime.isHiding = false;
                 passed = true;
 
-                if (!tutorial)
+                if (PlayerPrefs.GetInt("Tutorial") == 0)
                 {
                     // todo: add point
                     pointSystem.enable();

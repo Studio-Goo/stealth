@@ -33,7 +33,7 @@ public class ChunkManager : MonoBehaviour
     private float levelPositionY;
     private Vector3 startPositionCameraBounds;
     private bool useEmptyChunk = false;
-    private float tutorial;
+    //private float tutorial;
 
     private PointSystem pointSystem;
     private float oldChunkWidth = 80;
@@ -49,7 +49,6 @@ public class ChunkManager : MonoBehaviour
         {
             Debug.Log("Doesnt have tutorial");
             PlayerPrefs.SetInt("Tutorial", 1);
-            tutorial = 1;
         }
         else
         {
@@ -103,13 +102,13 @@ public class ChunkManager : MonoBehaviour
                     {
 
                         // Spawning a chunk with obstacles
-                        if (tutorial == 1)
+                        if (PlayerPrefs.GetInt("Tutorial") == 1)
                         {
                             // Spawn tutorial chunk
                             //int randomChunkIndex = UnityEngine.Random.Range(0, chunkPrefabs.Count);
                             GameObject newChunk = InstanciateChunk(tutorialChunk, newPosition);
                             newChunkWidth = newChunk.GetComponent<BoxCollider2D>().size.x;
-                            tutorial = 0;
+                            
                         } else
                         {
                             // Spawn normal chunk

@@ -13,6 +13,8 @@ public class StartAnimation : MonoBehaviour
     {
         //startAnimation.SetActive(false);
         //startAudio.SetActive(true);
+
+        PlayerPrefs.SetInt("obstaclePassed", 0);
     }
 
     // Update is called once per frame

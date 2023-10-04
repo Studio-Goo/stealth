@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         slimePosition.ResetPosition();
         obstacleSpawner.ResetAll();
         pointSystem.ResetPoints();
+        PlayerPrefs.SetInt("obstaclePassed", 0);
     }
 
 }
