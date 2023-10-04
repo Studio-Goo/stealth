@@ -160,21 +160,21 @@ public class ChunkManager : MonoBehaviour
             if (points < 5)
             {
                 currentChunks = chunkPrefabs1;
-            } else if (points < 15)
-            {
-                currentChunks = chunkPrefabs2;
-            } else if (points < 25)
+            // } else if (points < 15)
+            // {
+            //     currentChunks = chunkPrefabs2;
+            } else if (points < 20)
             {
                 currentChunks = chunkPrefabs3;
-            } else if (points < 40)
-            {
-                currentChunks = chunkPrefabs4;
+            // } else if (points < 40)
+            // {
+            //     currentChunks = chunkPrefabs4;
             } else if (points < 60)
             {
                 currentChunks = chunkPrefabs5;
-            } else if (points < 80)
-            {
-                currentChunks = chunkPrefabs6;
+            // } else if (points < 80)
+            // {
+            //     currentChunks = chunkPrefabs6;
             } else
             {
                 currentChunks = chunkPrefabs7;
