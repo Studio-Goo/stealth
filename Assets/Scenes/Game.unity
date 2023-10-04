@@ -5210,7 +5210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSystem: {fileID: 1767276709}
   endScreen: {fileID: 0}
-  points: 150
+  points: 0
 --- !u!1 &1784259272
 GameObject:
   m_ObjectHideFlags: 0
@@ -5821,8 +5821,9 @@ MonoBehaviour:
   initialJump: 15
   gestureResetSeconds: 1.8
   slowFraction: 8
-  setSpeed: 24
-  maxSpeed: 30
+  baseSpeed: 8
+  setSpeed: 0
+  maxSpeed: 24
   speedIncrease: 1.03
   slime: {fileID: 2143131204}
   lastGesture: 0
