@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Employee : MonoBehaviour
@@ -20,8 +21,7 @@ public class Employee : MonoBehaviour
     public GameObject Regiena;
 
     private GameObject selectedEmployee;
-
-    //private bool employeeActive = false;
+    private List<int> chosenEmployees = new List<int>();
 
     public List<GameObject> employees = new List<GameObject>();
 
@@ -37,7 +37,7 @@ public class Employee : MonoBehaviour
         employees.Add(Maya);
         employees.Add(Regiena);
 
-        selectedEmployee = employees[Random.Range(0, employees.Count)];
+        chooseEmployee();
 
     }
 
@@ -76,23 +76,25 @@ public class Employee : MonoBehaviour
         //}
     }
 
-    /* void ChooseEmployee()
+    void chooseEmployee()
     {
-        int randomIndex = Random.Range(0, employees.Count);
-        if (randomIndex >= 0 && randomIndex < employees.Count)
+        if (PlayerPrefs.HasKey("EmployeeCount"))
         {
-            // Get the selected employee GameObject
-            selectedEmployee = employees[randomIndex];
-
-            // Set the current GameObject's sprite based on the selected employee's EmployeeSprites component
-            SpriteRenderer currentEmployeeSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-            EmployeeSprites selectedEmployeeSprites = selectedEmployee.GetComponent<EmployeeSprites>();
-
-            if (currentEmployeeSpriteRenderer != null && selectedEmployeeSprites != null)
+            if (PlayerPrefs.GetInt("EmployeeCount") < 5)
             {
-                currentEmployeeSpriteRenderer.sprite = selectedEmployeeSprites.notLooking;
+                PlayerPrefs.SetInt("EmployeeCount", PlayerPrefs.GetInt("EmployeeCount") + 1);
             }
-            //employeeActive = true;
+            else
+            {
+                PlayerPrefs.SetInt("EmployeeCount", 0);
+            }
         }
-    } */
+        else
+        {
+            PlayerPrefs.SetInt("EmployeeCount", 0);
+        } 
+
+        print(PlayerPrefs.GetInt("EmployeeCount"));
+        selectedEmployee = employees[PlayerPrefs.GetInt("EmployeeCount")];
+    }
 }

@@ -710,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 322123307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.180023, y: 0.14376593, z: -4}
+  m_LocalPosition: {x: -51.179985, y: 0.14376593, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5721,7 +5721,7 @@ Transform:
   m_GameObject: {fileID: 1948416306}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000022888184, y: -3.3637657, z: 0}
+  m_LocalPosition: {x: -0.000015258789, y: -3.3637657, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5822,7 +5822,7 @@ MonoBehaviour:
   gestureResetSeconds: 1.8
   slowFraction: 8
   baseSpeed: 8
-  setSpeed: 0
+  setSpeed: 8
   maxSpeed: 24
   speedIncrease: 1.03
   slime: {fileID: 2143131204}
