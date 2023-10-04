@@ -94,7 +94,7 @@ public class Employee : MonoBehaviour
             PlayerPrefs.SetInt("EmployeeCount", 0);
         } 
 
-        print(PlayerPrefs.GetInt("EmployeeCount"));
+        //print(PlayerPrefs.GetInt("EmployeeCount"));
         selectedEmployee = employees[PlayerPrefs.GetInt("EmployeeCount")];
     }
 }

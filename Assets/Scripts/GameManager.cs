@@ -79,10 +79,9 @@ public class GameManager : MonoBehaviour
     public void HandleGameOver()
     {
         slime.ResetAll();
-        pointSystem.ResetPoints();
-        obstacleSpawner.ResetAll();
-        endScreen.SetActive(true);
         slimePosition.ResetPosition();
+        obstacleSpawner.ResetAll();
+        pointSystem.ResetPoints();
     }
 
 }

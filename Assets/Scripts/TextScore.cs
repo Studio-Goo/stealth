@@ -8,7 +8,7 @@ public class TextScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pointSystemScript.endPoints();
+        //pointSystemScript.endPoints();
     }
 
     // Update is called once per frame
