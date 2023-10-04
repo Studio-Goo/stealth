@@ -19,6 +19,7 @@ public class Slime : MonoBehaviour
     public bool isHiding = false;
     // Always in-sync w/ setSpeed
     public float slowFraction = 8.0f;
+    public float baseSpeed = 8.0f;
     public float setSpeed = 8.0f;
     public float maxSpeed = 30.0f;
     public float speedIncrease = 1.03f;
@@ -162,6 +163,6 @@ public class Slime : MonoBehaviour
 
     public void ResetAll()
     {
-        setSpeed = speed;
+        setSpeed = baseSpeed;
     }
 }
