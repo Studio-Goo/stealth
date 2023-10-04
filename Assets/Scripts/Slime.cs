@@ -22,7 +22,7 @@ public class Slime : MonoBehaviour
     public float baseSpeed = 8.0f;
     public float setSpeed = 8.0f;
     public float maxSpeed = 30.0f;
-    public float speedIncrease = 1.03f;
+    public float speedIncrease = 0.3f;
 
     [NonSerialized]
     public bool cheatOn = false;
@@ -75,7 +75,7 @@ public class Slime : MonoBehaviour
     {
         if (setSpeed < maxSpeed)
         {
-            setSpeed = setSpeed * 1.03f;
+            setSpeed = setSpeed + speedIncrease;
         }
         
     }

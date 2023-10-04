@@ -6160,8 +6160,8 @@ MonoBehaviour:
   slowFraction: 8
   baseSpeed: 8
   setSpeed: 8
-  maxSpeed: 24
-  speedIncrease: 1.03
+  maxSpeed: 32
+  speedIncrease: 1.025
   slime: {fileID: 2143131204}
   lastGesture: 0
   savedGesture: 0
