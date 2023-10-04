@@ -9,7 +9,8 @@ public class PointSystem : MonoBehaviour
 
     public GameObject pointSystem;
     public GameObject endScreen;
-    private int points = 0;
+    // Temp public to more easily debug level chunks
+    public int points = 0;
     // Start is called before the first frame update
     void Start()
     {

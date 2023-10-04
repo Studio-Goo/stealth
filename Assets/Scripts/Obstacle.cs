@@ -119,12 +119,7 @@ public class Obstacle : MonoBehaviour
         }
 
         //increase speed
-        if (slime.setSpeed < 20.0f)
-        {
-            slime.setSpeed = slime.setSpeed * 1.03f;
-            slime.slowSpeed = slime.slowSpeed * 1.03f;
-
-        }
+        slime.speedUp();
 
         //decrease obstacle spawn interval
         //if (slime.obstacleSpawner.spawnInterval > 0.5f)

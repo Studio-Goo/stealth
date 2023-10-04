@@ -5210,6 +5210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSystem: {fileID: 1767276709}
   endScreen: {fileID: 0}
+  points: 150
 --- !u!1 &1784259272
 GameObject:
   m_ObjectHideFlags: 0
@@ -5669,7 +5670,12 @@ MonoBehaviour:
   chunkPrefabs4: []
   chunkPrefabs5: []
   chunkPrefabs6: []
-  chunkPrefabs7: []
+  chunkPrefabs7:
+  - {fileID: 1985122246199348221, guid: 90452a7bb6f47789b9de5e54508fcceb, type: 3}
+  - {fileID: 1985122246199348221, guid: e3a4de108d7b707a49735d1c02df231f, type: 3}
+  - {fileID: 1985122246199348221, guid: f4c74d742f6e4cecbabb0af8665d3a58, type: 3}
+  - {fileID: 1985122246199348221, guid: e8f10f17fa3503ed099ef15dad364349, type: 3}
+  - {fileID: 1985122246199348221, guid: a3b65f474edcb1b53937d1e03aa0a181, type: 3}
 --- !u!4 &1899330234
 Transform:
   m_ObjectHideFlags: 0
@@ -5814,8 +5820,10 @@ MonoBehaviour:
   jumpHold: 0.04
   initialJump: 15
   gestureResetSeconds: 1.8
-  slowSpeed: 1
-  setSpeed: 8
+  slowFraction: 8
+  setSpeed: 24
+  maxSpeed: 30
+  speedIncrease: 1.03
   slime: {fileID: 2143131204}
   lastGesture: 0
   savedGesture: 0

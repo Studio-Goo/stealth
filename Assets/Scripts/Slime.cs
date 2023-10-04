@@ -17,8 +17,11 @@ public class Slime : MonoBehaviour
     private float resetGestureAfter = 0.0f;
     [NonSerialized]
     public bool isHiding = false;
-    public float slowSpeed = 1.0f;
+    // Always in-sync w/ setSpeed
+    public float slowFraction = 8.0f;
     public float setSpeed = 8.0f;
+    public float maxSpeed = 30.0f;
+    public float speedIncrease = 1.03f;
 
     [NonSerialized]
     public bool cheatOn = false;
@@ -67,11 +70,20 @@ public class Slime : MonoBehaviour
         }
     }
 
+    public void speedUp()
+    {
+        if (setSpeed < maxSpeed)
+        {
+            setSpeed = setSpeed * 1.03f;
+        }
+        
+    }
+
     void Update()
     {
         if (isHiding)
         {
-            speed = slowSpeed;
+            speed = setSpeed / slowFraction;
             slime.GetComponent<Rigidbody2D>().gravityScale = 0.05f;
 
         }
@@ -150,7 +162,6 @@ public class Slime : MonoBehaviour
 
     public void ResetAll()
     {
-        slowSpeed = 1.0f;
-        setSpeed = 8.0f;
+        setSpeed = speed;
     }
 }
