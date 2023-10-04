@@ -10,7 +10,7 @@ public class PointSystem : MonoBehaviour
     public GameObject pointSystem;
     public GameObject endScreen;
     // Temp public to more easily debug level chunks
-    public int points = 0;
+    private int points = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,8 +50,11 @@ public class PointSystem : MonoBehaviour
 
     public void endPoints()
     {
+        endScreen.SetActive(true);
+
         TMPro.TextMeshProUGUI screenText = endScreen.GetComponent<TMPro.TextMeshProUGUI>();
         
+        print("endpoints: " + points);
         //display score and highscore
         screenText.text = "Score: " + points.ToString();
         if (PlayerPrefs.GetInt("HighScore") > 0)
@@ -62,6 +65,8 @@ public class PointSystem : MonoBehaviour
 
     public void ResetPoints()
     {
+        endPoints();
+        
         //save highscore
         if (points > PlayerPrefs.GetInt("HighScore", 0))
         {
