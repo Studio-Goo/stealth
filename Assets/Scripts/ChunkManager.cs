@@ -157,25 +157,25 @@ public class ChunkManager : MonoBehaviour
         {
             int points = pointSystem.GetPoints();
 
-            if (points > 0 && points < 14)
+            if (points < 10)
             {
                 currentChunks = chunkPrefabs1;
-            } else if (points >= 15 && points < 29)
+            } else if (points < 20)
             {
                 currentChunks = chunkPrefabs2;
-            } else if (points >= 30 && points < 49)
+            } else if (points < 35)
             {
                 currentChunks = chunkPrefabs3;
-            } else if (points >= 50 && points < 74)
+            } else if (points < 50)
             {
                 currentChunks = chunkPrefabs4;
-            } else if (points >= 75 && points < 99)
+            } else if (points < 70)
             {
                 currentChunks = chunkPrefabs5;
-            } else if (points >= 100 && points <= 149)
+            } else if (points < 100)
             {
                 currentChunks = chunkPrefabs6;
-            } else if (points >= 150)
+            } else
             {
                 currentChunks = chunkPrefabs7;
             }
