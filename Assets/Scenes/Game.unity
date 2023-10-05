@@ -4394,6 +4394,7 @@ MonoBehaviour:
   newX: 0
   startTime: 0
   slime: {fileID: 2143131204}
+  slimeScript: {fileID: 2143131205}
 --- !u!4 &1332012133
 Transform:
   m_ObjectHideFlags: 0

@@ -171,5 +171,6 @@ public class Slime : MonoBehaviour
         speed = baseSpeed;
         cheatOn = false;
         cheatText.SetActive(false);
+        isHiding = false;
     }
 }
