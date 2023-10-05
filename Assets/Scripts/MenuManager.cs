@@ -54,6 +54,7 @@ public class MenuManager : MonoBehaviour
         gameoverMenuPanel.SetActive(false);
         pausedMenuPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
+        player.SetActive(false);
 
         GameManager.Instance.UpdateGameState(GameState.MainMenu);
     }
