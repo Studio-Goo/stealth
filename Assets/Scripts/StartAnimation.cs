@@ -6,6 +6,7 @@ public class StartAnimation : MonoBehaviour
 {
     public GameObject startAnimation;
     public GameObject player;
+    public Slime slimeScript;
     public GameObject slimePosition;
     public AudioSource startAudio;
     // Start is called before the first frame update

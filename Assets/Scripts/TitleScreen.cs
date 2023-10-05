@@ -6,6 +6,7 @@ using UnityEngine;
 public class TitleScreen : MonoBehaviour
 {
     public Slime slimeScript;
+    public GameObject cheatText;
     public TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,9 @@ public class TitleScreen : MonoBehaviour
 
     void cheatMode()
     {
+        print("cheat on");
         //enable cheat mode
+        cheatText.SetActive(true);
         slimeScript.cheatOn = true;
 
         //show text underneath title screen\

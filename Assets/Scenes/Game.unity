@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAnimation: {fileID: 2963138}
   player: {fileID: 2143131204}
+  slimeScript: {fileID: 0}
   slimePosition: {fileID: 1332012131}
   startAudio: {fileID: 1199431187}
 --- !u!320 &2963141
@@ -1204,6 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slimeScript: {fileID: 2143131205}
+  cheatText: {fileID: 1260868197}
   text: {fileID: 1260868199}
 --- !u!1 &454932746
 GameObject:
@@ -1853,6 +1855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startAnimation: {fileID: 669625936}
   player: {fileID: 2143131204}
+  slimeScript: {fileID: 2143131205}
   slimePosition: {fileID: 1332012131}
   startAudio: {fileID: 1199431187}
 --- !u!1 &786645662
@@ -4219,6 +4222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2143131204}
+  slimeScript: {fileID: 2143131205}
   mainMenuPanel: {fileID: 1359269258}
   gameMenuPanel: {fileID: 1513866638}
   pausedMenuPanel: {fileID: 111380750}
@@ -4783,7 +4787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1466773074
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6170,6 +6174,7 @@ MonoBehaviour:
   setSpeed: 8
   maxSpeed: 32
   speedIncrease: 1.025
+  cheatText: {fileID: 1260868197}
   slime: {fileID: 2143131204}
   lastGesture: 0
   savedGesture: 0

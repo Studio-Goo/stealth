@@ -26,6 +26,7 @@ public class Slime : MonoBehaviour
 
     [NonSerialized]
     public bool cheatOn = false;
+    public GameObject cheatText;
 
 
     private Vector3 startPosition;
@@ -56,6 +57,8 @@ public class Slime : MonoBehaviour
         Instance = this;
         startPosition = slime.transform.localPosition;
         GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
+
+        print("Slime awake");
     }
 
     private void OnDestroy()
@@ -163,6 +166,10 @@ public class Slime : MonoBehaviour
 
     public void ResetAll()
     {
+        print("reset");
         setSpeed = baseSpeed;
+        speed = baseSpeed;
+        cheatOn = false;
+        cheatText.SetActive(false);
     }
 }
