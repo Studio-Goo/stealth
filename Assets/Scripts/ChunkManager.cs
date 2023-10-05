@@ -53,7 +53,7 @@ public class ChunkManager : MonoBehaviour
         else
         {
             // Disable this in build!!
-            PlayerPrefs.SetInt("Tutorial", 1);
+            //PlayerPrefs.SetInt("Tutorial", 1);
         }
     }
 
