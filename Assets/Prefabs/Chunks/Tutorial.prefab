@@ -894,9 +894,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 183384004293762726}
   - {fileID: 6357507351153476836}
   - {fileID: 8622713000260469344}
-  - {fileID: 7792542513984974022}
   m_Father: {fileID: 98789875848714602}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &527396913845877686
@@ -1075,6 +1075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6994077758376671299, guid: 696fb626ea826934a940598fa254ff50, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1137,6 +1141,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Books
       objectReference: {fileID: 0}
+    - target: {fileID: 6994077758376671299, guid: 23907427cbe957049ac7b4e5c614cb73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1147,7 +1155,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3440381018200978358, guid: 23907427cbe957049ac7b4e5c614cb73, type: 3}
   m_PrefabInstance: {fileID: 2781042129318830504}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4871237213694304112
+--- !u!1001 &3257565470013173008
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1165,7 +1173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3440381018200978358, guid: 6f615fe51e6fa3b42a58c35a547eb52d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.9146705
+      value: -4.91467
       objectReference: {fileID: 0}
     - target: {fileID: 3440381018200978358, guid: 6f615fe51e6fa3b42a58c35a547eb52d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1199,19 +1207,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: ErlenmeyerRond
       objectReference: {fileID: 0}
-    - target: {fileID: 9181046902657358925, guid: 6f615fe51e6fa3b42a58c35a547eb52d, type: 3}
-      propertyPath: shape
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f615fe51e6fa3b42a58c35a547eb52d, type: 3}
---- !u!4 &7792542513984974022 stripped
+--- !u!4 &183384004293762726 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3440381018200978358, guid: 6f615fe51e6fa3b42a58c35a547eb52d, type: 3}
-  m_PrefabInstance: {fileID: 4871237213694304112}
+  m_PrefabInstance: {fileID: 3257565470013173008}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4904830843784057365
 PrefabInstance:

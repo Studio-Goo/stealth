@@ -2693,7 +2693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &941023957
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3442,7 +3442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1199431186
 Transform:
   m_ObjectHideFlags: 0
@@ -4394,7 +4394,6 @@ MonoBehaviour:
   newX: 0
   startTime: 0
   slime: {fileID: 2143131204}
-  slimeScript: {fileID: 2143131205}
 --- !u!4 &1332012133
 Transform:
   m_ObjectHideFlags: 0
@@ -4788,7 +4787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1466773074
 AudioSource:
   m_ObjectHideFlags: 0

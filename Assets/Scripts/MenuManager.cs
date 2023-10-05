@@ -6,6 +6,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject player;
     public Slime slimeScript;
+    public GameManager gameManager;
     [SerializeField] private GameObject mainMenuPanel, gameMenuPanel, pausedMenuPanel, gameoverMenuPanel;
 
     private void Awake()
@@ -52,6 +53,7 @@ public class MenuManager : MonoBehaviour
 
     public void HandleReplayClick()
     {
+        gameManager.HandleGameOver();
         gameoverMenuPanel.SetActive(false);
         pausedMenuPanel.SetActive(false);
         mainMenuPanel.SetActive(true);

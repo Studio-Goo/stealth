@@ -30,7 +30,6 @@ public class Obstacle : MonoBehaviour
     //private GameObject FloorShadowMask;
 
     private GameObject startAnimation;
-    private int obstacleCount = 0;
 
     private float gestureCheckDistance = .9f;
     //[NonSerialized]
