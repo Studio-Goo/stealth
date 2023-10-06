@@ -5,33 +5,23 @@ using UnityEngine;
 public class EndAnimation : MonoBehaviour
 {
     public GameObject endAnimation;
-    public GameObject player;
     public AudioSource endAudio;
-    // Start is called before the first frame update
-    public void Start()
-    {
-        //endAnimation.SetActive(false);
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private GameObject slime;
 
     public void HandleEndAnimation()
     {
-        //get player position
-        Vector3 playerPosition = player.transform.position;
+        slime = Slime.Instance.GetGameObject();
+        Vector3 slimePosition = slime.transform.position;
         
         //set end animation position to player position
         Vector3 newPosition = endAnimation.transform.position;
-        newPosition.x = playerPosition.x + 1.5f;
+        newPosition.x = slimePosition.x + 5.6f;
         endAnimation.transform.position = newPosition;
 
 
         //start the animation
-        player.SetActive(false);
+        slime.SetActive(false);
 
         // Set the "isPlaying" parameter to true in the Animator.
         endAnimation.SetActive(true);

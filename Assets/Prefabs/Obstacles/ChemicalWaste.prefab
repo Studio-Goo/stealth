@@ -524,5 +524,5 @@ MonoBehaviour:
   ObstacleSprite: {fileID: 0}
   ShadowSprite: {fileID: 0}
   FloorShadowSprite: {fileID: 0}
-  shape: 1
+  gesture: 1
   tutorial: 0

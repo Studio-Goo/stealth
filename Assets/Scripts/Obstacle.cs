@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Shape { Null, Up, Down, Suspended };
+public enum Gesture { Null, Up, Down, Tap };
 
 public class Obstacle : MonoBehaviour
 {
@@ -15,54 +15,31 @@ public class Obstacle : MonoBehaviour
 
     [Header("Player")]
     [SerializeField]
-    public Shape shape;
+    public Gesture gesture;
     private Slime slime = Slime.Instance;
     public bool tutorial = false;
 
     private bool completed = false;
     private bool passed = false;
 
-    //private GameObject obstacle;
-    //private GameObject obstacleShadow;
-    //private GameObject obstacleShadowMask;
-    //private GameObject ParentFloor;
-    //private GameObject FloorShadow;
-    //private GameObject FloorShadowMask;
-
     private GameObject startAnimation;
 
     private float gestureCheckDistance = .9f;
-    //[NonSerialized]
-    //public PointSystem pointSystemScript;
     private PointSystem pointSystem = PointSystem.Instance;
 
     void Start()
     {
-        //obstacle = this.gameObject.transform.GetChild(0).gameObject;
-        //obstacleShadow = obstacle.transform.GetChild(0).gameObject;
-        //obstacleShadowMask = obstacleShadow.transform.GetChild(0).gameObject;
-        //ParentFloor = this.gameObject.transform.GetChild(1).gameObject;
-        //FloorShadow = ParentFloor.transform.GetChild(0).gameObject;
-        //FloorShadowMask = FloorShadow.transform.GetChild(0).gameObject;
-
-        // ChangeObstacle(ObstacleSprite, ShadowSprite, FloorShadowSprite);
-
-        startAnimation = GameObject.Find("StartAnimation");
-        if (startAnimation)
-        {
-            startAnimation.SetActive(false);
-        }
-
-        //pointSystemScript = pointSystem.GetComponent<PointSystem>();
+        //startAnimation = GameObject.Find("StartAnimation");
+        //if (startAnimation)
+        //{
+        //    startAnimation.SetActive(false);
+        //}
     }
 
     private void Update()
     {
-        if(GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
+        if(GameManager.Instance != null && GameManager.Instance.gameState == GameState.Playing)
         {
-
-            //Debug.Log(slime.isHiding);
-
             if (ObstacleReached())
             {
                 HandleObstacleReached();
@@ -77,27 +54,6 @@ public class Obstacle : MonoBehaviour
             {
                 pointSystem.showPoints();
             }
-
-
-            //if (SlimeDistance() < 0f)
-            //{
-            //    slime.isHiding = false;
-            //}
-
-            //if (PlayerPrefs.GetInt("Tutorial") == 0)
-            //{
-                //check if pointsystem is active
-                //if (pointSystem.activeSelf)
-                //{
-                    //if it is, show points
-                    //pointSystem.showPoints();
-                //}
-                //else
-                //{
-                    //if it isn't, set it to active
-                    //pointSystem.SetActive(true);
-                //}
-            //}
         }
         
     }
@@ -120,40 +76,18 @@ public class Obstacle : MonoBehaviour
                 PlayerPrefs.SetInt("Tutorial", 0);
                 PlayerPrefs.SetInt("obstaclePassed", 0);
             }
-
-            //if(!tutorial)
-            //{
-            //    // Only add point if not tutorial
-            //    pointSystem.pointCounter();
-            //    pointSystem.showPoints();
-            //}
         }
 
-        //increase speed
         slime.speedUp();
-
-        //decrease obstacle spawn interval
-        //if (slime.obstacleSpawner.spawnInterval > 0.5f)
-        //{
-        //    obstacleSpawner.DecreaseSpawnInterval();
-        //}
     }
 
     bool CheckGesture()
     {
-        //float distance = SlimeDistance();
-
-
-        //Debug.Log(distance);
-        // if (distance > 0 && distance < gestureCheckDistance)
-        // {
-            //Debug.Log(obstacle);
-            if (shape == slime.lastGesture)
-            {
-                completed = true;
-                return true;
-            }
-        // }
+        if (gesture == slime.lastGesture)
+        {
+            completed = true;
+            return true;
+        }
 
         return false;
     }
@@ -194,7 +128,6 @@ public class Obstacle : MonoBehaviour
 
                 if (PlayerPrefs.GetInt("Tutorial") == 0)
                 {
-                    // todo: add point
                     pointSystem.enable();
                     pointSystem.pointCounter();
                 }
@@ -212,14 +145,13 @@ public class Obstacle : MonoBehaviour
             }
             else
             {
-                if (slime.cheatOn)
+                if (CheatManager.Instance.GetCheatMode())
                 {
                     correctGesture();
                 }
                 else
                 {
                     print("Wrong Gesture");
-                    // SceneManager.LoadScene("GameOver");
                     GameManager.Instance.UpdateGameState(GameState.GameOverAnimation);
                 }
             }
@@ -229,16 +161,6 @@ public class Obstacle : MonoBehaviour
     private float SlimeDistance()
     {
         float distance = this.gameObject.transform.position.x - slime.transform.position.x;
-        //Debug.Log(distance);
         return distance;
     }
-
-    //public void ChangeObstacle(Sprite obstacleSprite, Sprite obstacleShadowSprite, Sprite floorShadowSprite)
-    //{
-    //    obstacle.GetComponent<SpriteRenderer>().sprite = obstacleSprite;
-    //    obstacleShadow.GetComponent<SpriteMask>().sprite = obstacleShadowSprite;
-    //    obstacleShadowMask.GetComponent<SpriteRenderer>().sprite = obstacleShadowSprite;
-    //    FloorShadow.GetComponent<SpriteMask>().sprite = floorShadowSprite;
-    //    FloorShadowMask.GetComponent<SpriteRenderer>().sprite = floorShadowSprite;
-    //}
 }

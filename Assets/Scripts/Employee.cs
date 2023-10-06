@@ -6,10 +6,9 @@ using UnityEngine;
 public class Employee : MonoBehaviour
 {
 
-    //public float speed = 5.0f;
-    public float notLookingDistance = 20.0f;
     public float halfLookingDistance = 10.0f;
     public float fullLookingDistance = 1.0f;
+    public float awayLookingDistance = -1.0f;
 
     private GameObject player;
 
@@ -62,18 +61,18 @@ public class Employee : MonoBehaviour
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = selectedEmployee.GetComponent<EmployeeSprites>().fullLooking;
             this.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-            //employeeActive = false;
+        } else if (distance < 0 && distance < fullLookingDistance * -1)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = selectedEmployee.GetComponent<EmployeeSprites>().halfLooking;
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            this.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
         }
-
-        //transform.Translate(Vector3.left * speed * Time.deltaTime);
-
-        //if(player.GetComponent<Slime>().CanMove())
-        //{
-        //    speed = 5.0f;
-        //} else
-        //{
-        //   speed = 0;
-        //}
+        else if (distance > fullLookingDistance * -1 && distance < halfLookingDistance * -1)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = selectedEmployee.GetComponent<EmployeeSprites>().notLooking;
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            this.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        }
     }
 
     void chooseEmployee()

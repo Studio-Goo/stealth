@@ -3,41 +3,44 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TitleScreen : MonoBehaviour
+public class CheatManager : MonoBehaviour
 {
-    public Slime slimeScript;
+    public static CheatManager Instance;
     public GameObject cheatText;
     public TextMeshProUGUI text;
-    // Start is called before the first frame update
-    void Start()
+
+    private bool cheatMode = false;
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //check if title screen has been clicked 5 times
+        // Tap screen 5 times to enable the cheatMode
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
             if (touch.phase == TouchPhase.Began && touch.tapCount == 5)
             {
-                cheatMode();
+                CheatModeEnabledHandler();
+                cheatMode = true;
             }
         }
     }
 
-    void cheatMode()
+    public bool GetCheatMode()
+    {
+        return cheatMode;
+    }
+
+    private void CheatModeEnabledHandler()
     {
         print("cheat on");
-        //enable cheat mode
+
         cheatText.SetActive(true);
-        slimeScript.cheatOn = true;
-
-        //show text underneath title screen\
         text.text = "Cheat Mode Activated";
-
     }
 }

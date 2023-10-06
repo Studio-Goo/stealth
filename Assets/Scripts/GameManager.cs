@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public GameState gameState;
     public Slime slime;
     public PointSystem pointSystem;
-    public ObstacleSpawner obstacleSpawner; 
     public StartAnimation startAnimation;
     public EndAnimation endAnimation;
     public AudioSource backgroundMusic;
@@ -37,29 +36,44 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.MainMenu:
-                HandleMainScene();
+
                 endScreen.SetActive(false);
+                slime.GetGameObject().SetActive(false);
+
                 break;
 
             case GameState.StartAnimation:
+
+                slimePosition.ResetPosition();
                 startAnimation.HandleStartAnimation();
+
                 break;
 
             case GameState.Playing:
+
                 endScreen.SetActive(false); //just in case
                 backgroundMusic.Play();
+
                 break;
 
             case GameState.Paused:
                 break;
 
             case GameState.GameOverAnimation:
+
                 backgroundMusic.Stop();
                 endAnimation.HandleEndAnimation();
+
                 break;
 
             case GameState.GameOver:
-                HandleGameOver();
+
+                slime.ResetAll();
+                slimePosition.ResetPosition();
+                pointSystem.ResetPoints();
+                slime.GetGameObject().SetActive(false);
+                PlayerPrefs.SetInt("obstaclePassed", 0);
+
                 break;
 
             default:
@@ -69,20 +83,6 @@ public class GameManager : MonoBehaviour
 
         // Only trigger event if anything is subscribed to it
         OnGameStateChanged?.Invoke(newState);
-    }
-
-    public void HandleMainScene()
-    {
-        //UpdateGameState(GameState.Playing);
-    }
-
-    public void HandleGameOver()
-    {
-        slime.ResetAll();
-        slimePosition.ResetPosition();
-        obstacleSpawner.ResetAll();
-        pointSystem.ResetPoints();
-        PlayerPrefs.SetInt("obstaclePassed", 0);
     }
 
 }

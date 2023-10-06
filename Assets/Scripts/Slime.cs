@@ -1,77 +1,41 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Slime : MonoBehaviour
 {
-    public static Slime Instance;
-    public float speed = 8.0f; // Adjust the speed in the Inspector.
-    public float jumpHold = 0.2f;
-    public float initialJump = 15.0f;
+    [NonSerialized] public static Slime Instance;
+    private float speed = 8.0f; // Adjust the speed in the Inspector.
 
 
-    public float gestureResetSeconds = 1.0f;
+    private float gestureResetSeconds = 1.0f;
 
     private float resetGestureAfter = 0.0f;
     [NonSerialized]
     public bool isHiding = false;
     // Always in-sync w/ setSpeed
-    public float slowFraction = 8.0f;
-    public float baseSpeed = 8.0f;
-    public float setSpeed = 8.0f;
-    public float maxSpeed = 30.0f;
-    public float speedIncrease = 0.3f;
+    private float slowFraction = 8.0f;
+    private float baseSpeed = 8.0f;
+    private float setSpeed = 8.0f;
+    private float maxSpeed = 30.0f;
+    private float speedIncrease = 0.3f;
 
-    [NonSerialized]
-    public bool cheatOn = false;
-    public GameObject cheatText;
-
-
-    private Vector3 startPosition;
+    private float startXPosition = -37.16592f;
+    [SerializeField]
     public GameObject slime;
 
-    public Shape lastGesture;
-    public Shape savedGesture;
-    //public GameObject pointSystem;
-
+    [NonSerialized]
+    public Gesture lastGesture;
 
     // Sprites
     public Sprite normal;
     public Sprite tall;
     public Sprite flat;
-    public Sprite jump;
+    public Sprite circle;
 
-
-
-    void Start()
-    {
-        //pointSystemScript = pointSystem.GetComponent<PointSystem>();
-
-        //walkAudio.SetActive(true);
-    }
 
     private void Awake()
     {
         Instance = this;
-        startPosition = slime.transform.localPosition;
-        GameManager.OnGameStateChanged += GameManagerOnOnGameStateChanged;
-
-        print("Slime awake");
-    }
-
-    private void OnDestroy()
-    {
-        GameManager.OnGameStateChanged -= GameManagerOnOnGameStateChanged;
-    }
-
-    public void GameManagerOnOnGameStateChanged(GameState state)
-    {
-        if (state == GameState.MainMenu)
-        {
-            slime.transform.position = startPosition;
-        }
     }
 
     public void speedUp()
@@ -101,7 +65,7 @@ public class Slime : MonoBehaviour
 
         if (GameManager.Instance.gameState == GameState.Playing && GameManager.Instance != null)
         {
-            //automatic slime movement
+            // Moving the slime to the right
             transform.Translate(Vector3.right * speed * Time.deltaTime);
 
         }
@@ -112,7 +76,7 @@ public class Slime : MonoBehaviour
             resetGestureAfter -= Time.deltaTime;
         } else
         {
-            lastGesture = Shape.Null;
+            lastGesture = Gesture.Null;
         }
 
         UpdateSlimeSprite();
@@ -123,26 +87,21 @@ public class Slime : MonoBehaviour
     {
         if (!isHiding)
         {
-            if (lastGesture == Shape.Null)
+            if (lastGesture == Gesture.Null)
             {
                 ChangeSlimeSprite(normal);
             }
-            else if (lastGesture == Shape.Up)
+            else if (lastGesture == Gesture.Up)
             {
                 ChangeSlimeSprite(tall);
             }
-            else if (lastGesture == Shape.Down)
+            else if (lastGesture == Gesture.Down)
             {
                 ChangeSlimeSprite(flat);
             }
-            else if (lastGesture == Shape.Suspended)
+            else if (lastGesture == Gesture.Tap)
             {
-
-                ChangeSlimeSprite(jump);
-                if (!isHiding)
-                {
-                    // this.GetComponent<Rigidbody2D>().AddForce(transform.up * jumpHold, ForceMode2D.Impulse);
-                }
+                ChangeSlimeSprite(circle);
             }
         }
     }
@@ -155,13 +114,10 @@ public class Slime : MonoBehaviour
     }
 
 
-    public void UpdateGesture(Shape newGesture)
+    public void SetGesture(Gesture newGesture)
     {
         lastGesture = newGesture;
         resetGestureAfter = gestureResetSeconds;
-        if (newGesture == Shape.Suspended && transform.position.y <= -7.31f) { //could maybe put it between 2 heights for the double jump spawning
-            // this.GetComponent<Rigidbody2D>().AddForce(transform.up * initialJump, ForceMode2D.Impulse);
-        }
     }
 
     public void ResetAll()
@@ -169,8 +125,13 @@ public class Slime : MonoBehaviour
         print("reset");
         setSpeed = baseSpeed;
         speed = baseSpeed;
-        cheatOn = false;
-        cheatText.SetActive(false);
+        gameObject.SetActive(false);
         isHiding = false;
+        slime.transform.position = new Vector3(startXPosition, slime.transform.position.y, slime.transform.position.z);
+    }
+
+    public GameObject GetGameObject()
+    {
+        return slime;
     }
 }
