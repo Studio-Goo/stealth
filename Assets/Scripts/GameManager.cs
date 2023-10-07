@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public AudioSource backgroundMusic;
     public GameObject endScreen;
     public SlimePosition slimePosition;
-
+    public GameObject startAni;
     public static event Action<GameState> OnGameStateChanged;
 
     private void Awake()
@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
                 pointSystem.ResetPoints();
                 slime.GetGameObject().SetActive(false);
                 PlayerPrefs.SetInt("obstaclePassed", 0);
+                startAni.SetActive(false);
 
                 break;
 

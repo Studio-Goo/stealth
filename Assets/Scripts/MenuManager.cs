@@ -5,6 +5,7 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     public GameObject player;
+    public Slime slime;
     [SerializeField] private GameObject mainMenuPanel, gameMenuPanel, pausedMenuPanel, gameoverMenuPanel;
 
     private void Awake()
@@ -74,6 +75,8 @@ public class MenuManager : MonoBehaviour
         pausedMenuPanel.SetActive(true);
 
         mainMenuPanel.SetActive(true);
+        slime.ResetAll();
+        
 
         GameManager.Instance.UpdateGameState(GameState.MainMenu);
     }

@@ -43,4 +43,11 @@ public class CheatManager : MonoBehaviour
         cheatText.SetActive(true);
         text.text = "Cheat Mode Activated";
     }
+
+    public void CheatModeDisabledHandler()
+    {
+        cheatMode = false;
+        cheatText.SetActive(false);
+        text.text = "";
+    }
 }

@@ -16,12 +16,13 @@ public class Slime : MonoBehaviour
     private float slowFraction = 8.0f;
     private float baseSpeed = 8.0f;
     private float setSpeed = 8.0f;
-    private float maxSpeed = 30.0f;
-    private float speedIncrease = 0.3f;
+    private float maxSpeed = 50.0f;
+    private float speedIncrease = 0.5f;
 
     private float startXPosition = -37.16592f;
     [SerializeField]
     public GameObject slime;
+    public CheatManager cheatManager;
 
     [NonSerialized]
     public Gesture lastGesture;
@@ -126,7 +127,10 @@ public class Slime : MonoBehaviour
         setSpeed = baseSpeed;
         speed = baseSpeed;
         gameObject.SetActive(false);
+        
         isHiding = false;
+        cheatManager.CheatModeDisabledHandler();
+
         slime.transform.position = new Vector3(startXPosition, slime.transform.position.y, slime.transform.position.z);
     }
 
