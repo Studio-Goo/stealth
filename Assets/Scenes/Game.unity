@@ -2325,7 +2325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2143131204}
-  slime: {fileID: 2143131205}
+  gameManager: {fileID: 527458776}
   mainMenuPanel: {fileID: 1087822596}
   gameMenuPanel: {fileID: 1548920834}
   pausedMenuPanel: {fileID: 141739094}

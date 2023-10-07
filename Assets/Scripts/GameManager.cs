@@ -68,12 +68,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.GameOver:
 
-                slime.ResetAll();
-                slimePosition.ResetPosition();
-                pointSystem.ResetPoints();
-                slime.GetGameObject().SetActive(false);
-                PlayerPrefs.SetInt("obstaclePassed", 0);
-                startAni.SetActive(false);
+                HandleGameOver();
 
                 break;
 
@@ -84,6 +79,16 @@ public class GameManager : MonoBehaviour
 
         // Only trigger event if anything is subscribed to it
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    public void HandleGameOver()
+    {
+        slime.ResetAll();
+        slimePosition.ResetPosition();
+        pointSystem.ResetPoints();
+        slime.GetGameObject().SetActive(false);
+        PlayerPrefs.SetInt("obstaclePassed", 0);
+        startAni.SetActive(false);
     }
 
 }
