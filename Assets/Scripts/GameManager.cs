@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
                 endScreen.SetActive(false);
                 slime.GetGameObject().SetActive(false);
+                backgroundMusic.Stop();
 
                 break;
 
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Paused:
+                backgroundMusic.Pause();
                 break;
 
             case GameState.GameOverAnimation:
