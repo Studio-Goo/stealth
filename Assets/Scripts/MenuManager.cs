@@ -6,6 +6,7 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject player;
     public GameManager gameManager;
+    public GameObject StaticSlime;
     [SerializeField] private GameObject mainMenuPanel, gameMenuPanel, pausedMenuPanel, gameoverMenuPanel;
 
     private void Awake()
@@ -21,6 +22,7 @@ public class MenuManager : MonoBehaviour
     private void GameManagerOnOnGameStateChanged(GameState state)
     {
         mainMenuPanel.SetActive(state == GameState.MainMenu);
+        StaticSlime.SetActive(state == GameState.MainMenu || state == GameState.GameOver);
         gameMenuPanel.SetActive(state == GameState.Playing);
         pausedMenuPanel.SetActive(state == GameState.Paused);
         gameoverMenuPanel.SetActive(state == GameState.GameOver);
